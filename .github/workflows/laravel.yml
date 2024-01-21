@@ -39,6 +39,7 @@ jobs:
         script: |
           whoami
           ls -al
-          cd folder
+          cd evokeedgelimited.com
           composer install --ignore-platform-reqs
           php artisan storage:link
+          php artisan key:generate
