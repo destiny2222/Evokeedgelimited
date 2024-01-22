@@ -29,7 +29,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'verified', 'che
     Route::get('/help', [PageController::class, 'helps'])->name('help-page');
     Route::get('/setting', [HomeController::class, 'Setting'])->name('setting-page');
     Route::get('/profile', [HomeController::class, 'Profile'])->name('profile-page');
-    Route::get('/deposit', [PageController::class, 'deposit'])->name('deposit-page');
+    Route::get('/deposit', [Usercontroller::class, 'deposit'])->name('deposit-page');
     Route::get('/flight',  [PageController::class, 'flight'])->name('flight-page');
     Route::get('/pay-school-fee', [PageController::class, 'pay_school_fee'])->name('pay_school_fee-page');
     Route::get('/others-payment', [PageController::class, 'OthersPayment'])->name('others-page');
@@ -38,6 +38,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'verified', 'che
     //  deposit payment
     Route::post('/payment/initialize', [DepositController::class, 'initialize'])->name('deposit.payment');
     Route::get('/payment/callback', [DepositController::class, 'handlecallback'])->name('callback');
+    Route::post('/payment/webhook/', [DepositController::class, 'webhook'])->name('pay.webhook');
 
     Route::group(['middleware'=> ['checkkyc']], function (){
         // user editing

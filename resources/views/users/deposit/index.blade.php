@@ -22,11 +22,11 @@
                 <div class="d-flex align-items-center justify-content-around gap-5 text-center">
                     <div>
                         <small class="text-muted fw-bold">Available Balance</small>
-                        <h2 class="mb-2 pt-3 fw-bold">$2,897</h2>
+                        <h2 class="mb-2 pt-3 fw-bold">${{ number_format($userbalance->amount, 2)  }}</h2>
                     </div>
                     <div>
                         <small class="text-muted fw-bold">Pending Balance</small>
-                        <h2 class="mb-2 pt-3 fw-bold">$2,897</h2>
+                        <h2 class="mb-2 pt-3 fw-bold">${{ number_format($userbalance->balance, 2) }}</h2>
                     </div>
                 </div>
             </div>

@@ -50,11 +50,7 @@ class PageController extends Controller
 
 
 
-   public function deposit()
-   {
-       
-       return view('users.Corporate.deposit');
-   }
+
 
    public function  flight(){
      return view('users.Flight.flight');

@@ -84,8 +84,8 @@
                                     <label for="" style="font-weight: 500;"> Amount to add </label>
                                     <div class="wrap-input100 validate-input input-group" id="Password-toggle" data-bs-validate="Password is required">
                                         <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
-                                            <img src="/static/media/NGN-round.44ad12d8.svg" alt="" style="width: 0.9375rem; height: 0.9375rem; display: inline-block; margin-right: 0.28rem;">
-                                            <span style="font-weight: 500; color: rgb(82, 95, 122);">NGN</span>
+                                            <img src="{{ asset('assetss/assets/images/flags-svg/us.svg') }}" alt="" style="width: 0.9375rem; height: 0.9375rem; display: inline-block; margin-right: 0.28rem;">
+                                            <span style="font-weight: 500; color: rgb(82, 95, 122);">USD</span>
                                         </a>
                                         <input  name="amount" class="input100 border-start-0 ms-0 form-control" value="">
                                     </div>
@@ -103,8 +103,8 @@
                                         <label class=" bnBVmw">Amount you will receive</label>
                                         <div  class="wrap-input100 validate-input input-group" id="Password-toggle" data-bs-validate="Password is required">
                                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
-                                                <img src="/static/media/NGN-round.44ad12d8.svg" alt="" style="width: 0.9375rem; height: 0.9375rem; display: inline-block; margin-right: 0.28rem;">
-                                                <span style="font-weight: 500; color: rgb(82, 95, 122);">NGN</span>
+                                                <img src="{{ asset('assetss/assets/images/flags-svg/us.svg') }}" alt="" style="width: 0.9375rem; height: 0.9375rem; display: inline-block; margin-right: 0.28rem;">
+                                                <span style="font-weight: 500; color: rgb(82, 95, 122);">USD</span>
                                             </a>
                                             <input disabled  tabindex="0" inputmode="none" aria-autocomplete="list" aria-expanded="false" aria-haspopup="true" role="combobox" aria-readonly="true" class="input100 border-start-0 ms-0 form-control" value="">
                                         </div>
@@ -147,7 +147,7 @@
 
     <!-- Switcher js -->
     <script src="/assetss/assets/switcher/js/switcher.js"></script>
-    {{-- @include('partials.message') --}}
+    @include('partials.message')
     @include('partials.notification')
 </body>
 

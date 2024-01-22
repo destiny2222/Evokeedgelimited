@@ -63283,4 +63283,11 @@ textarea.form-control {
     margin-left: 1.0625rem;
     cursor: pointer;
 }
+
+
+@media screen and (max-width:768px){
+    .accounts-title{
+        font-size: 20px;
+    }
+}
 /*# sourceMappingURL=style.css.map */

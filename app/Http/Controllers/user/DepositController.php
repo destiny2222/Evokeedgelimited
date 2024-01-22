@@ -4,6 +4,7 @@ namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserWallet\UpdateWallet;
+use App\Models\Transaction;
 use App\Models\UserWallet;
 use KingFlamez\Rave\Facades\Rave as Flutterwave;
 use Illuminate\Http\Request;
@@ -17,60 +18,12 @@ class DepositController extends Controller
 {
 
 
-
-
-
-    // public function depositPayment(Request $request)
-    // {
-
-    //     $request->validate([
-    //         'amount'=>['required', 'string'],
-    //         'user_id'=>['required', 'string'],
-    //     ]);
-
-    //         $reference = 'VS_' . uniqid();
-    //         $authnication = config('services.flutterwave.secretkey');
-    //         $response = Http::withHeaders([
-    //             'Authorization' => 'Bearer '  .$authnication,
-    //             'Content-Type' => 'application/json'
-    //         ])->post('https://api.flutterwave.com/v3/payments', [
-    //             'amount' => $request->amount,
-    //             'email' => $request->email,
-    //             'payment_options'=> "card, bank, ussd,bank transfer",
-    //             'tx_ref' => $reference,
-    //             'currency' => "USD",
-    //             'redirect_url' => route('callback'),
-
-    //             'customer' => [
-    //                 'email' => $request->email,
-    //                 "phone_number" => $request->phone,
-    //                 "name" => $request->name
-    //             ],
-
-    //             "customizations" => [
-    //                 "title" => 'EvokeEdge  Limited',
-    //             ]
-    //         ]);
-
-    //         $responseData = $response->json();
-
-    //         if (isset($responseData['status']) && $responseData['status'] === 'success') {
-    //             $paymentLink = $responseData['data']['link'];
-    //             return view('frontend.checkout')->with('paymentLink', $paymentLink); 
-    //         } else {
-    //             return back()->with('error', 'Oops something went wrong. Please refresh the page and try again');
-    //         }
-    // }
-
-
-
-
  public function initialize(Request $request)
     {
         $request->validate([
             'amount'=>['required', 'string'],
-            // 'user_id'=>['required', 'string'],
         ]);
+
         $reference = Flutterwave::generateReference();
 
         // Enter the details of the payment
@@ -79,7 +32,7 @@ class DepositController extends Controller
             'amount' => $request->input('amount'),
             'email' => $request->input('email'),
             'tx_ref' => $reference,
-            'currency' => "USD",
+            'currency' => "NGN",
             'redirect_url' => route('callback'),
             'customer' => [
                 'email' => $request->input('email'),
@@ -93,57 +46,62 @@ class DepositController extends Controller
         ];
 
         $payment = Flutterwave::initializePayment($data);
-        if ($payment['status'] !== 'success') {
-            return back()->with('error', 'Oops something went wrong. Please refresh the page and try again');
-        }
-
-        return redirect($payment['data']['link']);
+        if ($payment && isset($payment['status']) && $payment['status'] === 'success' && isset($payment['data']['link'])) {
+            return redirect($payment['data']['link']);
+        } else {
+            return back()->with('error', 'Oops, something went wrong. Please refresh the page and try again');
+        }        
     }
 
-
-  public function webhook(Request $request)
-  {
-    $verified = Flutterwave::verifyWebhook();
-    if ($verified && $request->event == 'charge.completed' && $request->data->status == 'successful') {
-        $verificationData = Flutterwave::verifyPayment($request->data['id']);
-        if ($verificationData['status'] === 'success') {
-        // process for successful charge
-
-        }
-
-    }
-
-    // if it is a transfer event, verify and confirm it is a successful transfer
-    if ($verified && $request->event == 'transfer.completed') {
-
-        $transfer = Flutterwave::transfers()->fetch($request->data['id']);
-
-        if($transfer['data']['status'] === 'SUCCESSFUL') {
-            // update transfer status to successful in your db
-        } else if ($transfer['data']['status'] === 'FAILED') {
-            // update transfer status to failed in your db
-            // revert customer balance back
-        } else if ($transfer['data']['status'] === 'PENDING') {
-            // update transfer status to pending in your db
-        }
-
-    }
-  }
-
+ public function webhook(){
+    $data = Flutterwave::receiveWebhook();
+    $txref = $data['txRef'];
+   if($data['status'] === 'succesful'){
+        $payment = new  Transaction;
+        $payment->trans_id = $data['data']['id'];
+        $payment->user_id = auth()->user()->id;
+        $payment->trans_type = $data['data']['payment_type'];
+        $payment->pending_balance = $data['data']['amount'];
+        $payment->charge = $data['data']['charged_amount'];
+        $payment->trans_ref = $data['data']['tx_ref'];
+        $payment->status = '1';
+        $payment->save();
+   }
+    
+ }
 
   
-    public function handlecallback()
+ public function handlecallback()
     {
-        
         $status = request()->status;
-
-        //if payment is successful
         if ($status ==  'successful') {
-        
-        $transactionID = Flutterwave::getTransactionIDFromCallback();
-        $data = Flutterwave::verifyTransaction($transactionID);
-        dd($data);
+            $transactionID = Flutterwave::getTransactionIDFromCallback();
+            $data = Flutterwave::verifyTransaction($transactionID);
+            $payment = new  Transaction;
+            $payment->trans_id = $data['data']['id'];
+            $payment->user_id = auth()->user()->id;
+            $payment->trans_type = $data['data']['payment_type'];
+            $payment->pending_balance = $data['data']['amount'];
+            $payment->charge = $data['data']['charged_amount'];
+            $payment->trans_ref = $data['data']['tx_ref'];
+            $payment->status = '1';
+            $payment->save();
+           
+            $wallet = UserWallet::where('user_id', auth()->user()->id)->first();
+            if(!$wallet){
+                $wallet = new UserWallet;
+                $wallet->user_id = auth()->user()->id;
+                $wallet->amount = $payment->pending_balance;
+                $wallet->save();
+            }else{
+                $wallet->update([
+                    'amount'=> $wallet->amount + $payment->pending_balance,
+                    'user_id'=> auth()->user()->id,
+                ]);
+            }
+            $payment->update(['pending_balance' => 0]);
 
+           return redirect()->route('deposit-page')->with('success', ' Payment Successfully');
         }
         elseif ($status ==  'cancelled'){
             return back()->with('warning', 'transaction has been cancelled');
