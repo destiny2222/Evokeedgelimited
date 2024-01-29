@@ -43,4 +43,4 @@ jobs:
           composer install --ignore-platform-reqs
           php artisan storage:link
           php artisan key:generate
-          php artisan migrate:refresh 
+          php artisan migrate:fresh 
