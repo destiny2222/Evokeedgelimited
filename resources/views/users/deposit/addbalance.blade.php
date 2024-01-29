@@ -25,39 +25,41 @@
                 <h2 variant="heavy" class="sc-ftTHFa iCcsoS">Add money via direct debit</h2>
                 <p class="sc-dkrGVk kHcUip subtext">Enter amount you want to add</p>
             </div>
-            <div class="card  gEtoOE m-auto ">
+            <div class="card  gEtoOE m-auto mb-5">
                 <div class="card-body ">
-                    <form action="{{ route('deposit.payment') }}" method="post">
+                    <form action="{{ route('pay.transfer') }}" method="post">
                         @csrf
-                        <input type="hidden" name="email" value="{{ auth()->user()->email }}">
-                        <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
-                        <input type="hidden" name="name" value="{{ auth()->user()->name }}">
-                        <input type="hidden" name="phone" value="{{ auth()->user()->phone }}">
                         <label for="" style="font-weight: 500;"> Amount to add </label>
-                        <div class="wrap-input100 validate-input input-group" id="Password-toggle" data-bs-validate="Password is required">
+                        <div class="mb-5 wrap-input100 validate-input input-group" id="Password-toggle" data-bs-validate="Password is required">
                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                 <img src="{{ asset('assetss/assets/images/flags-svg/us.svg') }}" alt="" style="width: 0.9375rem; height: 0.9375rem; display: inline-block; margin-right: 0.28rem;">
                                 <span style="font-weight: 500; color: rgb(82, 95, 122);">USD</span>
                             </a>
-                            <input type="number" id="amount" onkeyup="getVal()" name="amount" class="input100 border-start-0 ms-0 form-control" oninput="displayInput()">
-                        </div>
-                        <div class="sc-jSgvzq sc-Azgjq hsYUSf fDRDgV" >
-                            <div class="sc-jSgvzq MaInI list-item " >
-                                <span>Transaction fee</span>
-                                <span>$0.00</span>
-                            </div>
+                            <input  name="amount" class="input100 border-start-0 ms-0 form-control" value="">
                         </div>
                         <div>
-                            <label class=" bnBVmw">Amount you will receive</label>
-                            <div  class="wrap-input100 validate-input input-group" id="Password-toggle" data-bs-validate="Password is required">
-                                <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
-                                    <img src="{{ asset('assetss/assets/images/flags-svg/us.svg') }}" alt="" style="width: 0.9375rem; height: 0.9375rem; display: inline-block; margin-right: 0.28rem;">
-                                    <span style="font-weight: 500; color: rgb(82, 95, 122);">USD</span>
-                                </a>
-                                <input type="text" readonly  id="input2"  value="" class="input100 border-start-0 ms-0 form-control">
+                            <div class="row">
+                                <div class="col-lg-12 mb-4 pt-5">
+                                    <h5><b>Bank Name</b>: United Bank of Africa</h5>
+                                </div>
+                                <div class="col-lg-12 mb-4">
+                                    <h5><b>Account Name</b>: EvokeEdge Limited</h5>
+                                </div>
+                                <div class="col-lg-12 mb-4">
+                                    <h5><b>Account Number</b>: 3004158137</h5>
+                                </div>
+                                <div class="col-lg-12 mb-4">
+                                    <h5><b>Swift Code</b>: UNAFNGLA</h5>
+                                </div>
+                                <div class="col-lg-12 mb-4">
+                                    <h5><b>Bank Address</b>: 57 Marina, Lagos Island, Lagos, Nigeria.</h5>
+                                </div>
+                                <div class="col-lg-12 mb-4">
+                                    <h5><b>Account Currency</b>: USD</h5>
+                                </div>
                             </div>
                         </div>
-                        <button type="submit"  class="sc-gswPWN jtxPvF" style="margin-top: 1.5rem;">Make Payment</button>
+                        <button type="submit"  class="sc-gswPWN jtxPvF" style="margin-top: 1.5rem;">Click here after transfer</button>
                     </form>
                 </div>
             </div>

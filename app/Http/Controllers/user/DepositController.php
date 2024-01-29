@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UserWallet\UpdateWallet;
 use App\Models\Transaction;
 use App\Models\UserWallet;
+use App\Notifications\TransactionNotification;
 use KingFlamez\Rave\Facades\Rave as Flutterwave;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -33,7 +34,7 @@ class DepositController extends Controller
             'email' => $request->input('email'),
             'tx_ref' => $reference,
             'currency' => "NGN",
-            'redirect_url' => route('callback'),
+            'redirect_url' => route('deposit.callback'),
             'customer' => [
                 'email' => $request->input('email'),
                 "phone_number" => $request->input('phone'),
@@ -87,7 +88,7 @@ class DepositController extends Controller
             $payment->status = '1';
             $payment->save();
            
-            $wallet = UserWallet::where('user_id', auth()->user()->id)->first();
+            $wallet = UserWallet::where('user_id', auth()->user()->id)->latest()->first();
             if(!$wallet){
                 $wallet = new UserWallet;
                 $wallet->user_id = auth()->user()->id;
@@ -101,6 +102,7 @@ class DepositController extends Controller
             }
             $payment->update(['pending_balance' => 0]);
 
+            $wallet->user->notify(new TransactionNotification($wallet));
            return redirect()->route('deposit-page')->with('success', ' Payment Successfully');
         }
         elseif ($status ==  'cancelled'){
@@ -110,6 +112,40 @@ class DepositController extends Controller
             return back()->with('error', 'transaction has failed');
         }
         
+    }
+
+
+    public function initializeBankTransfer(Request $request){
+        $request->validate([ 
+            'amount'=>['required', 'string'],
+        ]);
+
+        $payment = new  Transaction;
+        if($payment){
+            $payment->trans_id = uniqid();
+            $payment->user_id = auth()->user()->id;
+            $payment->trans_type = 'Bank Transfer';
+            $payment->pending_balance = $request->amount;
+            $payment->charge = $request->amount;
+            $payment->trans_ref = uniqid('gfg', true);
+            $payment->status = '1';
+            $payment->save();
+
+            $wallet = UserWallet::where('user_id', auth()->user()->id)->latest()->first();
+            if(!$wallet){
+                $wallet = new UserWallet;
+                $wallet->user_id = auth()->user()->id;
+                $wallet->balance = $payment->pending_balance;
+                $wallet->save();
+            }else{
+                $wallet->update([
+                    'balance'=> $wallet->balance + $payment->pending_balance,
+                    'user_id'=> auth()->user()->id,
+                ]);
+            }
+           return redirect()->route('deposit-page')->with('notice_message',  'Your transaction  is processing');
+        }
+        return back()->with('error', 'Something went wrong! Please try again');
     }
 
 }

@@ -1,60 +1,62 @@
 @extends('layout.master')
 @section('content')
-<div class="container" style="padding-top: 40px">
-    
+@section('page-title', 'Tuition Payment')
+<!-- PAGE-HEADER -->
+@include('layout.page-header')
+<!-- PAGE-HEADER END -->
 
-    <div class="d-search shadow-lg p-l-4 p-r-4 p-t-3 p-b-4">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <h2 class=" m-b-2 payschool-h1 school-portal">
-                    {{   $collegeName }}
-                </h2>    
+   <div class="row">
+        <div class="col-md-12 col-xl-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title text-center">{{   $portal->college_name }}</h4>
+                </div>
+                <div class="card-body">
+                    <h4 class="mb-4 text-center">Provide login details we can use to access your school’s portal to complete the payment</h4>
+                    
+                    <form  action="{{ route('portal.tuiton') }}" method="POST">
+                        @csrf
+                        <input type="text"  value="{{  $portal->user_id }}" hidden name="user_id">
+                        <input type="text"  value="{{  $portal->college_name }}" hidden name="college_name">
+                        <input type="text"  value="{{  $portal->service_type }}" hidden name="service_type">
+                        
+                        <div class="">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1" class="form-label">Full legal name</label>
+                                <input type="text" class="form-control" id="exampleInputEmail1" name="legal_name" placeholder="Full Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1" class="form-label">Student email*</label>
+                                <input type="email" name="student_email" class="form-control" id="exampleInputEmail1" placeholder="Student email" >
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1" class="form-label">Portal link</label>
+                                <input type="text" name="portal_link" class="form-control" id="exampleInputEmail1" placeholder="Portal Link">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1" class="form-label">Student ID Number</label>
+                                <input type="text" name="student_id" class="form-control" id="exampleInputEmail1" placeholder="Student Id">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1" class="form-label">Portal Password</label>
+                                <input type="password" name="portal_password" class="form-control" id="exampleInputEmail1" placeholder="Portal password">
+                                <span class="password-toggle" id="password-toggle" onclick="togglePasswordVisibility()">&#128065;</span>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Amount</label>
+                                <input type="number" name="amount" id="" class="form-control">
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button class="btn btn-primary mt-4 mb-0" type="submit">Proceed to payment</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-        
-        <div class="search-container">
-            <form action="{{ route('portal-tuiton') }}" method="POST">
-                @csrf
-                <input type="text"  value="{{  auth()->user()->id }}" hidden name="user_id">
-                <input type="text"  value="{{   $collegeName }}" hidden name="college_name">
-                <input type="text"  value="{{   $serviceType }}" hidden name="service_type">
-               <div class="row">
-                    <h4>Provide login details we can use to access your school’s portal to complete the payment</h4>
-                    <div class="col-lg-12 col-12 p-t-2">
-                        <label for="legal">Full legal name </label>
-                        <input type="text" name="legal_name" id="legal" placeholder="Full Name" class="applicant-input">
-                    </div>
-                    <div class="col-lg-12 col-12 p-t-2">
-                        <label for="student_email">Student email*</label>
-                        <input type="email" name="student_email" id="student_email" class="applicant-input">
-                    </div>
-                    <div class="col-lg-12 col-12 p-t-2">
-                        <label for="portal_link">Portal link</label>
-                        <input type="text" name="portal_link" id="portal_link" class="applicant-input">
-                    </div>
-                    <div class="col-lg-12 col-12 p-t-2">
-                        <label for="student_id">Student ID Number</label>
-                        <input type="text" name="student_id" id="student_id" class="applicant-input">
-                    </div>
-                    <div class="col-lg-12 col-12 p-t-2">
-                        <div class="form-group" style="position: relative">
-                            <label for="portal_link">Portal Password</label>
-                            <input type="password" name="portal_password" id="portal_password" class="applicant-input">
-                        </div>
-                        <span class="password-toggle" id="password-toggle" onclick="togglePasswordVisibility()">&#128065;</span>
-                    </div>                                      
-                    <div class="col-lg-12 col-12 p-t-2">
-                        <label for="amount">Amount</label>
-                        <input type="number" name="amount" id="amount" class="applicant-input">
-                    </div>
-                    <div class="col-lg-12 col-12 text-center">
-                        <input type="submit" value="Proceed to payment" class="submit-form w-50 w-100">
-                    </div>
-               </div>
-            </form>
-        </div>
-        
-    </div>
+   </div>
+
+       
 </div>
     
 @endsection

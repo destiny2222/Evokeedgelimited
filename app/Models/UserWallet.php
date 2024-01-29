@@ -20,4 +20,13 @@ class UserWallet extends Model
     public function user(){
         return $this->belongsTo(User::class, 'user_id');
     }
+
+
+    public function transactions(){
+      return  $this->hasMany(Transaction::class, 'user_id');
+    }
+
+    public function isNullOrEmpty($amount){
+      return $amount === 0 || trim($amount)==='';
+    }
 }

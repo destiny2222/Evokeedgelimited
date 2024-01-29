@@ -4,7 +4,7 @@ namespace App\Http\Requests\Tuition;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateRequest extends FormRequest
+class PortalRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -33,7 +33,6 @@ class UpdateRequest extends FormRequest
             'college_name'=>['nullable', 'string'],
             'paid'=>['nullable', 'string'],
             'user_id'=>['nullable', 'string'],
-            'amount'=>['nullable', 'integer'],
         ];
     }
 }

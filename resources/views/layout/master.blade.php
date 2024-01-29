@@ -153,6 +153,12 @@
     <script src="/assetss/assets/plugins/flot/chart.flot.sampledata.js"></script>
     <script src="/assetss/assets/plugins/flot/dashboard.sampledata.js"></script>
 
+    <!-- INTERNAL Notifications js -->
+    <script src="/assetss/assets/plugins/notify/js/rainbow.js"></script>
+    <script src="/assetss/assets/plugins/notify/js/jquery.growl.js"></script>
+    <script src="/assetss/assets/plugins/notify/js/notifIt.js"></script>
+    @include('partials.notify')
+
     <!-- INTERNAL Vector js -->
     <script src="/assetss/assets/plugins/jvectormap/jquery-jvectormap-2.0.2.min.js"></script>
     <script src="/assetss/assets/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>

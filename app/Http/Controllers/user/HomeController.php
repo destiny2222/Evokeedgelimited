@@ -28,12 +28,13 @@ class HomeController extends Controller
     }
 
     public function index(){
-        $user = Auth::user();
-        $walletbalance = UserWallet::where('user_id', $user->id)->where('status', '1')->get();
+        $users = Auth::user();
+        $walletbalance = UserWallet::where('user_id', $users->id)->where('status', '1')->get();
         $settings = Setting::first();
         return view('users.index',[
             'balance'=>$walletbalance->sum('amount'),
             'setting'=>$settings,
+            'user'=>$users
         ]);
     }
 

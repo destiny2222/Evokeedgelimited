@@ -36,6 +36,7 @@ class VisaApplcationRequest extends FormRequest
             'user_password' => 'nullable|string',
             'username' =>'nullable|string',
             'visa_type' =>'nullable|string',
+            'user_id'=>'required|string'
         ];
     }
 

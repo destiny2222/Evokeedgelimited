@@ -138,70 +138,170 @@
 
 
 
-<div class="select_payment_method tabs">
-    <div class="local_banking tab">
-        <div class="imgae_payment">
-            <img src="{{ asset('assets/img/local.jpg') }}" alt="">
+<div class="col-md-12 col-xl-6">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Vertical Form</h4>
         </div>
-        <span>Local online bank</span>
-    </div>
-    <div class="visa tab">
-        <div class="imgae_payment">
-            <img src="{{  asset('assets/img/transfer.jpg') }}" width="70" alt="">
-        </div>
-        <span>Bank wire</span>
-    </div>
-
-</div>
-<div class="tab-content">
-    <div class="deposit-detail local_banking content">
-        <h4>Enter details:</h4>
-        <form action="{{ route('deposit.payment') }}" method="post">
-            @csrf
-            <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
-            <input type="hidden" name="email" value="{{ auth()->user()->email }}">
-            <div class="" style="margin-bottom: 1rem;position:relative;">
-                <label for="amount" style="padding-top: 20px;">Amount:</label>
-                <input type="number" name="amount" id="amount" class="applicant-input">
-                <div class="amount-usd">
-                    <p>USD</p>
+        <div class="card-body">
+            <form>
+                <div class="">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1" class="form-label">Email address</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email" autocomplete="username">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Basic</label>
+                        <select class="form-control select2 form-select" data-placeholder="Choose one">
+                                <option label="Choose one">
+                                </option>
+                                <option value="1">Chuck Testa</option>
+                                <option value="2">Sage Cattabriga-Alosa</option>
+                                <option value="3">Nikola Tesla</option>
+                                <option value="4">Cattabriga-Alosa</option>
+                                <option value="5">Nikola Alosa</option>
+                            </select>
+                    </div>
+                    <label class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="example-checkbox2" value="option2">
+                            <span class="custom-control-label">Check me Out</span>
+                        </label>
                 </div>
-            </div>
-            <div class="" style="margin-bottom: 1rem;">
-                <label for="holder_name" style="padding-top: 20px;">Account Holder Name:</label>
-                <input type="text" name="name" id="holder_name" class="applicant-input">
-            </div>
-            <span>Enter your name as it appears in your Payment Account</span>
-            <p>You cannot make a deposit using 3rd party. The name on your EvokeEdge Limited Account must match the same
-                account used to make payment.</p>
+                <button class="btn btn-primary mt-4 mb-0">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
 
-            <div style="text-align:center;margin-top:50px">
-                <input type="submit" value="Proceed">
+
+@push('scripts')
+    <script>
+       const Payvia = document.querySelector('#payvia');
+        const Portal = document.querySelector('#portal');
+
+        Payvia.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (Portal.style.display === 'none' || Portal.style.display === '') {
+                Portal.style.display = 'block';
+            } else {
+                Portal.style.display = 'none';
+            }
+        });
+    </script>
+    <script>
+        const Wire = document.querySelector('#wiretransfer');
+         const wire = document.querySelector('#wire');
+ 
+         Wire.addEventListener('click', function(e) {
+             e.preventDefault();
+             if (wire.style.display === 'none' || wire.style.display === '') {
+                 wire.style.display = 'block';
+             } else {
+                 wire.style.display = 'none';
+             }
+         });
+     </script>
+@endpush
+
+
+<div class="col-md-12 col-xl-6">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Vertical Form</h4>
+        </div>
+        <div class="card-body">
+            <form>
+                <div class="">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1" class="form-label">Email address</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email" autocomplete="username">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Basic</label>
+                        <select class="form-control select2 form-select" data-placeholder="Choose one">
+                                <option label="Choose one">
+                                </option>
+                                <option value="1">Chuck Testa</option>
+                                <option value="2">Sage Cattabriga-Alosa</option>
+                                <option value="3">Nikola Tesla</option>
+                                <option value="4">Cattabriga-Alosa</option>
+                                <option value="5">Nikola Alosa</option>
+                            </select>
+                    </div>
+                    <label class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="example-checkbox2" value="option2">
+                            <span class="custom-control-label">Check me Out</span>
+                        </label>
+                </div>
+                <button class="btn btn-primary mt-4 mb-0">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div class="container" style="padding-top: 20px">
+    <div class="container-item shadow-lg p-r-3 p-l-3 p-b-3 p-t-3">
+        <form action="{{  route('tuition-pay') }}" method="post">
+            @csrf
+            <div id='form'>
+                <div class="slide-one">
+                    <h2>Application Fee</h2>
+                    <span class='msg' style="color: red; font-size: 13px;"></span>
+                    <br>
+                    <p>Amount: ${{ number_format($pay->amount, 2) }} </p>
+                    <p>EvokeEdge Service fee: {{ $charges->tuition_charge_amount }}%</p>
+                    <p>Total amount: <span id="total">${{ number_format($totalPay, 2)  }}</span></p>
+                    <div>
+                        <button type="button"  class="submit-form w-100 next">Confirm and Continue</button>
+                    </div>
+                </div>
+                <input type="text" name="amount" value="{{ number_format($pay->amount,2) }}" hidden style="border: none" id="">
+                <input type="text" name="serviceCharge" value="{{ $charges->tuition_charge_amount }}" hidden style="border:none"  id=""> 
+                <input type="text" name="total" class="total-amount" id="" hidden value="{{ number_format( $totalPay,2)  }}"  style="border:none">  
+                <div class="slide-two">
+                    <span class='msg2' style="color: red; font-size: 13px;"></span><br>
+                    <p id='back'><i class="fa fa-arrow-left"></i> <span id='name' style="color: #383838;"></span></p><br>
+                    <div class="container">
+                        <div class="row m-b-4">
+                           <div class="col-lg-12">
+                                <h3>Payment Option</h3>
+                           </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <ul class="card-payment-ul">
+                                    <li class="card-payment d-flex gap-3 m-b-1">
+                                        <input id="payment_method_balance" type="radio" class="input-radio" name="paymentMethod" value="balance">
+                                        <label class="" for="payment_method_balance">
+                                             Make payment with Balance: ${{ number_format(auth()->user()->userwallet->amount,2 ) }}
+                                        </label>
+                                    </li>
+                                    {{-- <li class="card-payment d-flex m-b-1">
+                                        <input id="payment_method_local" type="radio" class="input-radio" name="paymentMethod" value="debit">
+                                        <label class="" for="payment_method_local">
+                                            DIRECT BANK TRANSFER
+                                        </label>
+                                    </li> --}}
+                                    <li class="card-payment m-b-1">
+                                        <input id="payment_method_paystack" type="radio" class="input-radio" name="paymentMethod" value="visa">
+                                        <label class="" for="payment_method_paystack">
+                                            <img width="100" src="{{ asset('visa.png') }}" alt="">
+                                        </label>  
+                                    </li>
+                                </ul>
+                                
+                            </div>
+                            <div class="col-lg-12 col-12 text-center">
+                                <input type="submit" value="Proceed to payment" class="submit-form  w-100">
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </form>
     </div>
-    <div class="visa deposit-detail content">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 m-b-1 m-t-2">
-                    <h5><b>Bank Name</b>: United Bank of Africa</h5>
-                </div>
-                <div class="col-lg-12 m-b-1 m-t-2">
-                    <h5><b>Account Name</b>: EvokeEdge Limited</h5>
-                </div>
-                <div class="col-lg-12 m-b-1 m-t-2">
-                    <h5><b>Account Number</b>: 3004158137</h5>
-                </div>
-                <div class="col-lg-12 m-b-1 m-t-2">
-                    <h5><b>Swift Code</b>: UNAFNGLA</h5>
-                </div>
-                <div class="col-lg-12 m-b-1 m-t-2">
-                    <h5><b>Bank Address</b>: 57 Marina, Lagos Island, Lagos, Nigeria.</h5>
-                </div>
-                <div class="col-lg-12 m-b-1 m-t-2">
-                    <h5><b>Account Currency</b>: USD</h5>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
+
+
+

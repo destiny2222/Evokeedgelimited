@@ -31,9 +31,9 @@
                         <div class="card-body">
                             <div class="">
                                 <br>
-                                <p>Amount: ${{ number_format($pay->amount, 2) }} </p>
-                                <p>EvokeEdge Service fee: {{ $charge->tuition_charge_amount }}%</p>
-                                <p>Total amount: <span id="total">${{ number_format($totalPay, 2)  }}</span></p>
+                                <p>Amount: ${{ number_format($pay->visa_fee_amount, 2) }} </p>
+                                <p>EvokeEdge Service fee: {{ $charge->visa_charge_amount }}%</p>
+                                <p>Total amount: <span id="total">${{ number_format($pay->total_charge, 2)  }}</span></p>
                                 <div>
                                     <button type="button"  class="btn-primary btn w-100 next">Confirm and Continue</button>
                                 </div>
@@ -51,14 +51,13 @@
                     <div class="card  gEtoOE m-auto"  style="h-50">
                         <div class="card-body">
                             <div class=" " >
-                                <form action="{{  route('tuition-pay') }}" method="post">
+                                <form action="{{  route('visa.initiate') }}" method="post">
                                     @csrf
                                     <input type="hidden" name="email" value="{{ auth()->user()->email }}">
                                     <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
                                     <input type="hidden" name="name" value="{{ auth()->user()->name }}">
                                     <input type="hidden" name="phone" value="{{ auth()->user()->phone }}">
-                                    <input type="hidden" name="amount"   value="{{ $totalPay  }}">
-                                    <input type="hidden" name="tuitionw_id" value="1">
+                                    <input type="hidden" name="amount"   value="{{ $pay->total_charge  }}">
                                     <p class="sc-dkrGVk kHcUip" style="color: rgb(73, 84, 108);">Select your choice</p>
                                     <div class="deposit-card mb-4">
                                         <div class="">
@@ -68,13 +67,13 @@
                                         </div>
                                         <div class="deposit-card-o ">
                                             <img src="/assetss/assets/images/payments/directdebit-dark.svg" alt="" style="width: 2.25rem; height: 1.30rem; display: inline-block;">
-                                            <p  class="pt-4" style="color: rgb(73, 84, 108);">Account Balance ${{ number_format(auth()->user()->userwallet->amount,2 ) }}</p>
+                                            <p  class="pt-4" style="color: rgb(73, 84, 108);">Account Balance ${{ $wallet  ?  $wallet->amount : 0  }}</p>
                                         </div>
                                     </div>
                                     <div class="deposit-card mb-4 ">
                                         <div class="">
                                             <label class="pt-1">
-                                                <input type="radio" name="paymentMethod"  value="visa"><span class="checkmark"></span>
+                                                <input type="radio" name="paymentMethod"  value="payment"><span class="checkmark"></span>
                                             </label>
                                         </div>
                                         <div class="deposit-card-o align-items-center">

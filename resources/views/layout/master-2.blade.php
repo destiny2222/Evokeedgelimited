@@ -262,7 +262,7 @@ data-menu-styles="dark" data-toggled="close">
 
 
     @include('layout.script')
-    @include('partials.apexcharts')
+    {{-- @include('partials.apexcharts') --}}
    
     @include('partials.message')
     @include('sweetalert::alert')

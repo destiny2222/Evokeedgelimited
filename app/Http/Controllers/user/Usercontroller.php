@@ -3,12 +3,28 @@
 namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Flight\InternationalFlightRequest;
+use App\Http\Requests\Flight\LocalFlightRequest;
 use App\Http\Requests\KycRequest;
+use App\Http\Requests\Tuition\PortalRequest;
+use App\Http\Requests\Tuition\TuitionWrieRequest;
+use App\Http\Requests\Tuition\UpdateRequest;
+use App\Http\Requests\Tuition\WireTransfer;
+use App\Http\Requests\VisaFee\VisaApplcationRequest;
+use App\Models\Admin;
+use App\Models\Baggage;
 use App\Models\Kyc;
+use App\Models\Setting;
 use App\Models\Transaction;
+use App\Models\TransactionCharges;
+use App\Models\TuitionPayment;
+use App\Models\TuitionPaymentWire;
 use App\Models\UserWallet;
+use App\Models\VisaApplication;
+use App\Notifications\PaymentMadeNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use KingFlamez\Rave\Facades\Rave as Flutterwave;
 use Illuminate\Support\Facades\Log;
 
 class Usercontroller extends Controller
@@ -30,17 +46,300 @@ class Usercontroller extends Controller
         
     }
 
+    public function deposit()
+    {
+        $users = Auth::user();
+        // $pendingbalance =  Transaction::where('user_id', $users->id)->where('pending_balance', '!=', null)->select('pending_balance')->get()->sum('pending_balance');
+        $userbalance = UserWallet::where('user_id', $users->id)->latest()->first();
+        // dd($userbalance->transactions);
+        return view('users.deposit.index', compact('userbalance'));
+    }
+
 
     public function addBalance(){
         return view('users.deposit.add');
     }
 
-    public function deposit()
-    {
-        $users = Auth::user();
-        // $pendingbalance =  Transaction::where('user_id', $users->id)->where('pending_balance', '!=', null)->select('pending_balance')->get()->sum('pending_balance');
-        $userbalance = UserWallet::where('user_id', $users->id)->first();
-        // dd($balance->balance);
-        return view('users.deposit.index', compact('userbalance'));
+
+   public function addBalanceBank(){
+       return view('users.deposit.addbalance');
+   }
+
+
+   public function Initiator(){
+    $setting = Setting::first();
+        return view('users.initiator', compact('setting'));
     }
+
+
+    public function pay_school_fee(){
+        return view('users.TuitionPayment.index');
+    }
+
+    public function payschoolPortalStore(PortalRequest $request){
+        if(TuitionPayment::count() >= 0) {
+            // TuitionPayment::first()->update($request->validated());
+            TuitionPayment::create($request->validated());
+        }
+        return redirect()->route('school.portal');
+    }
+    
+    public function payschoolPortal(){
+        $portal = TuitionPayment::where('user_id', auth()->user()->id)->latest()->first();
+        // dd($portal->college_name);
+        return view('users.TuitionPayment.portal',compact('portal'));
+    }
+
+
+    public function paymentTuiton(UpdateRequest $request){
+        if(TuitionPayment::count() > 0){
+            $tuition = TuitionPayment::where('user_id', auth()->user()->id)->latest()->first();
+            $tuition->update($request->validated());
+        }else{
+            TuitionPayment::create($request->validated());
+        }
+        return redirect()->route('portal-payment');
+    }
+
+
+    public function tuitionpaymentView(){
+        $pay = TuitionPayment::where('user_id', auth()->user()->id)->latest()->first();
+        // dd($pay->amount);
+        $charge = TransactionCharges::select('tuition_charge_amount')->first();
+        $userbalance = UserWallet::where('user_id', auth()->user()->id)->latest()->first();
+        $totalprecentage =  ($charge->tuition_charge_amount / 100) * $pay->amount;
+        $totalPay = $pay->amount + $totalprecentage;
+        session(['totals' => [
+            'amount' => $totalPay
+        ]]);
+  
+        return view('users.TuitionPayment.paymenttution',compact('pay','charge','totalPay'));
+    }
+
+
+    
+    public function getPayment(Request $request){
+
+        $reference = Flutterwave::generateReference();
+        
+        // Get the selected payment method from the form submission
+        $selectedPaymentMethod = $request->input('paymentMethod');
+        $totalamount = session('totals');
+        
+     
+        if ($selectedPaymentMethod == 'balance') {
+            $userWallet = UserWallet::where('user_id', auth()->user()->id)->first();
+
+            if ($userWallet->amount < $totalamount['amount']) {
+                return back()->withError('Insufficient wallet balance. Please choose another payment method.');
+            } else {
+                if ($request->has('tuition_id')) {
+                    $pay = TuitionPayment::where('user_id', auth()->user()->id)->latest()->first();
+                } elseif ($request->has('tuitionw_id')) {
+                    $pay = TuitionPaymentWire::where('user_id', auth()->user()->id)->latest()->first();
+                }
+            
+                if ($pay) {
+                    $pay->amount = $totalamount['amount'];
+                    $pay->paid = 1;
+                    $pay->save();
+                }
+            }
+            
+            $users = $pay->user;
+            if($users){
+                $admin = Admin::where('id', 1)->first();
+                $admin->notify(new PaymentMadeNotification($users));
+            }else{
+                return back()->with('An error occurred');
+            
+            }
+            
+            return redirect()->route('initiator-page')->with('success', 'Payed Successfully');
+
+
+        }  elseif ($selectedPaymentMethod == 'visa') {
+            $data = [
+                'payment_options' => 'card, bank, ussd,bank transfer',
+                'amount' => $request->input('amount'),
+                'email' => $request->input('email'),
+                'tx_ref' => $reference,
+                'currency' => "NGN",
+                'redirect_url' => route('tuition.callback'),
+                'meta'=> [
+                    'tuiton_id'=> $request->input('tuition_id'),
+                    'tuitionw_id'=> $request->input('tuitionw_id'),
+                ],
+                'customer' => [
+                    'email' => $request->input('email'),
+                    "phone_number" => $request->input('phone'),
+                    "name" =>  $request->input('name'),
+                ],
+    
+                "customizations" => [
+                    "title" => 'EvokeEdge  Limited',
+                ]
+            ];
+    
+            $payment = Flutterwave::initializePayment($data);
+            if ($payment && isset($payment['status']) && $payment['status'] === 'success' && isset($payment['data']['link'])) {
+                return redirect($payment['data']['link']);
+            } else {
+                return back()->with('error', 'Oops, something went wrong. Please refresh the page and try again');
+            }        
+        } else {
+            return back()->with(['error' => 'Invalid payment option']);
+        }
+    }
+
+
+    public function callback(){
+        $status = request()->status;
+        if ($status ==  'successful') {
+            $transactionID = Flutterwave::getTransactionIDFromCallback();
+            $data = Flutterwave::verifyTransaction($transactionID);
+        
+            if (isset($data['data']['meta']['tuiton_id'])) {
+                $payment = TuitionPayment::where('user_id', auth()->user()->id)->latest()->first();
+                if ($payment) {
+                    $payment->update(['paid' => 1]);
+                }
+            } elseif (isset($data['data']['meta']['tuitionw_id'])) {
+                // $tuitonwId = $data['data']['meta']['tuitionw_id'];
+                $payment = TuitionPaymentWire::where('user_id', auth()->user()->id)->latest()->first();
+                if ($payment) {
+                    $payment->update(['paid' => 1]);
+                }
+            }
+
+           return redirect()->route('initiator-page')->with('success', ' Payment Successfully');
+        }
+        elseif ($status ==  'cancelled'){
+            return back()->with('warning', 'transaction has been cancelled');
+        }
+        else{
+            return back()->with('error', 'transaction has failed');
+        }
+    }
+
+
+    public function tuitionviaTransfer(TuitionWrieRequest $request){
+        // dd($request->validated());
+        if(TuitionPaymentWire::count() >= 0){
+          TuitionPaymentWire::create($request->validated());
+        }
+        return  redirect()->route('tuition.wire.transfer');
+    }
+
+
+    public function wireTransfer(){
+        $tuition = TuitionPaymentWire::where('user_id', auth()->user()->id)->latest()->first();
+        if($tuition == null){
+            return redirect()->route('pay_school_fee-page');
+        }
+        return view('users.TuitionPayment.wireTransfer', compact('tuition'));
+    }
+
+
+   public function tuitionwire(TuitionWrieRequest $request){
+      if(TuitionPaymentWire::count() > 0){
+        $tuitionwire = TuitionPaymentWire::where('user_id', auth()->user()->id)->latest()->first();
+        $tuitionwire->update($request->validated());
+      }else{
+        TuitionPaymentWire::create($request->validated());
+      }
+      return redirect()->route('tuition.wire.payment');
+   }
+
+   public function tuitionwirepaymentView(){
+        $pay = TuitionPaymentWire::where('user_id', auth()->user()->id)->latest()->first();
+        // dd($pay->amount);
+        $charge = TransactionCharges::select('tuition_charge_amount')->first();
+        $userbalance = UserWallet::where('user_id', auth()->user()->id)->latest()->first();
+        $totalprecentage =  ($charge->tuition_charge_amount / 100) * $pay->amount;
+        $totalPay = $pay->amount + $totalprecentage;
+        session(['totals' => [
+            'amount' => $totalPay
+        ]]);
+
+        return view('users.TuitionPayment.paymentwire',compact('pay','charge','totalPay'));
+    }
+
+
+
+    public function Vise(){
+        return  view('users.visa.index');
+      }
+  
+   
+  
+     public function CanadaVisa(){
+          return view('users.visa.canada_visa');
+     }
+  
+     public function UsVisa(){
+        return view('users.visa.us_visa');
+     }
+
+
+     public function storeApplication(VisaApplcationRequest $request)
+     {
+         if ($request->createApplication()) {
+             return redirect()->route('pay-page');   
+         }else{
+             return back()->with('error', 'Oops something went worry. Please refresh the page and try again');
+         }
+     }
+
+
+     public function usPay(){
+        $pay = VisaApplication::where('user_id', auth()->user()->id)->latest()->first();
+        $charge = TransactionCharges::select('visa_charge_amount')->first();
+        $wallet = UserWallet::where('user_id', auth()->user()->id)->where('amount', '=', null)->first();
+
+        $totalprecentage = ($charge->visa_charge_amount / 100) * $pay->visa_fee_amount;
+
+        // dd($wallet);
+        $totalprecentages = $pay->visa_fee_amount + $totalprecentage;
+        if ($pay) {
+            $pay->update([
+                'total_charge'=>$totalprecentages,
+            ]);
+        }
+        return view('users.visa.payment',compact('pay','charge', 'wallet'));
+    }
+
+
+    public function  flight(){
+        return view('users.Flight.index');
+      }
+
+    public function InternationalFlight(){
+        $baggage = Baggage::all();
+        foreach($baggage as $baggages)
+        return view('users.Flight.international', compact('baggages'));
+    }
+
+
+    public function LocalFlight(){
+        return view('users.Flight.local');
+    }
+
+
+    public function  flightInternationalBooking(InternationalFlightRequest $request){
+        if ($request->createFlightBooking()) {
+           return redirect()->route('international-flight-page')->with('success','Sent Successfully!! We get back to you soon');
+        }
+         return redirect(route('international-flight-page'))->with('error','Something went wrong');
+     }
+
+
+    public function flightLocalBooking(LocalFlightRequest $request){
+        if ($request->createLocal()) {
+            return redirect()->route('local-flight-page')->with('success', 'Sent Successfully!! We get back to you soon');
+        }else{
+            return redirect()->route('local-flight-page')->with('error', 'Something went wrong');
+        }
+    }
+
 }

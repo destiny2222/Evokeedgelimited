@@ -16,10 +16,16 @@ class Transaction extends Model
         'user_id',
         'trans_type',
         'status',
-        'trans_ref'
+        'trans_ref',
+        'tuition_id',
+        'tuitionw_id',
     ];
 
     public function user(){
         return $this->belongsTo(User::class);
+    }
+
+    public function wallet(){
+        return $this->belongsTo(UserWallet::class);
     }
 }

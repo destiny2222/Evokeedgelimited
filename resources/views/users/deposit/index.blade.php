@@ -15,7 +15,7 @@
                     <span><i class="fa fa-eye-slash"></i></span>
                 </h3>
                 <div class="text-end">
-                    <button type="button" data-bs-effect="effect-scale" data-bs-toggle="modal" href="#modaldemo8" class="btn btn-primary ">Add New Balance <i class="fa fa-plus"></i></button>
+                    <button type="button" data-bs-effect="effect-scale" data-bs-toggle="modal" href="#modaldemo8" class="btn btn-primary add-balance">Add New Balance <i class="fa fa-plus"></i></button>
                 </div>
             </div>
             <div class="card-body">
@@ -105,32 +105,10 @@
             if (selectedPaymentMethod === 'online-transfer') {
                 window.location.href = "/dashboard/add/flutter";
             } else if (selectedPaymentMethod === 'bank-transfer') {
-                window.location.href = "/path/to/bank-transfer-page";
+                window.location.href = "/dashboard/add/bank";
             }
         }
     });
-</script>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const tabs = document.querySelectorAll('.tabs .tab');
-        const content = document.querySelectorAll('.tab-content .content');
-
-        tabs.forEach(function(tab, index) {
-            tab.addEventListener('click', function() {
-                tabs.forEach(function(tab) {
-                    tab.classList.remove('active');
-                });
-
-                content.forEach(function(content) {
-                    content.style.display = 'none';
-                });
-
-                tab.classList.add('active');
-                content[index].style.display = 'block';
-            });
-        });
-    });
-
 </script>
 @endpush
 @endsection

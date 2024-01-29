@@ -16,7 +16,7 @@
         </svg>
       </div>
       <div class="media-body ml-2">
-        <h3 class="mb-0 h2 text-dark font-weight-bolder">Hi Chief, 👋🏼</h3>
+        <h3 class="mb-0 h2 text-dark font-weight-bolder">Hi {{  $user->name  }}, 👋🏼</h3>
         <p class="mb-1 text-dark">What would you like to do?</p>
       </div>
     </div>
@@ -29,7 +29,7 @@
       <div class="card-body">
         <div class="d-flex">
           <div class="mt-2">
-            <h3 class="fw-bold">Unlock new account privileges by completing your KYC</h3>
+            <h3 class="fw-bold kyc-verify">Unlock new account privileges by completing your KYC</h3>
             <p>Verify your identity to start enjoying Evokeedge</p>
           </div>
         </div>

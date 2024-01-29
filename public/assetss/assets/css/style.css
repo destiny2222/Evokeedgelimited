@@ -63287,7 +63287,43 @@ textarea.form-control {
 
 @media screen and (max-width:768px){
     .accounts-title{
-        font-size: 20px;
+        font-size: 15px;
+    }
+    .add-balance{
+        font-size: 10px;
+    }
+
+    .kyc-verify{
+        font-size: 18px;
     }
 }
-/*# sourceMappingURL=style.css.map */
+/* pay-tuition */
+.pay-tuition {
+    display: none;
+    width: 100%;
+}
+
+.pay-tuition.active{
+    display: block;
+    transition: all 0.5s linear;
+}
+
+
+.overflow{
+    position: relative;
+    overflow-y: hidden;
+}
+
+
+.pay-tuition .deposit-card  input[type="radio"], .visa_fee .deposit-card  input[type="radio"]{
+    display: none;
+}
+
+.pay-tuition .deposit-card input[type="radio"]:checked ~ .checkmark, .visa_fee .deposit-card input[type="radio"]:checked ~ .checkmark {
+    background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgdmlld0JveD0iMCAwIDEyIDEyIiBmaWxsPSJub25lIj4KICA8cGF0aCBkPSJNMi4zMTM3OSA1Ljk1Nzc5TDQuODEwODUgOC40NTQ4OUw5LjgxMzc5IDMuNDYwNjkiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+Cjwvc3ZnPg==) center center no-repeat rgb(16, 100, 254);
+    border: 1.25px solid rgb(16, 100, 254);
+}
+
+.deposit-card.clicked {
+    border: 2px solid #0052cc;
+}
