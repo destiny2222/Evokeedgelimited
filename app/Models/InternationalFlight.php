@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -31,4 +32,16 @@ class InternationalFlight extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
+
+    public function setDateAttribute($value){
+        $this->attributes['flight_date'] = Carbon::parse($value)->format('Y-m-d');
+        $this->attributes['flight_return_date'] = Carbon::parse($value)->format('Y-m-d');
+        $this->attributes['date_of_birth'] = Carbon::parse($value)->format('Y-m-d');
+    }
+
+    protected $dates = [ 
+        'flight_date',
+        'flight_return_date',
+        'date_of_birth',
+    ];
 }

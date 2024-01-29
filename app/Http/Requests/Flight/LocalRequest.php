@@ -5,7 +5,7 @@ namespace App\Http\Requests\Flight;
 use App\Models\LocalFlight;
 use Illuminate\Foundation\Http\FormRequest;
 
-class LocalFlightRequest extends FormRequest
+class LocalRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +25,6 @@ class LocalFlightRequest extends FormRequest
     public function rules()
     {
         return [
-            //
             'airport_location_from'=>'nullable|string',
             'airport_location_to'=>'nullable|string',
             'flight_date'=>'nullable|date',
@@ -52,7 +51,6 @@ class LocalFlightRequest extends FormRequest
             'airport_location_from'=>$this->airport_location_from,
             'airport_location_to'=>$this->airport_location_to,
             'flight_date'=>$this->flight_date,
-            // 'flight_return_date'=>$this->flight_return_date,
             'flight_class'=>$this->flight_class,
             'adult'=>$this->adult,
             'child'=>$this->child,

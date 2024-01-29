@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Corporate\StoreRequest;
 use App\Http\Requests\Flight\InternationalFlightRequest;
+use App\Http\Requests\Flight\InternationalRequest;
 use App\Http\Requests\Flight\LocalFlightRequest;
+use App\Http\Requests\Flight\LocalRequest;
 use App\Http\Requests\KycRequest;
 use App\Http\Requests\Tuition\PortalRequest;
 use App\Http\Requests\Tuition\TuitionWrieRequest;
@@ -13,6 +16,7 @@ use App\Http\Requests\Tuition\WireTransfer;
 use App\Http\Requests\VisaFee\VisaApplcationRequest;
 use App\Models\Admin;
 use App\Models\Baggage;
+use App\Models\CorporateService;
 use App\Models\Kyc;
 use App\Models\Setting;
 use App\Models\Transaction;
@@ -327,20 +331,49 @@ class Usercontroller extends Controller
     }
 
 
-    public function  flightInternationalBooking(InternationalFlightRequest $request){
+    public function  flightInternationalBooking(InternationalRequest $request){
         if ($request->createFlightBooking()) {
-           return redirect()->route('international-flight-page')->with('success','Sent Successfully!! We get back to you soon');
+           return redirect()->route('flight-page')->with('success','Sent Successfully!! We get back to you as soon as possible');
         }
-         return redirect(route('international-flight-page'))->with('error','Something went wrong');
+        return redirect()->route('international-flight-page')->with('error','Something went wrong');
      }
 
 
-    public function flightLocalBooking(LocalFlightRequest $request){
+    public function flightLocalBooking(LocalRequest $request){
         if ($request->createLocal()) {
-            return redirect()->route('local-flight-page')->with('success', 'Sent Successfully!! We get back to you soon');
+            return redirect()->route('flight-page')->with('success', 'Sent Successfully!! We get back to you as soon as possible');
         }else{
             return redirect()->route('local-flight-page')->with('error', 'Something went wrong');
         }
     }
 
+
+    public  function Corporate(){
+        return view('users.Corporate.corporate');
+    }
+
+    public function store(StoreRequest $request){
+        if ($request->createService()) {
+            return redirect()->route('corporate-payment-page');
+        } else {
+            return back()->with('error','an error occurred');
+        }
+    }
+
+
+    public function paymentPay(){
+        $Corporate =  CorporateService::where('user_id', auth()->user()->id)->latest()->first();
+        $charge = TransactionCharges::select('corporate_charge_amount')->first();
+        $totalprecentage = ($charge->corporate_charge_amount / 100) * $Corporate->amount;
+
+        // dd($totalprecentage);
+        $totalprecentages = $Corporate->amount + $totalprecentage;
+        if($Corporate){
+            $Corporate->update([
+                'total_amount'=>$totalprecentages
+            ]);
+        }
+
+        return view('users.Corporate.payment', compact('Corporate', 'totalprecentages', 'charge'));
+    }
 }

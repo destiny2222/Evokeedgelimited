@@ -31,7 +31,7 @@
                             <span class="custom-control-label">Round Trip</span>
                         </label>
                     </div>
-                    <div class="form-group  mb-4" id="flight_return_date" style="display: none">
+                    <div class="form-group  mb-4">
                         <label for="" class="form-label">Flying From</label>
                         <input type="text" class="form-control" name="airport_location_from" placeholder="various airports & location  (FROM)" required>
                     </div>

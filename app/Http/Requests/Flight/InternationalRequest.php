@@ -5,7 +5,7 @@ namespace App\Http\Requests\Flight;
 use App\Models\InternationalFlight;
 use Illuminate\Foundation\Http\FormRequest;
 
-class InternationalFlightRequest extends FormRequest
+class InternationalRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,13 +25,11 @@ class InternationalFlightRequest extends FormRequest
     public function rules()
     {
         return [
-            //
             'airport_location_from' =>'nullable|string',
             'airport_location_to' =>'nullable|string',
             'flight_date' =>'nullable|date',
             'flight_return_date' =>'nullable|date',
             'flight_class' =>'nullable|string',
-            // 'flight_time' =>'nullable|time',
             'number_passenger' =>'nullable|string',
             'baggage_weight' =>'nullable|string',
             'passenger_title' =>'nullable|string',
@@ -41,6 +39,8 @@ class InternationalFlightRequest extends FormRequest
             'date_of_birth' =>'nullable|date',
             'passenger_email' =>'nullable|string',
             'passenger_phone' =>'nullable|string',
+            'round_trip' =>'nullable|string',
+            'user_id'=>'required|string',
         ];
     }
 
@@ -52,7 +52,6 @@ class InternationalFlightRequest extends FormRequest
             'flight_date' => $this->flight_date,
             'flight_return_date' => $this->flight_return_date,
             'flight_class' => $this->flight_class,
-            // 'flight_time' => $this->flight_time,
             'round_trip' => $this->round_trip,
             'user_id' => $this->user_id,
             'number_passenger' => $this->number_passenger,

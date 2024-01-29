@@ -75,6 +75,16 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'verified', 'che
      Route::get('/flight/Local', [Usercontroller::class, 'LocalFlight'])->name('local-flight-page');
      Route::post('/flight/Local/store', [Usercontroller::class, 'flightLocalBooking'])->name('local-store');
      Route::post('/flight/International/store', [Usercontroller::class, 'flightInternationalBooking'])->name('international-store');
+
+
+    // corporate service subtitle
+    Route::post('/corporate/store', [Usercontroller::class, 'store'])->name('store-page');
+    Route::get('/corporate-service', [Usercontroller::class, 'Corporate'])->name('corporate-service-page');
+    Route::get('/corporate-service/payment', [CorporateController::class, 'paymentPay'])->name('corporate-payment-page');
+    Route::post('/corporate-service/initiatePayment', [CorporateController::class, 'CorporatePayment'])->name('corporate-payment');
+    Route::get('/corporate-service/Payment/callback', [CorporateController::class, 'handlecallback'])->name('corporate-payment-callback');
+
+     
     
     
      Route::group(['middleware'=> ['checkkyc']], function (){
@@ -89,13 +99,6 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'verified', 'che
 
 
 
-
-        // corporate service subtitle
-        Route::post('/corporate/store', [CorporateController::class, 'store'])->name('store-page');
-        Route::get('/corporate-service', [CorporateController::class, 'Corporate'])->name('corporate-service-page');
-        Route::get('/corporate-service/payment', [CorporateController::class, 'paymentPay'])->name('corporate-payment-page');
-        Route::post('/corporate-service/initiatePayment', [CorporateController::class, 'CorporatePayment'])->name('corporate-payment');
-        Route::get('/corporate-service/Payment/callback', [CorporateController::class, 'handlecallback'])->name('corporate-payment-callback');
 
 
 
