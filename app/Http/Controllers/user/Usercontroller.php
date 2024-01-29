@@ -322,7 +322,8 @@ class Usercontroller extends Controller
 
 
     public function LocalFlight(){
-        return view('users.Flight.local');
+        $baggage = Baggage::all();
+        return view('users.Flight.local', compact('baggage'));
     }
 
 

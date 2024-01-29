@@ -9,7 +9,12 @@
     <div class="col-md-12 col-xl-10">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">International  Flight</h3>
+                <h4 class="card-title">
+                    <a href="{{ route('flight-page') }}" class="btn btn-warning" style="text-decoration:none;">
+                        <i class="bi bi-arrow-left"></i>                         
+                        Go Back  
+                    </a>
+                </h4>
             </div>
             <div class="card-body">
                 <form action="{{  route('international-store') }}" method="post">
@@ -40,10 +45,11 @@
                                 <span class="custom-control-label">One Way</span>
                             </label>
                         </div>
+                        
                     </div>
                     <div class="form-group  mb-4" id="flight_return_date" style="display: none">
                         <label for="inputEmail5">Return Date</label>
-                        <input type="email" class="form-control" id="inputEmail5" name="flight_return_date" placeholder="Choose date for return" >
+                        <input type="text" class="form-control" id="inputEmail5" name="flight_return_date" placeholder="Choose date for return" >
                     </div>
                     <div class="form-group  mb-4">
                         <label for="exampleInputEmail1" class="form-label">Date of Departure</label>
@@ -139,7 +145,7 @@
             </div>
         </div>
     </div>
-
+</div>
 
 @endsection     
 

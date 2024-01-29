@@ -1,55 +1,49 @@
-@extends('layout.master')
-@section('content')
+<div class="flight-container">
+    <div class="continer">
+        <div class="row">
+            {{-- <div class="col-lg-12"> --}}
+                <div class="payvia shadow-lg p-l-4 p-r-4 p-t-3 p-b-4 m-b-4" id="payvia">
+                    <h2 class="m-b-4 " style="color: #28005F;">Local Flight</h2>
+                </div>
+            {{-- </div> --}}
+        </div>
 
-@section('page-title', 'Flight ')
-<!-- PAGE-HEADER -->
-@include('layout.page-header')
-<!-- PAGE-HEADER END -->
-
-<div class="row justify-content-center">
-    <div class="col-md-12 col-xl-10">
-        <div class="card">
-            <div class="card-header">
-                <h4 class="card-title">
-                    <a href="{{ route('flight-page') }}" class="btn btn-warning" style="text-decoration:none;">
-                        <i class="bi bi-arrow-left"></i>                         
-                        Go Back  
-                    </a>
-                </h4>
-            </div>
-            <div class="card-body">
-                <form action="{{  route('local-store') }}" method="post">
+         <div class="row">
+        <div class="col-12 col-lg-12">
+            
+            <div class="Flight_booking">
+                <form action="{{  route('local-store') }}" method="post" id="flightBookingForm">
                     @csrf
                     <input type="hidden" name="user_id" value="{{  auth()->user()->id }}">
-                    <div class="form-group mb-4">
-                        <label class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" name="on_way"  value="one way">
-                            <span class="custom-control-label">One way</span>
-                        </label>
-                        <label class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" name="round_trip" value="Round Trip">
-                            <span class="custom-control-label">Round Trip</span>
-                        </label>
-                    </div>
-                    <div class="form-group  mb-4" id="flight_return_date" style="display: none">
-                        <label for="" class="form-label">Flying From</label>
-                        <input type="text" class="form-control" name="airport_location_from" placeholder="various airports & location  (FROM)" required>
-                    </div>
-                    <div class="form-group  mb-4">
-                        <label for="" class="form-label">Flying To</label>
-                        <input type="text" class="form-control" name="airport_location_to" placeholder="various airports & location  (TO)" required>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6 mb-4">
-                            <div class="form-group">
-                                <label for="" class="form-label">Departure Date</label>
-                                <input type="date" class="form-control" name="flight_date" placeholder=" Date of trip" required>
+                    <div class="row">
+                        <div class="col-lg-12 m-b-3">
+                            <div class="d-flex algin-items-center" style="gap: 50px">
+                                <div >
+                                    <input type="radio" value="on way" id="a-option" name="on_way">
+                                    <label for="a-option">One Way</label>
+                                 </div>
+                                 <div >
+                                   <input type="radio" value="round trip" id="b-option" name="round_trip">
+                                   <label for="b-option">Round-Trip</label>
+                                 </div>
                             </div>
                         </div>
-                        <div class="form-group col-md-6 mb-4">
-                            <div class="form-group">
-                                <label class="form-label">Adult <span class="text-red">*</span></label>
-                                <select name="adult" class="form-control form-select select2" required data-bs-placeholder="Select">
+                        <div class="col-lg-6 m-b-3">
+                            <label for="" class="form-label">Flying From</label>
+                            <input type="text" class="form-control" name="airport_location_from" placeholder="various airports & location  (FROM)" required>
+                        </div>                                                                               
+                        <div class="col-lg-6 m-b-3">
+                            <label for="" class="form-label">Flying To</label>
+                            <input type="text" class="form-control" name="airport_location_to" placeholder="various airports & location  (TO)" required>
+                        </div>
+                        <div class="col-lg-12 m-b-3">
+                            <label for="" class="form-label">Departure Date</label>
+                            <input type="date" class="form-control" name="flight_date" placeholder=" Date of trip" required>
+                        </div>
+                        <div class="col-lg-4 m-b-3 col-12">
+                            <div class="field-agileinfo-spc form-w3-agile-text11">
+                                <label for="" class="form-label">Adult</label>
+                                <select class="form-control" name="adult">
                                     <option value="">Adult(12+ Yrs)</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -59,26 +53,24 @@
                                 </select>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6 mb-4">
-                            <div class="form-group">
+                        <div class="col-lg-4 m-b-3 col-12">
+                            <div class="field-agileinfo-spc form-w3-agile-text22">
                                 <label for="" class="form-label">Children</label>
-                                <select name="child" class="form-control form-select select2" data-bs-placeholder="Select" required>
-                                    <option value="" selected>Children(2-11 Yrs)</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5+</option>
+                                <select class="form-control" name="child">
+                                   <option value="">Children(2-11 Yrs)</option>
+                                   <option value="1">1</option>
+                                   <option value="2">2</option>
+                                   <option value="3">3</option>
+                                   <option value="4">4</option>
+                                   <option value="5">5+</option>
                                 </select>
-                            </div>
+                             </div>
                         </div>
-                        <div class="form-group col-md-6 mb-4">
-                            <div class="form-group">
+                        <div class="col-lg-4 m-b-3 col-12">           
+                            <div class="field-agileinfo-spc form-w3-agile-text33">
                                 <label for="" class="form-label">Infant</label>
-                                <select name="infant" class="form-control form-select select2" data-bs-placeholder="Select" required>
-                                    <option value="" selected>Infant(under 2Yrs)</option>
+                                <select class="form-control" name="infant">
+                                    <option value="">Infant(under 2Yrs)</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
@@ -87,53 +79,51 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group col-md-12 mb-4">
-                            <div class="form-group">
-                                <label for="" class="form-label">Travel Class</label>
-                                <select name="flight_class" class="form-control form-select select2" data-bs-placeholder="Select" required>
-                                    <option selected >Select</option>
-                                    <option value="Economy">Economy</option>
-                                    <option value="Premium Economy">Premium Economy</option>
-                                    <option value="Business">Business</option>
-                                    <option value="First Class">First Class</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-12 mb-4">
-                            <label for="" class="form-label">Passenger Details</label>
-                        </div>
-                        <div class="form-group col-lg-6  mb-4">
-                            <label for="" class="form-label">Title:</label>
-                            <select name="passenger_title" class="form-control form-select select2" data-bs-placeholder="Select">
-                                <option selected> Select</option>
-                                <option value="Mr">Mr</option>
-                                <option value="Mrs">Mrs</option>
+                        <div class="col-lg-12 m-b-3">
+                            <label for="" class="form-label">Travel Class</label>
+                            <select name="flight_class" class="form-control" id="" required>
+                                <option selected >Select</option>
+                                <option value="Economy">Economy</option>
+                                <option value="Premium Economy">Premium Economy</option>
+                                <option value="Business">Business</option>
+                                <option value="First Class">First Class</option>
                             </select>
                         </div>
-                        <div class="form-group col-lg-6 mb-4">
-                            <label class="form-label">Gender On Passport:</label>
-                            <select name="passenger_gender_onpassport" class="form-control form-select select2" data-bs-placeholder="Select" required>
+                   </div> 
+                   <div class="row ">
+                        <div class="col-lg-12">
+                            <h2 class="m-b-4 " style="color: #28005F;">Personal Details</h2>
+                        </div>
+                        <div class="col-lg-4 col-12 m-b-3">
+                            <h5>Gender:</h5>
+                            <select name="gender" class="form-control" id="" required>
                                 <option selected>Select Gender</option>
                                 <option value="female">Female</option>
                                 <option value="male">Male</option>
                             </select>
                         </div>
-                        <div class="form-group col-lg-6 mb-4">
-                            <label class="form-label">First Name:</label>
-                            <input type="text" name="first_name" class="form-control" required>
+                        <div class="col-lg-4 col-12 m-b-3">
+                            <h5>Title:</h5>
+                            <select name="title" class="form-control" id="" required>
+                                <option selected>Select</option>
+                                <option value="mr">Mr.</option>
+                                <option value="mrs">Mrs.</option>
+                            </select>
                         </div>
-                        <div class="form-group col-lg-6 mb-4">
-                            <label class="form-label">Last Name:</label>
-                            <input type="text" name="last_name" class="form-control" required>
-                        </div>
-                        <div class="form-group col-lg-6 mb-4">
-                            <label class="form-label">Date of Birth:</label>
+                        <div class="col-lg-4 col-12 m-b-3">
+                            <h5>Date of Birth </h5>
                             <input type="date" name="date_birth_date" class="form-control" required>
                         </div>
-                        <div class="form-group col-lg-6">
-                            <label class="form-label">Nationality</label>
+                        <div class="col-lg-4 col-12 m-b-3">
+                            <h5>First Name:</h5>
+                            <input type="text" name="first_name" class="form-control" required>
+                        </div>
+                        <div class="col-lg-4 col-12 m-b-3">
+                            <h5>Last Name:</h5>
+                            <input type="text" name="last_name" class="form-control" required>
+                        </div>
+                        <div class="col-lg-4 col-12 m-b-3">
+                            <label>Nationality</label>
                             <select name="nationality" class="form-control @error('nationality') is-valid @enderror" required>
                                 <option selected>Select Country</option>
                                 <option value="Afghanistan">Afghanistan</option>
@@ -377,35 +367,22 @@
                                 <option value="Zimbabwe">Zimbabwe</option>
                             </select>
                         </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-lg-12 mb-4">
-                            <label class="form-label">Contact Details</label>
+                        <h3>Contact Details</h3>
+                        <div class="col-lg-12 col-12 m-b-3">
+                            <h5>Phone Number:</h5>
+                            <input type="phone" name="phone" class="form-control" required>
                         </div>
-                        <div class="form-group col-lg-6 mb-4">
-                            <label class="form-label">Email Address:</label>
+                        <div class="col-lg-12 col-12 m-b-3">
+                            <h5>Email Address:</h5>
                             <input type="email" name="email" class="form-control" required>
                         </div>
-                        <div class="form-group col-lg-6 mb-4">
-                            <label class="form-label">Phone Number:</label>
-                            <input type="number" name="phone" class="form-control" required>
+                        <div class="col-lg-12 text-end">
+                            <input type="submit" id="nextPageCustomer"  class="submit-form w-50 w-100" value="Submit">
                         </div>
-                    </div>
-                    <div class="form-footer mt-2 text-center">
-                        <button type="submit" class="w-75 btn btn-primary">Submit</button>
-                    </div> 
+                    </div>   
                 </form>
             </div>
         </div>
     </div>
+    </div>
 </div>
-
-
-
-@endsection     
-
-@push('scripts')
-    
-@endpush
-
-
