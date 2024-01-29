@@ -58,7 +58,6 @@ class PaymentController extends Controller
                 "customizations" => [
                     "title" => 'EvokeEdge  Limited',
                 ]
-                
             ];
     
             $payment = Flutterwave::initializePayment($data);
