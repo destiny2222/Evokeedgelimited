@@ -26,7 +26,22 @@ class UserWallet extends Model
       return  $this->hasMany(Transaction::class, 'user_id');
     }
 
-    public function isNullOrEmpty($amount){
-      return $amount === 0 || trim($amount)==='';
+    // public function __construct(array $attributes = [])
+    // {
+    //     parent::__construct($attributes);
+    //     $this->attributes['amount'] = $this->attributes['amount'] ?? 0;
+    //     $this->attributes['balance'] = $this->attributes['balance'] ?? 0;
+    // }
+
+    public function setAmountAttribute($value)
+    {
+        $this->attributes['amount'] = $value ?? 0;
     }
+
+    public function setBalanceAttribute($value)
+    {
+        $this->attributes['balance'] = $value ?? 0;
+    }
+
+
 }

@@ -57,7 +57,6 @@ class Usercontroller extends Controller
     public function deposit()
     {
         $users = Auth::user();
-        // $pendingbalance =  Transaction::where('user_id', $users->id)->where('pending_balance', '!=', null)->select('pending_balance')->get()->sum('pending_balance');
         $userbalance = UserWallet::where('user_id', $users->id)->latest()->first();
         // dd($userbalance->transactions);
         return view('users.deposit.index', compact('userbalance'));
