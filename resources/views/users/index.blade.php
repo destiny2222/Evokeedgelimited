@@ -157,7 +157,7 @@
             @if ($setting->corporate_service == '1')
               <div class="card  overflow-hidden" style="height:25vh;">
                   <div class="card-body">
-                        <a href="/dashboard/corporate-service">
+                        <a href="/dashboard/corporate/service">
                           <div class="d-flex align-items-center">
                               <div class="mt-2">
                                   <h2 class="fs-5 number-font">Cooperate Service</h2>
@@ -192,7 +192,7 @@
             @if ($setting->merchandise_payment == 1)
               <div class="card  overflow-hidden" style="height:25vh;">
                   <div class="card-body">
-                    <a href="/dashboard/merchandise-payment">
+                    <a href="/dashboard/merchandise">
                         <div class="d-flex align-items-center">
                           <div class="mt-2">
                                 <h2 class="fs-5 number-font">Merchandise Payment</h2>
@@ -218,7 +218,7 @@
             @if ($setting->other_service == 1)
               <div class="card  overflow-hidden" style="height:25vh;">
                   <div class="card-body">
-                      <a href="/dashboard/others-payment">
+                      <a href="/dashboard/others/services">
                           <div class="d-flex align-items-center">
                               <div class="mt-2">
                                 <h2 class="fs-5 number-font">Other Services</h2>
