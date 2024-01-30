@@ -63340,7 +63340,7 @@ textarea.form-control {
 
 @media (max-width: 768px) {
   .media-body .h2{
-    font-size: 1.20rem;
+    font-size: 1.20rem !important;
   }
 }
 
