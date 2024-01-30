@@ -1,110 +1,95 @@
-@extends('layout.master')
-@section('content')
+@extends('layout.payment-layout')
+@section('payment-content')
+<div class="">
+    <!-- Theme-Layout -->
 
-    <div class="container" style="padding-top: 20px">
-        <div class="container-item shadow-lg p-r-3 p-l-3 p-b-3 p-t-3">
-            <form action="{{  route('merchandise-payment') }}" method="post">
-                @csrf
-                <div id='form'>
-                    <div class="slide-one">
-                        <h2>Application Fee</h2>
-                        <span class='msg' style="color: red; font-size: 13px;"></span>
-                        <br>
-                        <p>Amount: ${{  number_format($otherservice->amount, 2) }} </p>
-                        <p>EvokeEdge Service fee: {{ $charge->other_service }}%</p>
-                        <p>Total amount: <span >${{ number_format($otherservice->total_amount, 2 )  }}</span></p>
-                        <div>
-                            <button type="button"  class="submit-form w-100 next">Confirm and Continue</button>
-                        </div>
+    <nav class="payment-nav">
+        <div class="back-nav" >
+            <a href="{{ route('otherservice.pay') }}" class="text-dark btn btn-warning">
+                <span class="back-nav__arrow">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6.38065 3.95337L2.33398 8.00004L6.38065 12.0467" stroke="#2D3443" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path>
+                        <path d="M13.6673 8H2.44727" stroke="#2D3443" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                </span>
+                {{-- <span class="back-nav__logo"> --}}
+                    Go Back
+                {{-- </span> --}}
+            </a>
+        </div>
+    </nav>
+    <!-- CONTAINER OPEN -->
+    <div class="container mt-5">
+        <div class="row align-items-center mb-5">
+            <div class="d-flex overflow justify-content-center">
+                <div class="active pay-tuition">
+                    <div class="mb-5 text-center">
+                        <h2 variant="heavy" class="sc-ftTHFa iCcsoS">Application Fee</h2>
+                        <p class="sc-dkrGVk kHcUip subtext">Enter amount you want to add</p>
                     </div>
-                    <input type="text" name="amount" value="{{  number_format( $otherservice->amount, 2) }}" hidden  id="">
-                    <input type="text" name="total" class="total-amount" id="" hidden value="{{  number_format(  $otherservice->total_amount, 2)  }}">  
-                    <div class="slide-two">
-                        <span class='msg2' style="color: red; font-size: 13px;"></span><br>
-                        <p id='back'><i class="fa fa-arrow-left"></i> <span id='name' style="color: #383838;"></span></p><br>
-                        <div class="container">
-                            <div class="row m-b-4">
-                               <div class="col-lg-12">
-                                    <h3>Payment Option</h3>
-                               </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <ul class="card-payment-ul">
-                                        <li class="card-payment d-flex gap-3 m-b-1">
-                                            <input id="payment_method_balance" type="radio" class="input-radio" name="paymentMethod" value="balance">
-                                            <label class="" for="payment_method_balance">
-                                                 Make payment with Balance: ${{ number_format(auth()->user()->userwallet->amount,2 ) }}
-                                            </label>
-                                        </li>
-                                        {{-- <li class="card-payment d-flex m-b-1">
-                                            <input id="payment_method_local" type="radio" class="input-radio" name="paymentMethod" value="debit">
-                                            <label class="" for="payment_method_local">
-                                                DIRECT BANK TRANSFER
-                                            </label>
-                                        </li> --}}
-                                        <li class="card-payment m-b-1">
-                                            <input id="payment_method_paystack" type="radio" class="input-radio" name="paymentMethod" value="visa">
-                                            <label class="" for="payment_method_paystack">
-                                                <img width="100" src="{{ asset('visa.png') }}" alt="">
-                                            </label>  
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col-lg-12 col-12 text-center">
-                                    <input type="submit" value="Proceed to payment" class="submit-form  w-100">
+                    <div class="card  gEtoOE m-auto" style="h-50">
+                        <div class="card-body">
+                            <div class="">
+                                <br>
+                                <p>Amount: ${{ number_format($pay->amount, 2) }} </p>
+                                <p>EvokeEdge Service fee: {{ $charge->other_service }}%</p>
+                                <p>Total amount: <span id="total">${{ number_format($pay->total_amount, 2)  }}</span></p>
+                                <div>
+                                    <button type="button"  class="btn-primary btn w-100 next">Confirm and Continue</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </form>
+                <div class="pay-tuition" id="pay2">
+                    <div class="row">
+                        <div class="col-xl-12 mb-5 text-center">
+                            <h2 variant="heavy" class="sc-ftTHFa iCcsoS">Make Payment</h2>
+                            <p class="sc-dkrGVk kHcUip subtext">Payment Option</p>
+                        </div>
+                    </div>
+                    <div class="card  gEtoOE m-auto"  style="h-50">
+                        <div class="card-body">
+                            <div class=" " >
+                                <form action="{{  route('merchandise.payment') }}" method="post">
+                                    @csrf
+                                    <input type="hidden" name="email" value="{{ auth()->user()->email }}">
+                                    <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+                                    <input type="hidden" name="name" value="{{ auth()->user()->name }}">
+                                    <input type="hidden" name="phone" value="{{ auth()->user()->phone }}">
+                                    <input type="hidden" name="amount"   value="{{ $pay->total_amount  }}">
+                                    <p class="sc-dkrGVk kHcUip" style="color: rgb(73, 84, 108);">Select your choice</p>
+                                    <div class="deposit-card mb-4">
+                                        <div class="">
+                                            <label class="pt-1">
+                                                <input type="radio"  name="paymentMethod" value="balance"><span class="checkmark"></span>
+                                            </label>
+                                        </div>
+                                        <div class="deposit-card-o ">
+                                            <img src="/assetss/assets/images/payments/directdebit-dark.svg" alt="" style="width: 2.25rem; height: 1.30rem; display: inline-block;">
+                                            <p  class="pt-4" style="color: rgb(73, 84, 108);">Account Balance ${{ $wallet  ?  $wallet->amount : 0  }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="deposit-card mb-4 ">
+                                        <div class="">
+                                            <label class="pt-1">
+                                                <input type="radio" name="paymentMethod"  value="visa"><span class="checkmark"></span>
+                                            </label>
+                                        </div>
+                                        <div class="deposit-card-o align-items-center">
+                                            <img src="/assetss/assets/images/payments/visa-dark.svg" alt="" style="width: 2.25rem; height: 1.30rem; display: inline-block;">
+                                            <p  class="pt-4" style="color: rgb(73, 84, 108);">Local online bank</p>
+                                        </div>
+                                    </div>
+                                    <button type="submit"  class="sc-gswPWN jtxPvF" style="margin-top: 1.5rem;">Make Payment</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>    
         </div>
     </div>
-
-<script>
-
-    var next = document.querySelector('.next');
-    var slide_one = document.querySelector('.slide-one');
-    var slide_two = document.querySelector('.slide-two');
-
-    var email = document.querySelector('.total-amount')
-    // var nameText = document.getElementById('name')
-    var back_btn = document.getElementById('back')
-    var msg = document.querySelector('.msg')
-    var msg2 = document.querySelector('.msg2')
-
-    // var container_item_2 = document.querySelector('.container-item-2')
-    
-    next.addEventListener('click', function () {
-        if (email.value == "") {
-            msg.textContent = 'Enter a valid email address, phone number, or Skype name.'
-        } else {
-            msg.textContent = ""
-            // nameText.textContent = email.value
-            slide_one.classList.add('slide-one-toggle')
-            slide_two.classList.add('slide-two-toggle')
-        }
-    })
-    back_btn.addEventListener('click', function () {
-        slide_one.classList.remove('slide-one-toggle')
-        slide_two.classList.remove('slide-two-toggle')
-    });
-
-    document.addEventListener('DOMContentLoaded', function() {
-        var amount = parseFloat(document.querySelector('input[name="amount"]').value);
-        var serviceCharge = parseFloat(document.querySelector('input[name="serviceCharge"]').value);
-        var total = amount + serviceCharge;
-        document.getElementById('total').value = total;
-    });
-
-
-    document.querySelector('form').addEventListener('submit', function(event) {
-      var selectedPaymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
-      document.querySelector('input[name="paymentMethod"]').value = selectedPaymentMethod;
-    });
- 
-
-   
-</script>
+    <!-- CONTAINER CLOSED -->
+</div>
 @endsection

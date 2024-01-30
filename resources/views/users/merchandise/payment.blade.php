@@ -5,7 +5,7 @@
 
     <nav class="payment-nav">
         <div class="back-nav" >
-            <a href="{{ route('corporate-service-page') }}" class="text-dark btn btn-warning">
+            <a href="{{ route('merchandise.pay') }}" class="text-dark btn btn-warning">
                 <span class="back-nav__arrow">
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M6.38065 3.95337L2.33398 8.00004L6.38065 12.0467" stroke="#2D3443" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -32,7 +32,7 @@
                             <div class="">
                                 <br>
                                 <p>Amount: ${{ number_format($pay->amount, 2) }} </p>
-                                <p>EvokeEdge Service fee: {{ $charge->corporate_charge_amount }}%</p>
+                                <p>EvokeEdge Service fee: {{ $charge->merchant_charge_amount }}%</p>
                                 <p>Total amount: <span id="total">${{ number_format($pay->total_amount, 2)  }}</span></p>
                                 <div>
                                     <button type="button"  class="btn-primary btn w-100 next">Confirm and Continue</button>
@@ -51,7 +51,7 @@
                     <div class="card  gEtoOE m-auto"  style="h-50">
                         <div class="card-body">
                             <div class=" " >
-                                <form action="{{  route('corporate-payment') }}" method="post">
+                                <form action="{{  route('merchandise.payment') }}" method="post">
                                     @csrf
                                     <input type="hidden" name="email" value="{{ auth()->user()->email }}">
                                     <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">

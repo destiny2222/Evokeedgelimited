@@ -9,6 +9,8 @@ use App\Http\Requests\Flight\InternationalRequest;
 use App\Http\Requests\Flight\LocalFlightRequest;
 use App\Http\Requests\Flight\LocalRequest;
 use App\Http\Requests\KycRequest;
+use App\Http\Requests\Merchandise\MerchandiseRequest;
+use App\Http\Requests\OtherService\StoreRequest as OtherServiceStoreRequest;
 use App\Http\Requests\Tuition\PortalRequest;
 use App\Http\Requests\Tuition\TuitionWrieRequest;
 use App\Http\Requests\Tuition\UpdateRequest;
@@ -18,6 +20,8 @@ use App\Models\Admin;
 use App\Models\Baggage;
 use App\Models\CorporateService;
 use App\Models\Kyc;
+use App\Models\Merchandise;
+use App\Models\OtherService;
 use App\Models\Setting;
 use App\Models\Transaction;
 use App\Models\TransactionCharges;
@@ -68,6 +72,18 @@ class Usercontroller extends Controller
    public function addBalanceBank(){
        return view('users.deposit.addbalance');
    }
+
+   public function Manage(){
+        return view('users.settings.manage');
+    }
+
+
+    public function helps(){
+        return view('users.settings.helps');
+    }
+
+
+
 
 
    public function Initiator(){
@@ -299,7 +315,7 @@ class Usercontroller extends Controller
      public function usPay(){
         $pay = VisaApplication::where('user_id', auth()->user()->id)->latest()->first();
         $charge = TransactionCharges::select('visa_charge_amount')->first();
-        $wallet = UserWallet::where('user_id', auth()->user()->id)->where('amount', '=', null)->first();
+        $wallet = UserWallet::where('user_id', auth()->user()->id)->where('amount', '!=', null)->first();
 
         $totalprecentage = ($charge->visa_charge_amount / 100) * $pay->visa_fee_amount;
 
@@ -349,7 +365,7 @@ class Usercontroller extends Controller
 
 
     public  function Corporate(){
-        return view('users.Corporate.corporate');
+        return view('users.Corporate.index');
     }
 
     public function store(StoreRequest $request){
@@ -362,18 +378,83 @@ class Usercontroller extends Controller
 
 
     public function paymentPay(){
-        $Corporate =  CorporateService::where('user_id', auth()->user()->id)->latest()->first();
+        $pay =  CorporateService::where('user_id', auth()->user()->id)->latest()->first();
         $charge = TransactionCharges::select('corporate_charge_amount')->first();
-        $totalprecentage = ($charge->corporate_charge_amount / 100) * $Corporate->amount;
+        $totalprecentage = ($charge->corporate_charge_amount / 100) * $pay->amount;
+        $wallet = UserWallet::where('user_id', auth()->user()->id)->where('amount', '!=', null)->first();
 
         // dd($totalprecentage);
-        $totalprecentages = $Corporate->amount + $totalprecentage;
-        if($Corporate){
-            $Corporate->update([
+        $totalprecentages = $pay->amount + $totalprecentage;
+        if($pay){
+            $pay->update([
                 'total_amount'=>$totalprecentages
             ]);
         }
-
-        return view('users.Corporate.payment', compact('Corporate', 'totalprecentages', 'charge'));
+        return view('users.Corporate.payment', compact('pay', 'totalprecentages', 'charge', 'wallet'));
     }
+
+
+    public function Merchandise() {
+        return view('users.merchandise.index');
+    }
+
+    public function merchandiseStore(MerchandiseRequest $request){
+        if ($request->createMerhance()) {
+            return redirect()->route('merchandise.pay');
+        }else{
+            return back()->with('error', 'Something went wrong');
+        }
+    } 
+
+    public function MerchandisePay(){
+        $pay = Merchandise::where('user_id', auth()->user()->id)->latest()->first();
+        $wallet = UserWallet::where('user_id', auth()->user()->id)->where('amount', '!=', null)->first();
+        $charge = TransactionCharges::select('merchant_charge_amount')->first();
+        
+        $totalprecentage = ($charge->merchant_charge_amount / 100) * $pay->amount;
+
+        $Totalamount = $pay->amount + $totalprecentage;
+        if ($pay) {
+            $pay->update([
+                'total_amount'=>$Totalamount,
+            ]);
+        }
+        return view('users.merchandise.payment', compact('pay', 'charge', 'wallet'));
+    }
+
+
+    
+    public function OthersPayment() {
+        $charges = TransactionCharges::where('other_service', 'id')->first();
+        return view('users.otherservice.index', compact('charges'));
+    }
+
+    public function storeOtherservice(OtherServiceStoreRequest  $request){
+        if ($request->storeService()) {
+            return  redirect()->route('otherservice.pay');
+        }
+        return back()->with('error', 'Something went wrong');
+    }
+
+    public function otherPay(){
+        $pay = OtherService::where('user_id', auth()->user()->id)->latest()->first();
+        $charge = TransactionCharges::select('other_service')->first();
+        $wallet = UserWallet::where('user_id', auth()->user()->id)->where('amount', '!=', null)->first();
+        $totalprecentage = ($charge->other_service / 100) * $pay->amount;
+
+        $ToatalAmount =  $pay->amount + $totalprecentage;
+        
+        if ($pay->amount == null) {
+           return back()->with('error', 'Amount must be provided');
+        }elseif($pay){
+            $pay->update([
+                'total_amount'=>$ToatalAmount,
+            ]);
+        }else{
+            return back()->with('error', 'An error occurred');
+        }
+      
+        return view('users.otherservice.pay', compact('pay', 'charge', 'wallet'));
+    }
+
 }

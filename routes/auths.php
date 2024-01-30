@@ -8,6 +8,7 @@ use App\Http\Controllers\user\HomeController;
 use App\Http\Controllers\user\MerchandiseController;
 use App\Http\Controllers\user\OtherserviceController;
 use App\Http\Controllers\user\PageController;
+use App\Http\Controllers\user\PaymentController;
 use App\Http\Controllers\user\TransactionsController;
 use App\Http\Controllers\user\Usercontroller;
 use App\Http\Controllers\user\VisaApplicationController;
@@ -26,13 +27,13 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'verified', 'che
     Route::put('/profile_update/{id}', [HomeController::class, 'update_profile'])->name('update-profile-page');
     Route::get('/manage', [TransactionsController::class, 'TransactionHistory'])->name('manage-page');
     Route::get('/initiator', [Usercontroller::class, 'Initiator'])->name('initiator-page');
-    Route::get('/help', [PageController::class, 'helps'])->name('help-page');
+    Route::get('/help', [Usercontroller::class, 'helps'])->name('help-page');
     Route::get('/setting', [HomeController::class, 'Setting'])->name('setting-page');
     Route::get('/profile', [HomeController::class, 'Profile'])->name('profile-page');
     Route::get('/deposit', [Usercontroller::class, 'deposit'])->name('deposit-page');
     Route::get('/flight',  [Usercontroller::class, 'flight'])->name('flight-page');
     Route::get('/pay-school-fee', [Usercontroller::class, 'pay_school_fee'])->name('pay_school_fee-page');
-    Route::get('/others-payment', [PageController::class, 'OthersPayment'])->name('others-page');
+    Route::get('/others/services', [Usercontroller::class, 'OthersPayment'])->name('others.page');
     Route::get('/add/flutter', [Usercontroller::class,  'addBalance'])->name('add.balance');
     Route::get('/add/bank', [Usercontroller::class, 'addBalanceBank'])->name('add.balance.bank');
 
@@ -80,11 +81,26 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'verified', 'che
     // corporate service subtitle
     Route::post('/corporate/store', [Usercontroller::class, 'store'])->name('store-page');
     Route::get('/corporate-service', [Usercontroller::class, 'Corporate'])->name('corporate-service-page');
-    Route::get('/corporate-service/payment', [CorporateController::class, 'paymentPay'])->name('corporate-payment-page');
-    Route::post('/corporate-service/initiatePayment', [CorporateController::class, 'CorporatePayment'])->name('corporate-payment');
-    Route::get('/corporate-service/Payment/callback', [CorporateController::class, 'handlecallback'])->name('corporate-payment-callback');
+    Route::get('/corporate-service/payment', [Usercontroller::class, 'paymentPay'])->name('corporate-payment-page');
+    Route::post('/corporate-service/initiate/Payment', [PaymentController::class, 'CorporatePayment'])->name('corporate-payment');
+    Route::get('/corporate-service/initiate/callback', [PaymentController::class, 'handlecallback'])->name('corporate.payment.callback');
 
      
+    // Merchanndise controller
+    Route::get('/merchandise', [Usercontroller::class, 'Merchandise'])->name('merchandise.page');
+    Route::get('/merchandise/pay', [Usercontroller::class, 'MerchandisePay'])->name('merchandise.pay');
+    Route::post('/merchandise/store', [Usercontroller::class, 'merchandiseStore'])->name('merchandise.store');
+    Route::post('/merchandise/initiate', [PaymentController::class, 'MerchandisePayment'])->name('merchandise.payment');
+    Route::get('/merchandise/cellback', [PaymentController::class, 'Merchandisecallback'])->name('merchandise.cellback');
+
+
+    // Other service
+    Route::get('/otherservice', [Usercontroller::class, 'Otherservice'])->name('otherservice-page');
+    Route::post('/otherservice/store', [Usercontroller::class, 'storeOtherservice'])->name('otherservice-store');
+    Route::get('/otherservice/pay', [Usercontroller::class, 'otherPay'])->name('otherservice.pay');
+    Route::post('/otherservice/payment', [PaymentController::class, 'otherservicePayment'])->name('otherservice.payment');
+    Route::get('/otherservice/pay/callback', [PaymentController::class, 'otherservicePayCallback'])->name('otherservice-pay.callback');
+    
     
     
      Route::group(['middleware'=> ['checkkyc']], function (){
@@ -92,35 +108,6 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'verified', 'che
         Route::post('/feedback', [FeedBackController::class, 'StoreFeedBack'])->name('feedback');
 
         //  pages 
-
-       
-        // Route::post('/flight/pay', [FlightController::class, 'flightsPaymentAction'])->name('flightpayment');
-        // Route::get('/flight/callback', [FlightController::class, 'handlecallback'])->name('callback');
-
-
-
-
-
-
-        // Merchanndise controller
-        Route::get('/merchandise-payment', [MerchandiseController::class, 'Merchandise'])->name('merchandise-page');
-        Route::get('/merchandise/pay', [MerchandiseController::class, 'MerchandisePay'])->name('merchandise-pay');
-        Route::post('/merchandise/store', [MerchandiseController::class, 'merchandiseStore'])->name('merchandise-store');
-        Route::post('/merchandise/initiate', [MerchandiseController::class, 'MerchandisePayment'])->name('merchandise-payment');
-        Route::get('/merchandise/cellback', [MerchandiseController::class, 'handlecallback'])->name('merchandise-cellback');
-
-
-        // Other service
-        Route::get('/otherservice', [PageController::class, 'Otherservice'])->name('otherservice-page');
-        Route::post('/otherservice/store', [OtherserviceController::class, 'storeOtherservice'])->name('otherservice-store');
-        Route::get('/otherservice/pay', [OtherserviceController::class, 'otherPay'])->name('otherservice-pay');
-        Route::post('/otherservice/payment', [OtherserviceController::class, 'otherservicePayment'])->name('otherservice-payment');
-        Route::get('/otherservice/pay/callback', [OtherserviceController::class, 'otherservicePayCallback'])->name('otherservice-pay-callback');
-
-
-
-        // payment 
-      
 
         
     });

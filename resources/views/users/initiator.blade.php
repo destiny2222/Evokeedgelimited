@@ -139,7 +139,7 @@
            <div class="col-lg-6 col-md-6 col-sm-12 col-xl-3">
                <div class="card overflow-hidden">
                   <div class="card-body">
-                     <a href="/dashboard/merchandise-payment">
+                     <a href="{{ route('merchandise.page') }}">
                         <div class="d-flex align-items-center">
                            <div class="mt-2">
                                  <h2 class="fs-5 number-font">Merchandise Payment</h2>
@@ -167,7 +167,7 @@
            <div class="col-lg-6 col-md-6 col-sm-12 col-xl-3">
                <div class="card overflow-hidden">
                    <div class="card-body">
-                       <a href="/dashboard/others-payment">
+                       <a href="dashboard/others/services">
                            <div class="d-flex align-items-center">
                               <div class="mt-2">
                                  <h2 class="fs-5 number-font">Other Services</h2>
