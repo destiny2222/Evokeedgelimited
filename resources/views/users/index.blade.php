@@ -8,7 +8,7 @@
 <div class="row">
   <div class="col-md-12 col-12">
     <div class="media d-flex gap-3 align-items-center mx-4 py-3">
-      <div class="icon icon-shape bg-white text-dark rounded-circle shadow">
+      <div class="icon icon-shape  text-dark rounded-circle shadow">
         <svg id="idCrown" class="text-warning" viewBox="0 0 24 24">
           <path style="fill:#74001D"
             d="M5 16L3 5L8.5 10L12 4L15.5 10L21 5L19 16H5M19 19C19 19.6 18.6 20 18 20H6C5.4 20 5 19.6 5 19V18H19V19Z"
@@ -56,9 +56,9 @@
             </div>
           </div>
         </div>
-        <span class="text-muted fs-12"><span class="text-secondary"><i
+        {{-- <span class="text-muted fs-12"><span class="text-secondary"><i
               class="fe fe-arrow-up-circle  text-secondary"></i> 5%</span>
-          Last week</span>
+          Last week</span> --}}
       </div>
     </div>
   </div>

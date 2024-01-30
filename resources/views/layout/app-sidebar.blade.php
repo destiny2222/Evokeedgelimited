@@ -3,8 +3,8 @@
     <div class="app-sidebar">
         <div class="side-header">
             <a class="header-brand1" href="{{ route('dashboard-page') }}">
-                <img src="/assets/img/black-logo.png" class="header-brand-img w-50 desktop-logo" alt="logo">
-                <img src="/assets/img/black-logo.png" class="header-brand-img w-50 toggle-logo"
+                <img src="/assets/img/logo-white.png" class="header-brand-img w-50 desktop-logo" alt="logo">
+                <img src="/assets/img/logo-white.png" class="header-brand-img w-50 toggle-logo"
                     alt="logo">
                 <img src="/assets/img/black-logo.png" class="header-brand-img w-50 light-logo" alt="logo">
                 <img src="/assets/img/black-logo.png" class="header-brand-img w-50 light-logo1"

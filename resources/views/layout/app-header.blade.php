@@ -1,14 +1,11 @@
-@php
-  $adminDetails = get_admin_details();
-@endphp
 <div class="app-header header sticky">
     <div class="container-fluid main-container">
         <div class="d-flex">
             <a aria-label="Hide Sidebar" class="app-sidebar__toggle" data-bs-toggle="sidebar" href="javascript:void(0)"></a>
             <!-- sidebar-toggle-->
             <a class="logo-horizontal " href="{{  route('dashboard-page') }}">
-                <img src="/assets/img/logo-white.png" class="header-brand-img desktop-logo" alt="logo">
-                <img src="/assets/img/logo.png" class="header-brand-img light-logo1 w-25" alt="logo">
+                <img src="/assets/img/logo-white.png" class="header-brand-img desktop-logo w-25" alt="logo">
+                <img src="/assets/img/black-logo.png" class="header-brand-img light-logo1 w-25" alt="logo">
             </a>
             <!-- LOGO -->
 

@@ -28129,6 +28129,7 @@ svg {
     height: 3rem;
     border-radius: 50%;
     text-align: center;
+    
 }
 
 .icon-icon-shape i {
@@ -63056,6 +63057,7 @@ textarea.form-control {
     border-radius: 50%;
     align-items: center;
     justify-content: center;
+    background-color: #ffffff;
 }
 .media .icon {
     width: 3rem;
@@ -63326,4 +63328,11 @@ textarea.form-control {
 
 .deposit-card.clicked {
     border: 2px solid #0052cc;
+}
+
+
+@media (max-width: 768px) {
+  .media-body .h2{
+    font-size: 1.50rem;
+  }
 }
