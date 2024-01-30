@@ -63077,6 +63077,13 @@ textarea.form-control {
     color:#88000B !important;
 }
 
+.dark-mode  .initiator-color.text-secondary{
+    color:#6C5FFC !important;
+}
+
+.dark-mode .quick .number-font{
+    color:#fff ;
+}
 
 .deposit-card {
     border: 1px solid rgb(231, 240, 254);
@@ -63333,6 +63340,11 @@ textarea.form-control {
 
 @media (max-width: 768px) {
   .media-body .h2{
-    font-size: 1.50rem;
+    font-size: 1.20rem;
   }
+}
+
+
+.quick .owl-dots{
+    display:none;
 }

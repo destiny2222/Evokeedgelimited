@@ -67,7 +67,7 @@
 <div class="row">
   <div class="col-12 col-sm-12">
     <div class="card">
-      <div class="card-body">
+      <div class="card-body quick">
         <h3 class="card-title mb-0 fw-bold">Quick Actions</h3>
         <div  class="owl-carousel mb-0" >
             @if ($setting->tuition_payment == 1)
