@@ -123,7 +123,7 @@ class Usercontroller extends Controller
 
     public function tuitionpaymentView(){
         $pay = TuitionPayment::where('user_id', auth()->user()->id)->latest()->first();
-        // dd($pay->amount);
+        $wallet = UserWallet::where('user_id', auth()->user()->id)->where('amount', '!=', null)->first();
         $charge = TransactionCharges::select('tuition_charge_amount')->first();
         $userbalance = UserWallet::where('user_id', auth()->user()->id)->latest()->first();
         $totalprecentage =  ($charge->tuition_charge_amount / 100) * $pay->amount;
@@ -132,7 +132,7 @@ class Usercontroller extends Controller
             'amount' => $totalPay
         ]]);
   
-        return view('users.TuitionPayment.paymenttution',compact('pay','charge','totalPay'));
+        return view('users.TuitionPayment.paymenttution',compact('pay','charge','totalPay', 'wallet'));
     }
 
 
@@ -272,7 +272,7 @@ class Usercontroller extends Controller
 
    public function tuitionwirepaymentView(){
         $pay = TuitionPaymentWire::where('user_id', auth()->user()->id)->latest()->first();
-        // dd($pay->amount);
+        $wallet = UserWallet::where('user_id', auth()->user()->id)->where('amount', '!=', null)->first();
         $charge = TransactionCharges::select('tuition_charge_amount')->first();
         $userbalance = UserWallet::where('user_id', auth()->user()->id)->latest()->first();
         $totalprecentage =  ($charge->tuition_charge_amount / 100) * $pay->amount;
@@ -281,7 +281,7 @@ class Usercontroller extends Controller
             'amount' => $totalPay
         ]]);
 
-        return view('users.TuitionPayment.paymentwire',compact('pay','charge','totalPay'));
+        return view('users.TuitionPayment.paymentwire',compact('pay','charge','totalPay', 'wallet'));
     }
 
 
