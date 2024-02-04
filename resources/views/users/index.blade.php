@@ -25,7 +25,7 @@
 <!-- ROW-2 -->
 <div class="row">
   <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xl-12">
-    @if ($user->kycIsRequired())
+    @if ($user->kyc && $user->kycIsRequired())
       <div class="card overflow-hidden">
         <div class="card-body">
           <div class="media align-items-center">
@@ -40,7 +40,7 @@
                     <p class="text-dark">{{__('Kindly re-submit your KYC information, and ensure you enter the correct details.')}}</p>
                 @else
                     {{-- <p class="text-dark">{{__('Unlock new account privileges by completing your KYC')}}</p> --}}
-                    <p class="text-dark">Verify your identity to start enjoying Evokeedge</p>
+                    <p class="text-dark">Verify your identity to start enjoying EvokeEdge</p>
                 @endif
                 <a href="{{ route('kyc-page') }}" class="btn btn-primary">Click Here</a>
             </div>
@@ -49,7 +49,7 @@
       </div>
     @endif
    
-    @if($user->kycIsProcessing())
+    @if( $user->kyc && $user->kycIsProcessing())
       <div class="card mb-3">
           <div class="card-body">
           <div class="row align-items-center">

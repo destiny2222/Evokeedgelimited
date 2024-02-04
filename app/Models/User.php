@@ -54,7 +54,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
 
     public function kycIsRequired(){
-        return $this->kyc->kyc_status == "RESUBMIT" || $this->kyc->kyc_status === "DECLINED";
+        return  $this->kyc->kyc_status == "RESUBMIT" || $this->kyc->kyc_status === "DECLINED";
     }
 
     public function kycIsProcessing(){
