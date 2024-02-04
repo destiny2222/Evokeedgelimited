@@ -25,22 +25,22 @@
 <!-- ROW-2 -->
 <div class="row">
   <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xl-12">
-    @if ($user->kyc && $user->kycIsRequired())
+    @if ($user->kycIsRequired())
       <div class="card overflow-hidden">
         <div class="card-body">
           <div class="media align-items-center">
             <div class="media-body">
-                @if($user->kyc->kyc_status == 'DECLINED')
-                    <h2 class="mb-2 font-weight-bolder text-dark">{{__('Your kyc was declined')}}</h2>
+                @if($user->kyc_status == 'DECLINED')
+                    <h2 class="mb-2 font-weight-bolder text-dark">{{__('Your KYC was Declined')}}</h2>
                 @else
                     <h2 class="mb-2 font-weight-bolder text-dark">{{__('We need more information about you')}}</h2>
                 @endif
 
-                @if($user->kyc->kyc_status == 'RESUBMIT')
+                @if($user->kyc_status == 'RESUBMIT')
                     <p class="text-dark">{{__('Kindly re-submit your KYC information, and ensure you enter the correct details.')}}</p>
                 @else
                     {{-- <p class="text-dark">{{__('Unlock new account privileges by completing your KYC')}}</p> --}}
-                    <p class="text-dark">Verify your identity to start enjoying EvokeEdge</p>
+                    <p class="text-dark">Verify your identity to start enjoying Evokeedge</p>
                 @endif
                 <a href="{{ route('kyc-page') }}" class="btn btn-primary">Click Here</a>
             </div>
@@ -49,7 +49,7 @@
       </div>
     @endif
    
-    @if( $user->kyc && $user->kycIsProcessing())
+    @if($user->kycIsProcessing())
       <div class="card mb-3">
           <div class="card-body">
           <div class="row align-items-center">
