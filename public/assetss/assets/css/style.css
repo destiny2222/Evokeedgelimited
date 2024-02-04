@@ -17463,7 +17463,7 @@ table.table-bordered.dataTable thead tr:first-child td {
 .wrap-input100 {
     position: relative;
     width: 100%;
-    z-index: 1;
+    /* z-index: 1; */
     margin-block-end: 10px;
 }
 
@@ -63346,5 +63346,16 @@ textarea.form-control {
 
 
 .quick .owl-dots{
+    display:none;
+}
+
+.asterisk{
+  position: absolute;
+  bottom:30%;
+  left: 20px;
+  transition: all 0.4s linear;
+}
+
+#asterisk a{
     display:none;
 }

@@ -13,8 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('kycs', function (Blueprint $table) {
-            $table->enum('kyc_status', ['PENDING','PROCESSING','RESUBMIT', 'DECLINED', 'APPROVED']);
+        Schema::create('countries', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('code');
+            $table->string('flag');
+            $table->string('dial_code');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('kycs', function (Blueprint $table) {
-            $table->dropColumn('kyc_status');
-        });
+        Schema::dropIfExists('countries');
     }
 };

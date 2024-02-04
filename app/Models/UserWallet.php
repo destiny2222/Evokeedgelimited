@@ -26,22 +26,19 @@ class UserWallet extends Model
       return  $this->hasMany(Transaction::class, 'user_id');
     }
 
-    // public function __construct(array $attributes = [])
+    public function getAmountAttribute($value) {
+        return '$' . number_format($value, 2);
+     }
+
+    // public function setAmountAttribute($value)
     // {
-    //     parent::__construct($attributes);
-    //     $this->attributes['amount'] = $this->attributes['amount'] ?? 0;
-    //     $this->attributes['balance'] = $this->attributes['balance'] ?? 0;
+    //     $this->attributes['amount'] = $value ?? 0;
     // }
 
-    public function setAmountAttribute($value)
-    {
-        $this->attributes['amount'] = $value ?? 0;
-    }
-
-    public function setBalanceAttribute($value)
-    {
-        $this->attributes['balance'] = $value ?? 0;
-    }
+    // public function setBalanceAttribute($value)
+    // {
+    //     $this->attributes['balance'] = $value ?? 0;
+    // }
 
 
 }

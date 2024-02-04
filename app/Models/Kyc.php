@@ -34,7 +34,16 @@ class Kyc extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function getuserEmail(){
+    public function getUserEmail(){
         return $this->user;
     }
+
+    public function setProofOfAddressAttribute($value){
+        $this->attributes['proof_of_address'] = $value ? upload_single_image('kyc/proof', 'proof_of_address') : null;
+    }
+
+    public function setDocumentsAttribute($value){
+        $this->attributes['documents'] = $value ? upload_single_image('kyc/document', 'documents') : null;
+    }
+
 }

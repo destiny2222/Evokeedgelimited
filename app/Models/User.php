@@ -53,17 +53,18 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
 
-    public function isKYCApproved()
-    {
-        return $this->kyc && $this->kyc->kyc_status == 'APPROVED';
+    public function kycIsRequired(){
+        return !$this->kyc_status || $this->kyc_status == ["RESUBMIT", "DECLINED"];
     }
 
-    public function hasSubmittedKYC()
-    {
-        return $this->kyc  && $this->kyc->kyc_status !== 'RESUBMITTED' && $this->kyc->kyc_status !== 'DECLINED'; 
+    public function kycIsProcessing(){
+        return $this->kyc_status || $this->kyc_status == ["PROCESSING"];
     }
 
 
+    public function kycIsApproved(){
+       return $this->kyc_status || $this->kyc_status == ["APPROVED"];   
+    }
 
     /**
      * The attributes that should be hidden for serialization.

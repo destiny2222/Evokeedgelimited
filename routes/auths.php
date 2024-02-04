@@ -17,8 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
-// KYC CONTAINER
-Route::post('/kyc-store', [Usercontroller::class, 'storeKyc'])->name('kyc-store-page');
+
 
 
 Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'verified', 'checkBanned']], function () {
@@ -36,6 +35,9 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'verified', 'che
     Route::get('/others/services', [Usercontroller::class, 'OthersPayment'])->name('others.page');
     Route::get('/add/flutter', [Usercontroller::class,  'addBalance'])->name('add.balance');
     Route::get('/add/bank', [Usercontroller::class, 'addBalanceBank'])->name('add.balance.bank');
+
+    // KYC CONTAINER
+    Route::post('/kyc-store', [Usercontroller::class, 'storeKyc'])->name('kyc-store-page');
 
     //  deposit payment
     Route::post('/payment/initialize', [DepositController::class, 'initialize'])->name('deposit.payment');

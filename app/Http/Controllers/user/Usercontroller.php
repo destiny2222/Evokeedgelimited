@@ -38,7 +38,9 @@ use Illuminate\Support\Facades\Log;
 class Usercontroller extends Controller
 {
     public  function storeKyc(KycRequest $request){
+       
         try {
+            // dd($request->validated());
             if(Kyc::count()){
                 Kyc::first()->update($request->validated());
                 return redirect(route('login'))->with('info', 'Sent successfully! Undergoing verification');
@@ -75,6 +77,7 @@ class Usercontroller extends Controller
    public function Manage(){
         return view('users.settings.manage');
     }
+
 
 
     public function helps(){

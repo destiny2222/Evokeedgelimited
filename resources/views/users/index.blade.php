@@ -24,20 +24,47 @@
 </div>
 <!-- ROW-2 -->
 <div class="row">
-  <div class="col-lg-6 col-md-6 col-sm-12 col-xl-12">
-    <div class="card overflow-hidden">
-      <div class="card-body">
-        <div class="d-flex">
-          <div class="mt-2">
-            <h3 class="fw-bold kyc-verify">Unlock new account privileges by completing your KYC</h3>
-            <p>Verify your identity to start enjoying Evokeedge</p>
+  <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xl-12">
+    @if ($user->kycIsRequired())
+      <div class="card overflow-hidden">
+        <div class="card-body">
+          <div class="media align-items-center">
+            <div class="media-body">
+                @if($user->kyc_status == 'DECLINED')
+                    <h2 class="mb-2 font-weight-bolder text-dark">{{__('Your KYC was Declined')}}</h2>
+                @else
+                    <h2 class="mb-2 font-weight-bolder text-dark">{{__('We need more information about you')}}</h2>
+                @endif
+
+                @if($user->kyc_status == 'RESUBMIT')
+                    <p class="text-dark">{{__('Kindly re-submit your KYC information, and ensure you enter the correct details.')}}</p>
+                @else
+                    {{-- <p class="text-dark">{{__('Unlock new account privileges by completing your KYC')}}</p> --}}
+                    <p class="text-dark">Verify your identity to start enjoying Evokeedge</p>
+                @endif
+                <a href="{{ route('kyc-page') }}" class="btn btn-primary">Click Here</a>
+            </div>
           </div>
         </div>
-        <div class="text-muted fs-12">
-          <a href="#" class="btn btn-primary">Click Here</a>
-        </div>
       </div>
-    </div>
+    @endif
+   
+    @if($user->kycIsProcessing())
+      <div class="card mb-3">
+          <div class="card-body">
+          <div class="row align-items-center">
+              <div class="col-12">
+              <div class="media align-items-center">
+                  <div class="media-body">
+                  <h2 class="mb-2 font-weight-bolder text-dark">{{__('We are processing your request')}}</h2>
+                  <p class="text-dark">{{__('Your details is currently being reviewed.')}}</p>
+                  </div>
+              </div>
+              </div>
+          </div>
+          </div>
+      </div>
+    @endif
   </div>
 </div>
 <!-- ROW-3 -->

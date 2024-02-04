@@ -15,6 +15,7 @@ class Setting extends Model
         'flight_booking',
         'corporate_service',
         'merchandise_payment',
-        'other_service'
+        'other_service',
+        'maximum_balance_amount_for_unregistered_kyc'
     ];
 }

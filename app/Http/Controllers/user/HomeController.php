@@ -4,6 +4,7 @@ namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
 use App\Models\Setting;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\UserWallet;
 use Illuminate\Support\Facades\Auth;
@@ -20,7 +21,8 @@ class HomeController extends Controller
     }
 
     public function index(){
-        $users = Auth::user();
+        $users =  User::find(auth()->user()->id);
+        // dd($users->kycIsRequired());
         $walletbalance = UserWallet::where('user_id', $users->id)->get();
         $settings = Setting::first();
         return view('users.index',[

@@ -13,8 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('kycs', function (Blueprint $table) {
-            $table->enum('kyc_status', ['PENDING','PROCESSING','RESUBMIT', 'DECLINED', 'APPROVED']);
+        Schema::table('settings', function (Blueprint $table) {
+            $table->string('maximum_balance_amount_for_unregistered_kyc')->default(0);
         });
     }
 
@@ -25,8 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('kycs', function (Blueprint $table) {
-            $table->dropColumn('kyc_status');
+        Schema::table('settings', function (Blueprint $table) {
+            $table->dropColumn('maximum_balance_amount_for_unregistered_kyc');
         });
     }
 };

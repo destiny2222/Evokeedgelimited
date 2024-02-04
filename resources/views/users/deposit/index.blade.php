@@ -8,11 +8,13 @@
 <!-- ROW OPEN -->
 <div class="row">
     <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
-        <div class="card">
+        <div class="card" id="Password-toggle">
             <div class="card-header justify-content-between">
-                <h3 class="accounts-title">
+                <h3 class="accounts-title" >
                     My Balance
-                    <span><i class="fa fa-eye-slash"></i></span>
+                    <a href="javascript:void(0)" >
+                        <i class="zmdi zmdi-eye eye" aria-hidden="true"></i>
+                    </a>
                 </h3>
                 <div class="text-end">
                     <button type="button" data-bs-effect="effect-scale" data-bs-toggle="modal" href="#modaldemo8" class="btn btn-primary add-balance">Add New Balance <i class="fa fa-plus"></i></button>
@@ -20,13 +22,31 @@
             </div>
             <div class="card-body">
                 <div class="d-flex align-items-center justify-content-around gap-5 text-center">
-                    <div>
+                    <div class="position-relative">
                         <small class="text-muted fw-bold">Available Balance</small>
-                        <h2 class="mb-2 pt-3 fw-bold">${{ number_format($userbalance->amount ?? 0, 2)  }}</h2>
+                        <h2 class="mb-2 pt-3 fw-bold ">$  <span class="user-balance">{{ number_format($userbalance->amount ?? 0, 2)  }}</span></h2>
+                        <div class="d-flex asterisk" id="asterisk" >
+                            <a href="javascript:void()" class="text-dark"><i class="fa fa-asterisk fs-5"></i></a>
+                            <a href="javascript:void()" class="text-dark"><i class="fa fa-asterisk fs-5"></i></a>
+                            <a href="javascript:void()" class="text-dark"><i class="fa fa-asterisk fs-5"></i></a>
+                            <a href="javascript:void()" class="text-dark"><i class="fa fa-asterisk fs-5"></i></a>
+                            <a href="javascript:void()" class="text-dark"><i class="fa fa-asterisk fs-5"></i></a>
+                            <a href="javascript:void()" class="text-dark"><i class="fa fa-asterisk fs-5"></i></a>
+                        </div>
                     </div>
-                    <div>
+                    <div class="position-relative">
                         <small class="text-muted fw-bold">Pending Balance</small>
-                        <h2 class="mb-2 pt-3 fw-bold">${{ number_format($userbalance->balance ?? 0, 2) }}</h2>
+                        <h2 class="mb-2 pt-3 fw-bold">
+                            $ <span class="user-balance2">{{ number_format($userbalance->balance ?? 0, 2) }}</span>
+                        </h2>
+                        <div class="d-flex asterisk" id="asterisk" >
+                            <a href="javascript:void()" class="text-dark"><i class="fa fa-asterisk fs-5"></i></a>
+                            <a href="javascript:void()" class="text-dark"><i class="fa fa-asterisk fs-5"></i></a>
+                            <a href="javascript:void()" class="text-dark"><i class="fa fa-asterisk fs-5"></i></a>
+                            <a href="javascript:void()" class="text-dark"><i class="fa fa-asterisk fs-5"></i></a>
+                            <a href="javascript:void()" class="text-dark"><i class="fa fa-asterisk fs-5"></i></a>
+                            <a href="javascript:void()" class="text-dark"><i class="fa fa-asterisk fs-5"></i></a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -110,5 +130,45 @@
         }
     });
 </script>
+<script>
+ (function() {
+    "use strict";
+
+        var availableBalance = document.querySelector('#Password-toggle .user-balance:nth-of-type(1)');
+        var pendingBalance = document.querySelector('#Password-toggle .user-balance2');
+        var asterisks = document.querySelectorAll('.asterisk a');
+
+        document.querySelector("#Password-toggle .eye").addEventListener('click', function(event) {
+            event.preventDefault();
+
+            // Toggle visibility for available balance
+            if (availableBalance.style.visibility !== "hidden") {
+                availableBalance.style.visibility = 'hidden';
+                asterisks.forEach(function(asterisk) {
+                    asterisk.style.display = 'block';
+                });
+            } else {
+                availableBalance.style.visibility = 'visible';
+                asterisks.forEach(function(asterisk) {
+                    asterisk.style.display = 'none';
+                });
+            }
+
+            // Toggle visibility for pending balance
+            if (pendingBalance.style.visibility !== "hidden") {
+                pendingBalance.style.visibility = 'hidden';
+            } else {
+                pendingBalance.style.visibility = 'visible';
+            }
+
+            // Toggle eye icon class
+            // this.classList.toggle("zmdi-eye-off");
+            // this.classList.toggle("zmdi-eye");
+        });
+    })();
+
+</script>
+
+
 @endpush
 @endsection
