@@ -36,6 +36,7 @@ class KycRequest extends FormRequest
             'street_address_2'=>['nullable','string'],
             'status'=>['nullable','string'],
             'data_sign'=>['nullable', 'date'],
+            'kyc_status'=>['nullable','string'],
             'user_id'=>['required','string'],
         ];
     }

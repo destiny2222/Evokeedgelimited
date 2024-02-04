@@ -26,12 +26,12 @@
                         <small class="text-muted fw-bold">Available Balance</small>
                         <h2 class="mb-2 pt-3 fw-bold ">$  <span class="user-balance">{{ number_format($userbalance->amount ?? 0, 2)  }}</span></h2>
                         <div class="d-flex asterisk" id="asterisk" >
-                            <a href="javascript:void()" class="text-dark"><i class="fa fa-asterisk fs-5"></i></a>
-                            <a href="javascript:void()" class="text-dark"><i class="fa fa-asterisk fs-5"></i></a>
-                            <a href="javascript:void()" class="text-dark"><i class="fa fa-asterisk fs-5"></i></a>
-                            <a href="javascript:void()" class="text-dark"><i class="fa fa-asterisk fs-5"></i></a>
-                            <a href="javascript:void()" class="text-dark"><i class="fa fa-asterisk fs-5"></i></a>
-                            <a href="javascript:void()" class="text-dark"><i class="fa fa-asterisk fs-5"></i></a>
+                            <a href="javascript:void()" class="text-dark"><i class="fa fa-asterisk fs-6"></i></a>
+                            <a href="javascript:void()" class="text-dark"><i class="fa fa-asterisk fs-6"></i></a>
+                            <a href="javascript:void()" class="text-dark"><i class="fa fa-asterisk fs-6"></i></a>
+                            <a href="javascript:void()" class="text-dark"><i class="fa fa-asterisk fs-6"></i></a>
+                            <a href="javascript:void()" class="text-dark"><i class="fa fa-asterisk fs-6"></i></a>
+                            <a href="javascript:void()" class="text-dark"><i class="fa fa-asterisk fs-6"></i></a>
                         </div>
                     </div>
                     <div class="position-relative">
@@ -40,12 +40,12 @@
                             $ <span class="user-balance2">{{ number_format($userbalance->balance ?? 0, 2) }}</span>
                         </h2>
                         <div class="d-flex asterisk" id="asterisk" >
-                            <a href="javascript:void()" class="text-dark"><i class="fa fa-asterisk fs-5"></i></a>
-                            <a href="javascript:void()" class="text-dark"><i class="fa fa-asterisk fs-5"></i></a>
-                            <a href="javascript:void()" class="text-dark"><i class="fa fa-asterisk fs-5"></i></a>
-                            <a href="javascript:void()" class="text-dark"><i class="fa fa-asterisk fs-5"></i></a>
-                            <a href="javascript:void()" class="text-dark"><i class="fa fa-asterisk fs-5"></i></a>
-                            <a href="javascript:void()" class="text-dark"><i class="fa fa-asterisk fs-5"></i></a>
+                            <a href="javascript:void()" class="text-dark"><i class="fa fa-asterisk fs-6"></i></a>
+                            <a href="javascript:void()" class="text-dark"><i class="fa fa-asterisk fs-6"></i></a>
+                            <a href="javascript:void()" class="text-dark"><i class="fa fa-asterisk fs-6"></i></a>
+                            <a href="javascript:void()" class="text-dark"><i class="fa fa-asterisk fs-6"></i></a>
+                            <a href="javascript:void()" class="text-dark"><i class="fa fa-asterisk fs-6"></i></a>
+                            <a href="javascript:void()" class="text-dark"><i class="fa fa-asterisk fs-6"></i></a>
                         </div>
                     </div>
                 </div>

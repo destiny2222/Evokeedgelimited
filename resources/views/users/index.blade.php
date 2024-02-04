@@ -30,13 +30,13 @@
         <div class="card-body">
           <div class="media align-items-center">
             <div class="media-body">
-                @if($user->kyc_status == 'DECLINED')
-                    <h2 class="mb-2 font-weight-bolder text-dark">{{__('Your KYC was Declined')}}</h2>
+                @if($user->kyc->kyc_status == 'DECLINED')
+                    <h2 class="mb-2 font-weight-bolder text-dark">{{__('Your kyc was declined')}}</h2>
                 @else
                     <h2 class="mb-2 font-weight-bolder text-dark">{{__('We need more information about you')}}</h2>
                 @endif
 
-                @if($user->kyc_status == 'RESUBMIT')
+                @if($user->kyc->kyc_status == 'RESUBMIT')
                     <p class="text-dark">{{__('Kindly re-submit your KYC information, and ensure you enter the correct details.')}}</p>
                 @else
                     {{-- <p class="text-dark">{{__('Unlock new account privileges by completing your KYC')}}</p> --}}
@@ -55,10 +55,10 @@
           <div class="row align-items-center">
               <div class="col-12">
               <div class="media align-items-center">
-                  <div class="media-body">
-                  <h2 class="mb-2 font-weight-bolder text-dark">{{__('We are processing your request')}}</h2>
-                  <p class="text-dark">{{__('Your details is currently being reviewed.')}}</p>
-                  </div>
+                <div class="media-body">
+                  <h2 class="mb-2 font-weight-bolder text-dark">{{__('Your details are review')}}</h2>
+                  <p class="text-dark">{{__('You will be notified once your information has been reviewed.')}}</p>
+                </div>
               </div>
               </div>
           </div>

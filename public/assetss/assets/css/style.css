@@ -29217,13 +29217,20 @@ a.text-primary:focus {
     background-color: rgb(246, 246, 249);
 }
 
-/* .login-img::before {
+.login-img.log{
+    background-image: url('../images/black-logo.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.login-img.log::before {
     content: "";
     background: linear-gradient(to right, var(--primary06) 0%, #05c3fb91 100%);
     height: 100%;
     width: 100%;
     position: absolute;
-} */
+}
 
 .avatar {
     background: var(--primary02) no-repeat center/cover;

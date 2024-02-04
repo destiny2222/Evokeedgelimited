@@ -46,7 +46,7 @@
 
 </head>
 
-<body class="app sidebar-mini ltr login-img">
+<body class="app sidebar-mini ltr login-img log">
 
     <!-- BACKGROUND-IMAGE -->
     <div class="">
@@ -63,13 +63,13 @@
                 <!-- Theme-Layout -->
 
                 <!-- CONTAINER OPEN -->
-                <div class="col col-login mx-auto mt-7">
+                {{-- <div class="col col-login mx-auto mt-7">
                     <div class="text-center">
                         <a href="/">
                             <img src="/assets/img/black-logo.png" class="logo-login" alt="">
                         </a>
                     </div>
-                </div>
+                </div> --}}
 
                 <div class="container-login100">
                     <div class="wrap-login100 p-6">

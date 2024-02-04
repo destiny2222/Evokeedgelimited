@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('kycs', function (Blueprint $table) {
-            $table->enum('kyc_status', ['PENDING','PROCESSING','RESUBMIT', 'DECLINED', 'APPROVED']);
+            $table->string('kyc_status')->nullable();
         });
     }
 
