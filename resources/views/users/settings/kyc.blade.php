@@ -15,6 +15,7 @@
                 <form action="{{  route('kyc-store-page') }}" method="POST" class="kyc_form" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+                    <input type="hidden" name="kyc_status" value="PROCESSING">
                     <div class="">
                         <div class="form-group mb-4 mb-lg-0">
                             <div class="form-label">{{ __('Gender') }}</div>

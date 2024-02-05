@@ -106,79 +106,10 @@
             </div>
         </div>
     </div>
-    {{-- <div class="col-lg-6">
-        <div class="card">
-            <div class="card-header">
-                <div class="card-title">Privacy and Security</div>
-            </div>
-            <div class="card-body">
-                <div class="form-group mg-b-10">
-                    <label class="custom-switch ps-0">
-                        <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input" checked="">
-                        <span class="custom-switch-indicator me-3"></span>
-                        <span class="custom-switch-description mg-l-10">Allow Others to see my profile</span>
-                    </label>
-                </div>
-                <div class="form-group mg-b-10">
-                    <label class="custom-switch ps-0">
-                        <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input">
-                        <span class="custom-switch-indicator me-3"></span>
-                        <span class="custom-switch-description mg-l-10">Make my profile Public</span>
-                    </label>
-                </div>
-                <div class="form-group mg-b-10">
-                    <label class="custom-switch ps-0">
-                        <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input">
-                        <span class="custom-switch-indicator me-3"></span>
-                        <span class="custom-switch-description mg-l-10">Security Alert</span>
-                    </label>
-                </div>
-                <div class="form-group mg-b-10">
-                    <label class="custom-switch ps-0">
-                        <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input" checked="">
-                        <span class="custom-switch-indicator me-3"></span>
-                        <span class="custom-switch-description mg-l-10">Passcode and Face ID</span>
-                    </label>
-                </div>
-                <div class="form-group mg-b-10">
-                    <label class="custom-switch ps-0">
-                        <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input">
-                        <span class="custom-switch-indicator me-3"></span>
-                        <span class="custom-switch-description mg-l-10">Two Step Verification</span>
-                    </label>
-                </div>
-                <div class="form-group mg-b-10">
-                    <label class="custom-switch ps-0">
-                        <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input" checked="">
-                        <span class="custom-switch-indicator me-3"></span>
-                        <span class="custom-switch-description mg-l-10">Always Sign In</span>
-                    </label>
-                </div>
-            </div>
-        </div>
-    </div> --}}
 </div>
 
 @endsection
 
 @push('script')
-<script>
-    let tabPanes = document.getElementsByClassName("setting_ul")[0].getElementsByClassName("setting_li");
-
-            for (let i = 0; i < tabPanes.length; i++) {
-            tabPanes[i].addEventListener("click", function() {
-                // Remove active class from current active tab
-                document.getElementsByClassName("setting_ul")[0].getElementsByClassName("setting_li_active")[0].classList.remove("setting_li_active");
-                // Add active class to clicked tab
-                tabPanes[i].classList.add("setting_li_active");
-
-                // Remove active class from current active content section
-                document.getElementsByClassName("setting_content")[0].getElementsByClassName("setting_li_active")[0].classList.remove("setting_li_active");
-                // Add active class to corresponding content section
-                document.getElementsByClassName("setting_content")[0].getElementsByClassName("s_content")[i].classList.add("setting_li_active");
-            });
-        }
-</script>
-
 
 @endpush

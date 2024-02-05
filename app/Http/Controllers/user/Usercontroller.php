@@ -43,7 +43,7 @@ class Usercontroller extends Controller
             // dd($request->validated());
             if(Kyc::count()){
                 Kyc::first()->update($request->validated());
-                return redirect(route('login'))->with('info', 'Sent successfully! Undergoing verification');
+                return redirect()->route('dashboard-page')->with('success', 'Sent successfully! Undergoing verification');
             }else{
                 Kyc::create($request->validated());
                 return back()->with('error', 'Oops Something went Worry, try again');

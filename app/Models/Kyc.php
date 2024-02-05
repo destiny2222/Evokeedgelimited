@@ -47,8 +47,5 @@ class Kyc extends Model
         $this->attributes['documents'] = $value ? upload_single_image('kyc/document', 'documents') : null;
     }
 
-    public function setKycStatusAttribute($value){
-        $this->attributes['kyc_status'] = $value ? 'PROCESSING' : null;
-    }
-
+    
 }

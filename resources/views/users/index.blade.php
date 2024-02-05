@@ -30,13 +30,12 @@
         <div class="card-body">
           <div class="media align-items-center">
             <div class="media-body">
-                @if($user->kyc_status == 'DECLINED')
+                @if($user->kyc && $user->kyc->kyc_status == 'DECLINED')
                     <h2 class="mb-2 font-weight-bolder text-dark">{{__('Your KYC was Declined')}}</h2>
                 @else
                     <h2 class="mb-2 font-weight-bolder text-dark">{{__('We need more information about you')}}</h2>
                 @endif
-
-                @if($user->kyc_status == 'RESUBMIT')
+                @if($user->kyc && $user->kyc->kyc_status == 'RESUBMIT')
                     <p class="text-dark">{{__('Kindly re-submit your KYC information, and ensure you enter the correct details.')}}</p>
                 @else
                     {{-- <p class="text-dark">{{__('Unlock new account privileges by completing your KYC')}}</p> --}}
@@ -275,7 +274,7 @@
 </div>
 
 <!-- ROW-5 -->
-<div class="row">
+{{-- <div class="row">
   <div class="col-12 col-sm-12">
     <div class="card">
       <div class="card-header">
@@ -547,7 +546,7 @@
       </div>
     </div>
   </div>
-</div>
+</div> --}}
 <!-- ROW-4 END -->
 @endsection
 

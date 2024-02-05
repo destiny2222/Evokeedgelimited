@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('kycs', function (Blueprint $table) {
-            $table->string('kyc_status')->nullable();
+            $table->set('kyc_status', ['RESUBMIT', 'DECLINED','PROCESSING', 'APPROVED'])->default('PROCESSING');
         });
     }
 

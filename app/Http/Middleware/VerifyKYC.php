@@ -19,10 +19,9 @@ class VerifyKYC
     public function handle(Request $request, Closure $next)
     {
         $user = Auth::user();
-        if (!$user->hasSubmittedKYC()) {
+        if ($user->kycIsRequired()) {
             return redirect(RouteServiceProvider::KYC);
-        } elseif (!$user->isKYCApproved()) {
-            // Auth::logout();
+        } elseif (!$user->kycIsProcessing()) {
             return back()->with('info', 'Your documents is Undergoing verification!');
         }
         return $next($request);
