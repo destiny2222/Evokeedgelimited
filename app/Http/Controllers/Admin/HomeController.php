@@ -92,6 +92,8 @@ class HomeController extends Controller
             $otherserviceIncrease = (($otherservice - $previousMonthotherserviceCount) / $previousMonthotherserviceCount) * 100;
         }
 
+        
+
         return view('admin.index', [
             'admin' => $admin,
             'user_count' => $user_count,

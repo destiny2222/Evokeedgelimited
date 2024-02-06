@@ -95,7 +95,7 @@ class KycContainer extends Controller
                 'street_address'=>$request->input('street_address'),
                 'street_address_2'=>$request->input('street_address_2'),
                 'proof_of_address'=>update_image('kyc/proof/', $kyc->proof_of_address, 'image'),
-                'documents'=>update_image('kyc/', $kyc->documents, 'image'),
+                'documents'=>update_image('kyc/document/', $kyc->documents, 'image'),
                 'data_sign'=>$request->input('data_sign'),
                 'approve_status' => $request->has('approve_status') ? 1 : 0,
                 'kyc_status' => $request->input('kyc_status'),

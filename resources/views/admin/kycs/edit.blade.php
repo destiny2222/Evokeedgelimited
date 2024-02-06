@@ -57,14 +57,13 @@
                             <div class="col-lg-12 mb-4">
                                 <label class="form-label text-black fw-bold" for="basic-default-fullname">{{ __('Kyc Status') }}</label>
                                 <select name="kyc_status" id="" class="form-control">
-                                    <option value="PENDING" {{ $kyc->kyc_status == 'PENDING' ? 'selected' : '' }}>PENDING</option>
                                     <option value="PROCESSING" {{ $kyc->kyc_status == 'PROCESSING' ? 'selected' : '' }}>PROCESSING</option>
                                     <option value="RESUBMIT" {{ $kyc->kyc_status == 'RESUBMIT' ? 'selected' : '' }}>RESUBMIT</option>
                                     <option value="DECLINED" {{ $kyc->kyc_status == 'DECLINED' ? 'selected' : '' }}>DECLINED</option>
                                     <option value="APPROVED" {{ $kyc->kyc_status == 'APPROVED' ? 'selected' : '' }}>APPROVED</option>
                                 </select>
                             </div>                            
-                            <input class="form-check-input d-none"  name="approve_status" type="checkbox" id="flexSwitchCheckChecked"   {{ old('approve_status', $kyc->approve_status) ? 'checked' : '' }}/>
+                            <input class="form-check-input" hidden  name="approve_status" type="checkbox" id="flexSwitchCheckChecked"   {{ old('approve_status', $kyc->approve_status) ? 'checked' : '' }}/>
                             <div class="col-lg-12">
                                 <button type="submit" class="btn btn-primary w-100 btn-lg">Save changes</button>
                             </div>

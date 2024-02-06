@@ -169,8 +169,8 @@
                     <td>
                         <table width="100%">
                             <tr>
-                                <td style="text-align:start; padding-top: 10px; padding-bottom:25px;">
-                                    <a href=""><img src="assets/image/logo.png" width="180" alt="Logo"></a>
+                                <td style="text-align:center; padding-top: 10px; padding-bottom:25px;">
+                                    <a href=""><img src="https://evokeedgelimited.com/assets/img/black-logo.png" width="180" alt="Logo"></a>
                                 </td>
                             </tr>
                         </table>
@@ -195,7 +195,7 @@
                     <td class="layout">
                         <div style="inline-size: 400px">
                             After a careful review, we regret to inform you that we can not approve your document.<br>
-                            <span>Please log in to your account to re-submit your Compliance.</span>
+                            <span>Please log in to your account to re-submit your Details.</span>
                         </div>
                     </td>
                     @elseif($kycs->kyc_status == 'PROCESSING')
@@ -204,7 +204,10 @@
                     </td>
                     @elseif($kycs->kyc_status == 'DECLINED')
                     <td class="layout">
-                        <div>Your KYC has been approved, and your account has been declined.</div>
+                        <div>
+                            Your KYC  has been declined. <br>
+                            <span>Please log in to your account to re-submit your Details.</span>
+                        </div>
                     </td>
                     @endif
                 </tr>

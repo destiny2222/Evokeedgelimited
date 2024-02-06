@@ -38,22 +38,11 @@ use Illuminate\Support\Facades\Log;
 class Usercontroller extends Controller
 {
     public  function storeKyc(KycRequest $request){
-       
-        try {
-            // dd($request->validated());
-            if(Kyc::count()){
-                Kyc::first()->update($request->validated());
-                return redirect()->route('dashboard-page')->with('success', 'Sent successfully! Undergoing verification');
-            }else{
-                Kyc::create($request->validated());
-                return back()->with('error', 'Oops Something went Worry, try again');
-            }
-           
-        } catch (\Exception $exception) {
-            Log::error($exception->getMessage());
+        if($request->createOrUpdate()){
+            return redirect()->route('dashboard-page')->with('success', 'Sent successfully! Undergoing verification');
+        }else{
             return back()->with('error', 'Oops Something went Worry, try again');
         }
-        
     }
 
     public function deposit()

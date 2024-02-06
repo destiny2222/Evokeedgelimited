@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Traits\EnableDisableTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Kyc extends Model
 {
@@ -37,15 +38,5 @@ class Kyc extends Model
     public function getUserEmail(){
         return $this->user;
     }
-    
-
-    public function setProofOfAddressAttribute($value){
-        $this->attributes['proof_of_address'] = $value ? upload_single_image('kyc/proof', 'proof_of_address') : null;
-    }
-
-    public function setDocumentsAttribute($value){
-        $this->attributes['documents'] = $value ? upload_single_image('kyc/document', 'documents') : null;
-    }
-
     
 }
