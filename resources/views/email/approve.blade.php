@@ -242,11 +242,7 @@
                                         </p>
                                     </div>
                                     <div style="margin:auto; inline-size: 200px; line-height:20px;text-align:center;">
-                                        <!-- <p > -->
-                                        Empowering Business
-                                        Owners to Thrive in the
-                                        Digital Economy.
-                                        <!-- </p> -->
+                                        
                                     </div>
                                 </td>
                             </tr>
