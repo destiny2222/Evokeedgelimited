@@ -229,27 +229,6 @@
                         </table>
                     </td>
                 </tr>
-                <tr>
-                    <td style="padding-top: 5%;">
-                        <table align="center">
-                            <tr>
-                                <td class="table-footer" style="padding-top:30px;">
-                                    <div>
-                                        <p>
-                                            &copy; <script>
-                                                document.write(new Date().getFullYear()) 
-                                            </script>{{ config('app.name')}} . All rights reserved.
-                                        </p>
-                                    </div>
-                                    <div style="margin:auto; inline-size: 200px; line-height:20px;text-align:center;">
-                                        
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-
             </table><!-- main section end -->
         </div>
     </div>
