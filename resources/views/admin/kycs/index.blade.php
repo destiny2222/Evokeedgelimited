@@ -89,15 +89,7 @@
                                                 <span>{{ $events->street_address_2  }}</span>
                                             </td>
                                             <td>
-                                                @if ($events->status == 'resident_individual')
-                                                   <span>Resident Individual</span>
-                                                @elseif ($events->status == 'none_resident')
-                                                   <span>Non Resident</span>
-                                                @elseif ($events->status == 'foreign')
-                                                  <span>Foreign</span>
-                                                @else
-                                                  <span>Not specify</span>
-                                                @endif
+                                                {{ $events->status  }}
                                             </td>
                                             <td>
                                                 <span>{{ $events->data_sign  }}</span>
