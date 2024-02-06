@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kyc Approved</title>
+    <title></title>
     <style>
         * {
             font-family: sans-serif;
