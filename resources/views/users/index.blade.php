@@ -273,284 +273,40 @@
   </div>    
 </div>
 
-<!-- ROW-5 -->
-{{-- <div class="row">
-  <div class="col-12 col-sm-12">
-    <div class="card">
-      <div class="card-header">
-        <h3 class="card-title mb-0">Recent transactions  </h3>
-      </div>
-      <div class="card-body pt-4">
-        <div class="grid-margin">
-          <div class="">
-            <div class="panel panel-primary">
-              <div class="panel-body tabs-menu-body border-0 pt-0">
-                <div class="tab-content">
-                  <div class="tab-pane active" id="tab5">
-                    <div class="table-responsive">
-                      <table id="data-table" class="table table-bordered text-nowrap mb-0">
-                        <thead class="border-top">
-                          <tr>
-                            <th class="bg-transparent border-bottom-0" style="width: 5%;">Id</th>
-                            <th class="bg-transparent border-bottom-0">
-                              Date</th>
-                            <th class="bg-transparent border-bottom-0">
-                              TRANSACTIONS ID/REFERENCE
-                            </th>
-                            <th class="bg-transparent border-bottom-0">
-                              PURPOSE OF PAYMENT	
-                            </th>
-                            <th class="bg-transparent border-bottom-0">
-                              AMOUNT
-                            </th>
-                            <th class="bg-transparent border-bottom-0">
-                              Payment Mode</th>
-                            <th class="bg-transparent border-bottom-0" style="width: 10%;">Status</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr class="border-bottom">
-                            <td class="text-center">
-                              <div class="mt-0 mt-sm-2 d-block">
-                                <h6 class="mb-0 fs-14 fw-semibold">
-                                  #98765490</h6>
-                              </div>
-                            </td>
-                            <td>
-                              <span class="mt-sm-2 d-block">30 Aug
-                                2021</span>
-                            </td>
-                            <td>
-                              <div class="d-flex">
-                                <div class="mt-0 mt-sm-3 d-block">
-                                  <h6 class="mb-0 fs-14 fw-semibold">
-                                    Cherry Blossom</h6>
-                                </div>
-                              </div>
-                            </td>
-                            <td>
-                              <div class="d-flex">
-                                <div class="mt-0 mt-sm-3 d-block">
-                                  <h6 class="mb-0 fs-14 fw-semibold">
-                                    Cherry Blossom</h6>
-                                </div>
-                              </div>
-                              </td>
-                            <td><span class="fw-semibold mt-sm-2 d-block">$6.721.5</span>
-                            </td>
-                            <td>
-                              <div class="d-flex">
-                                <div class="mt-0 mt-sm-3 d-block">
-                                  <h6 class="mb-0 fs-14 fw-semibold">
-                                    Online Payment</h6>
-                                </div>
-                              </div>
-                            </td>
-                            <td>
-                              <div class="mt-sm-1 d-block">
-                                <span
-                                  class="badge bg-success-transparent rounded-pill text-success p-2 px-3">Shipped</span>
-                              </div>
-                            </td>
-                           
-                          </tr>
-                          <tr class="border-bottom">
-                            <td class="text-center">
-                              <div class="mt-0 mt-sm-2 d-block">
-                                <h6 class="mb-0 fs-14 fw-semibold">
-                                  #76348798</h6>
-                              </div>
-                            </td>
-                            <td>
-                              <span class="mt-sm-2 d-block">30 Aug
-                                2021</span>
-                            </td>
-                            <td>
-                              <div class="d-flex">
-                                <div class="mt-0 mt-sm-3 d-block">
-                                  <h6 class="mb-0 fs-14 fw-semibold">
-                                    Cherry Blossom</h6>
-                                </div>
-                              </div>
-                            </td>
-                            <td>
-                              <div class="d-flex">
-                                <div class="mt-0 mt-sm-3 d-block">
-                                  <h6 class="mb-0 fs-14 fw-semibold">
-                                    Cherry Blossom</h6>
-                                </div>
-                              </div>
-                              </td>
-                            <td><span class="fw-semibold mt-sm-2 d-block">$35,7863</span>
-                            </td>
-                            <td>
-                              <div class="d-flex">
-                                <div class="mt-0 mt-sm-3 d-block">
-                                  <h6 class="mb-0 fs-14 fw-semibold">
-                                    Online Payment</h6>
-                                </div>
-                              </div>
-                            </td>
-                            <td>
-                              <div class="mt-sm-1 d-block">
-                                <span
-                                  class="badge bg-danger-transparent rounded-pill text-danger p-2 px-3">Cancelled</span>
-                              </div>
-                            </td>
-                           
-                          </tr>
-                          <tr class="border-bottom">
-                            <td class="text-center">
-                              <div class="mt-0 mt-sm-2 d-block">
-                                <h6 class="mb-0 fs-14 fw-semibold">
-                                  #23986456</h6>
-                              </div>
-                            </td>
-                            <td>
-                              <span class="mt-sm-2 d-block">30 Aug
-                                2021</span>
-                            </td>
-                            <td>
-                              <div class="d-flex">
-                                <div class="mt-0 mt-sm-3 d-block">
-                                  <h6 class="mb-0 fs-14 fw-semibold">
-                                    Cherry Blossom</h6>
-                                </div>
-                              </div>
-                            </td>
-                            <td>
-                              <div class="d-flex">
-                                <div class="mt-0 mt-sm-3 d-block">
-                                  <h6 class="mb-0 fs-14 fw-semibold">
-                                    Cherry Blossom</h6>
-                                </div>
-                              </div>
-                              </td>
-                            <td><span class="fw-semibold mt-sm-2 d-block">$5,89,6437</span>
-                            </td>
-                            <td>
-                              <div class="d-flex">
-                                <div class="mt-0 mt-sm-3 d-block">
-                                  <h6 class="mb-0 fs-14 fw-semibold">
-                                    Cash on Delivery</h6>
-                                </div>
-                              </div>
-                            </td>
-                            <td>
-                              <div class="mt-sm-1 d-block">
-                                <span
-                                  class="badge bg-warning-transparent rounded-pill text-warning p-2 px-3">Pending</span>
-                              </div>
-                            </td>
-                           
-                          </tr>
-                          <tr class="border-bottom">
-                            <td class="text-center">
-                              <div class="mt-0 mt-sm-2 d-block">
-                                <h6 class="mb-0 fs-14 fw-semibold">
-                                  #87456325</h6>
-                              </div>
-                            </td>
-                            <td>
-                              <span class="mt-sm-2 d-block">30 Aug
-                                2021</span>
-                            </td>
-                            <td>
-                              <div class="d-flex">
-                                <div class="mt-0 mt-sm-3 d-block">
-                                  <h6 class="mb-0 fs-14 fw-semibold">
-                                    Cherry Blossom</h6>
-                                </div>
-                              </div>
-                            </td>
-                            <td>
-                              <div class="d-flex">
-                                <div class="mt-0 mt-sm-3 d-block">
-                                  <h6 class="mb-0 fs-14 fw-semibold">
-                                    Cherry Blossom</h6>
-                                </div>
-                              </div>
-                              </td>
-                            <td><span class="fw-semibold mt-sm-2 d-block">$17.98</span>
-                            </td>
-                            <td>
-                              <div class="d-flex">
-                                <div class="mt-0 mt-sm-3 d-block">
-                                  <h6 class="mb-0 fs-14 fw-semibold">
-                                    Online Payment</h6>
-                                </div>
-                              </div>
-                            </td>
-                            <td>
-                              <div class="mt-sm-1 d-block">
-                                <span
-                                  class="badge bg-success-transparent rounded-pill text-success p-2 px-3">Shipped</span>
-                              </div>
-                            </td>
-                           
-                          </tr>
-                          <tr class="border-bottom">
-                            <td class="text-center">
-                              <div class="mt-0 mt-sm-2 d-block">
-                                <h6 class="mb-0 fs-14 fw-semibold">
-                                  #65783926</h6>
-                              </div>
-                            </td>
-                            <td>
-                              <span class="mt-sm-2 d-block">30 Aug
-                                2021</span>
-                            </td>
-                            <td>
-                              <div class="d-flex">
-                                <div class="mt-0 mt-sm-3 d-block">
-                                  <h6 class="mb-0 fs-14 fw-semibold">
-                                    Cherry Blossom</h6>
-                                </div>
-                              </div>
-                            </td>
-                            <td>
-                              <div class="d-flex">
-                                <div class="mt-0 mt-sm-3 d-block">
-                                  <h6 class="mb-0 fs-14 fw-semibold">
-                                    Cherry Blossom</h6>
-                                </div>
-                              </div>
-                              </td>
-                            <td><span class="fw-semibold mt-sm-2 d-block">$8.654.4</span>
-                            </td>
-                            <td>
-                              <div class="d-flex">
-                                <div class="mt-0 mt-sm-3 d-block">
-                                  <h6 class="mb-0 fs-14 fw-semibold">
-                                    Cash on Delivery</h6>
-                                </div>
-                              </div>
-                            </td>
-                            <td>
-                              <div class="mt-sm-1 d-block">
-                                <span
-                                  class="badge bg-danger-transparent rounded-pill text-danger p-2 px-3">Cancelled</span>
-                              </div>
-                            </td>
-                           
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+
+<!-- approved kyc -->
+@if ($user->kyc && $user->kyc->kyc_status == 'APPROVED' && !session('modal_shown'))
+<div class="modal fade" id="modaldemo4">
+  <div class="modal-dialog modal-sm modal-dialog-centered text-center " role="document">
+      <div class="modal-content tx-size-sm">
+          <div class="modal-body text-center p-4 pb-5">
+              <button aria-label="Close" class="btn-close position-absolute" data-bs-dismiss="modal">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <i class="icon icon-check fs-70 text-success lh-1 my-5 d-inline-block"></i>
+              <h4 class="text-success tx-semibold">Congratulations!</h4>
+              <p class="mg-b-20 mg-x-20">Your kyc as been approved.</p>
           </div>
-        </div>
       </div>
-    </div>
   </div>
-</div> --}}
-<!-- ROW-4 END -->
+</div>
+@endif
+
+
 @endsection
 
 @push('scripts')
+<script type="text/javascript">
+ $(document).ready(function() {
+  if ($('#modaldemo4').length > 0 && !sessionStorage.getItem('modal_shown')) {
+      $('#modaldemo4').modal('show');
+      sessionStorage.setItem('modal_shown', true);
+    }
+    setTimeout(function() {
+      $('#modaldemo4').modal('hide');
+    }, 2000);
+  });
+</script>
     <script>
       $('.owl-carousel').owlCarousel({
           loop:true,
