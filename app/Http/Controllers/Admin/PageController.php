@@ -18,6 +18,7 @@ use App\Models\TuitionPayment;
 use App\Models\TuitionPaymentWire;
 use App\Models\User;
 use App\Models\VisaApplication;
+use App\Notifications\MailNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
@@ -48,39 +49,54 @@ class PageController extends Controller
 
 
     public function sendMail(){
-        return view('admin.emails.create');
+        $user = User::orderBy('id', 'desc')->get();
+        return view('admin.emails.create', compact('user'));
     }
+
+
+    public function storeMail(Request $request){
+        $request->validate([
+            'name' => ['nullable', 'string'],
+            'subject' => ['nullable', 'string'],
+            'message' => ['required', 'string'],
+        ]);     
+    
+        try {
+            $message = new EmailMail;
+            $message->name = $request->name;
+            $message->subject = $request->subject;
+            $message->message = $request->message;
+            $message->user_id = $request->user_id;
+    
+            $message->save();
+    
+            // Retrieve the latest 
+            $latestMessage = EmailMail::latest()->first();
+            if ($latestMessage && $latestMessage->user) {
+                // Notify the latest associated user
+                $latestMessage->user->notify(new MailNotification($latestMessage));
+                return redirect()->route('admin.send-mail-page')->with('success', 'Email sent successfully');
+            } else {
+                return back()->with('error', 'Email not sent successfully: User not found.');
+            }
+        } catch (\Exception $exception) {
+            Log::error($exception->getMessage());
+            return back()->with('error', 'Email not sent successfully: '.$exception->getMessage());
+        }
+    }
+    
+
 
     public function mailShow($id){
         $sendmail  = EmailMail::find($id);
         if($sendmail){
             return view('admin.emails.show',compact('sendmail'));
         }else{
-            Alert::error('Page not found');
-            return back();
+            return back()->with('error', 'Page not found');
         }
     }
 
 
-    public function storeMail(Request $request){
-        $request->validate([
-            'name'=>['required', 'string'],
-            'email'=>['required', 'string', 'email'],
-            'message'=>['required', 'string'],
-        ]);
-
-
-       try {
-            $Mail = EmailMail::create($request->all());
-            Mail::to($Mail->email)->send(new Email($Mail));
-        Alert::success('Email sent successfully');
-        return redirect()->route('admin.send-mail-page');
-       } catch (\Exception $exception) {
-          Log::error($exception->getMessage());
-          Alert::error('error', 'Email not sent successfully');
-          return back();
-       }
-    }
 
     public function mailDelete($id){
         

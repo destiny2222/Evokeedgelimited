@@ -10,15 +10,16 @@ use Illuminate\Notifications\Notification;
 class MailNotification extends Notification
 {
     use Queueable;
+    public $latestMessage;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($latestMessage)
     {
-        //
+        $this->latestMessage = $latestMessage;
     }
 
     /**
@@ -41,9 +42,11 @@ class MailNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+            ->subject($this->latestMessage->subject)
+            ->line('The introduction to the notification.')
+            ->action('Notification Action', url('/'))
+            ->markdown('email.mail', ['Mail'=>$this->latestMessage])
+            ->line('Thank you for using our application!');
     }
 
     /**

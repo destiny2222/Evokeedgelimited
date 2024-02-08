@@ -77,7 +77,8 @@ Route::prefix('admin')->name('admin.')->group(function (){
     Route::middleware(['auth:admin', 'checkAdminRole:administrator'])->group(function () {
         
         Route::put('/profile_update/{id}', [HomeController::class, 'update'])->name('update-profile-page');
-        Route::put('change-passwprd', [HomeController::class, 'validatepassword'])->name('change-password-page');
+        Route::put('change-password', [HomeController::class, 'validatepassword'])->name('change-password-page');
+        
         Route::get('/users/{id}/edit', [ManagementController::class, 'editUser'])->name('edit-user-page');
         Route::put('/users/{id}/update', [ManagementController::class, 'updateUser'])->name('update-user-page');
         Route::delete('/user/{id}/delete', [ManagementController::class, 'deleteUser'])->name('user-delete');
@@ -105,10 +106,13 @@ Route::prefix('admin')->name('admin.')->group(function (){
         Route::post('Baggage/update', [PageController::class, 'baggage'])->name('update-baggage');
         
         Route::get('/send-mail/create', [PageController::class, 'sendMail'])->name('send-mail-create');
-    Route::post('/send-mail/store', [PageController::class, 'storeMail'])->name('send-mail-store');
-    // Route::get('/send-mail/{emailmail}/show', [PageController::class, 'mailShow'])->name('send-mail-show');
-    Route::delete('/send-mail/{id}/delete/', [PageController::class, 'mailDelete'])->name('send-mail-delete');
+        Route::post('/send-mail/store', [PageController::class, 'storeMail'])->name('send-mail-store');
+        // Route::get('/send-mail/{emailmail}/show', [PageController::class, 'mailShow'])->name('send-mail-show');
+        Route::delete('/send-mail/{id}/delete/', [PageController::class, 'mailDelete'])->name('send-mail-delete');
 
+        Route::put('/profile/{id}/admin-user', [ManagementController::class, 'adminUserEdit'])->name('admin-user-edit');
+        Route::put('/change-user-password', [ManagementController::class, 'adminUserChangePassword'])->name('change-user-password');
+        Route::delete('/admin-users/{id}/delete', [ManagementController::class, 'adminUserDelete'])->name('admin.delete.users');
     });
 
     Route::get('optimize',function (){

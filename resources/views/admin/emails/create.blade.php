@@ -22,12 +22,12 @@
                         @csrf
                         <div class="row">
                             <div class="col-lg-12 mb-3">
-                                <label for="name">Name</label>
-                                <input type="text" name="name" id="name" class="form-control">
-                            </div>
-                            <div class="col-lg-12 mb-3">
-                                <label for="email">Email Address</label>
-                                <input type="email" name="email" id="email" class="form-control">
+                                <label for="name">User</label>
+                                <select name="user_id" class="form-control">
+                                    @foreach ($user as $users)
+                                       <option value="{{ $users->id }}">{{ $users->name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="col-lg-12 mb-3">
                                 <label for="subject">Subject</label>

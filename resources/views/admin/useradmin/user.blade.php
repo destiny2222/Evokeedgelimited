@@ -36,8 +36,8 @@
                                     <th scope="col">Amount</th>
                                     <th scope="col">Email Address</th>
                                     <th scope="col">Phone Number</th>
-                                    {{-- <th scope="col">State</th>
-                                    <th scope="col">City</th> --}}
+                                    <th scope="col">kyc status</th>
+                                    {{-- <th scope="col">City</th> --}}
                                     <th scope="col">Country</th>
                                     <th scope="col">Action</th>
                                 </tr>
@@ -57,8 +57,8 @@
                                         </td>
                                         <td>{{  $usering->email }}</td>
                                         <td>{{  $usering->phone }}</td>
-                                        {{-- <td>{{  $usering->state }}</td>
-                                        <td>{{  $usering->city }}</td> --}}
+                                        <td>{{  $usering->kyc->kyc_status }}</td>
+                                        {{-- <td>{{  $usering->city }}</td> --}}
                                         <td>{{  $usering->country }}</td>
                                         <td>
                                             <div class="hstack gap-2 fs-15">

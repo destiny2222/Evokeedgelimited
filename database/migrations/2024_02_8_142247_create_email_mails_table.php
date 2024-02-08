@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('email_mails', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->nullable();;
             $table->string('subject');
-            $table->string('email');
+            $table->foreignId('user_id')->constrained('user')->onDelete('CASCADE')->onUpdate('CASCADE');
             $table->longText('message');
             $table->timestamps();
         });

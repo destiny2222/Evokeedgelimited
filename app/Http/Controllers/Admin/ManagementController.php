@@ -7,6 +7,7 @@ use App\Models\Admin;
 use App\Models\User;
 use App\Models\UserWallet;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -78,8 +79,7 @@ class ManagementController extends Controller
                   'amount' => $request->input('userwallet_amount'),
                ]);
             }
-            Alert::info('success', 'Edited Successfully') ;
-            return redirect()->route('admin.user-page');
+            return redirect()->route('admin.user-page')->with('success', 'Edited Successfully');
         
     }
     
@@ -90,25 +90,70 @@ class ManagementController extends Controller
             $user = User::findOrFail($id);
             if ($user) {
                 $user->delete();
-                Alert::success('success', 'Successfuly Delete');
-                return back();
+                return back()->with('success', 'Successfuly Delete');
             } else {
-                Alert::error('error', 'Oops Something went worry!');
-                return back();
+                return back()->with('error', 'Oops Something went worry!');
             }
     }
 
     public function banUser(User $user)
     {
         $user->update(['is_banned' => true]);
-        Alert::success('success', 'Successfuly Banned');
-        return redirect()->route('admin.user-page');
+        return redirect()->route('admin.user-page')->with('success', 'Successfuly Banned');
     }
 
     public function unbanUser(User $user)
     {
         $user->update(['is_banned' => false]);
-        Alert::success('success', 'Successfuly Unbanned');
-        return redirect()->route('admin.user-page');
+        return redirect()->route('admin.user-page')->with('success', 'Successfuly Unbanned');
+    }
+
+
+    public function adminUserEdit(Request $request, $id){
+        $adminUserEdit = Admin::find($id);
+        if ($adminUserEdit){
+            $adminUserEdit->update([
+                'name'=>$request->input('name'),
+                'email'=>$request->input('email'),
+                'phone'=>$request->input('phone'),
+                'role_as'=>$request->input('role_as'),
+            ]);
+            $adminUserEdit->save();
+            return back()->with('success', 'Successfully updated');
+        }else{
+            return back()->with('error', 'Oops something went error');
+        }
+    }
+
+
+    public function adminUserChangePassword(Request $request){
+        $this->validate($request, [
+            'current_password' => ['required', 'string'],
+            'new_password' => ['required', 'string'],
+        ]);
+        $id = $request->input('id');
+        $adminpassword = Admin::find($id);
+        if (password_verify($request->current_password, $adminpassword->password)) {
+                if ($request->new_password == $request->Confirm_password) {
+                    session(['new_password' => $request->new_password]);
+                    $adminpassword->update([
+                        'password' => Hash::make(session('new_password'))
+                    ]);
+                    return back()->with('Password Change Successfully');
+                } else {
+                    return back()->with('Error! Password Mismatch');
+                }
+            } else {
+                return back()->with('Error! The password does not match the current password?');
+            }
+    }
+    public function adminUserDelete($id){
+        $adminUserDelete = Admin::find($id);
+        if($adminUserDelete){
+            $adminUserDelete->delete();
+            return back()->with('success', 'Successfuly Delete');
+        }else{
+            return back()->with('error', 'Oops Something went worry!');
+        }
     }
 }

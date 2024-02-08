@@ -39,14 +39,14 @@
                                 </tr>
                             </thead>
                             <tbody> 
-                                @foreach ($sendmail as $key => $mail)
+                                @foreach ($sendmail as  $mail)
                                 <tr scope="row">
-                                    <th>{{  $key + 1 }}</th>
-                                    <td>{{  $mail['name'] }}</td>
-                                    <td>{{  $mail['email'] }}</td>
-                                    <td>{{  $mail['subject'] }}</td>
+                                    <th>{{  $loop->index + 1 }}</th>
+                                    <td>{{  $mail->user->name }}</td>
+                                    <td>{{  $mail->user->email }}</td>
+                                    <td>{{  $mail->subject }}</td>
                                     <td>
-                                        {{  $mail['message']  }}
+                                        {{  $mail->message }}
                                     </td>
                                     <td>
                                         {{  $mail->created_at->format('m-d-y h:s A') }}
@@ -57,13 +57,13 @@
                                             data-bs-target="#exampleModalScrollable3{{ $mail->id }}">
                                             View Mail
                                         </button>
-                                        {{-- <form action="{{ route('admin.send-mail-delete', $mail->id) }}" method="post">
+                                        <form action="{{ route('admin.send-mail-delete', $mail->id) }}" method="post">
                                             @csrf
                                             @method('delete')
                                             <button type="submit" class="btn btn-sm btn-danger btn-wave">
                                                 <i class="ri-delete-bin-line align-middle  d-inline-block"></i>Delete
                                             </button>
-                                        </form> --}}
+                                        </form>
                                         </div>
                                     </td>
                                 </tr>

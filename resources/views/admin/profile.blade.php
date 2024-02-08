@@ -34,6 +34,11 @@
                                 <a class="nav-link" data-bs-toggle="tab" role="tab" aria-current="page" href="#email-settings"
                                   aria-selected="true">Create An Account</a>
                             </li>
+                            <li class="nav-item m-1">
+                                <a class="nav-link" href="#saff" data-bs-toggle="tab" role="tab" aria-current="page" aria-selected="true">
+                                    Employee Information
+                                </a>
+                            </li>
                         </ul>
                     </div>
                     <div class="card-body">
@@ -86,6 +91,7 @@
                                 </div>
                             </div>
                             <div class="tab-pane" id="account-settings" role="tabpanel">
+                                @if ($admin->role_as == 'administrator')
                                 <div class="row gap-3 justify-content-between">
                                     <div class="col-xl-12">
                                         <div class="card custom-card shadow-none mb-0 border">
@@ -130,6 +136,11 @@
                                         </div>
                                     </div>
                                 </div>
+                                @else
+                                    <div class="p-3">
+                                        <h5>You are permitted to create an account as a {{ $admin->role_as }}</h5>
+                                    </div>
+                                @endif
                             </div>
                             <div class="tab-pane p-0" id="email-settings" role="tabpanel">
                                 @if ($admin->role_as == 'administrator')
@@ -180,9 +191,72 @@
                                 </form>
                                 @else
                                     <div class="p-3">
-                                        <h5>You are permitted to create an account as an {{ $admin->role_as }}</h5>
+                                        <h5>You are permitted to create an account as a {{ $admin->role_as }}</h5>
                                     </div>
                                 @endif
+                            </div>
+                            <div class="tab-pane" id="saff" role="tabpanel">
+                                @if ($admin->role_as == 'administrator')
+                                <div class="card custom-card">
+                                    <div class="table-responsive">
+                                        <table class="table text-nowrap table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">S/N</th>
+                                                    <th scope="col">Name</th>
+                                                    <th scope="col">Email</th>
+                                                    <th scope="col">Phone</th>
+                                                    <th scope="col">Role</th>
+                                                    <th scope="col">Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($adminUser as $adminUsers)
+                                                <tr>
+                                                    <td>{{  $loop->index + 1 }}</td>
+                                                    <td scope="row">
+                                                        {{  $adminUsers->name }}
+                                                    </td>
+                                                    <td scope="row">
+                                                        {{  $adminUsers->email }}
+                                                    </td>
+                                                    <td>{{ $adminUsers->phone }}</td>
+                                                    <td>
+                                                        <span class="badge bg-success-transparent">{{ $adminUsers->role_as }}</span>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hstack gap-2 flex-wrap">
+                                                            <button class="btn btn-sm btn-warning btn-wave waves-effect waves-light" data-bs-toggle="modal"
+                                                            data-bs-target="#edituser-{{ $adminUsers->id }}">
+                                                                <i class="ri-edit-line align-middle me-2 d-inline-block"></i>Edit
+                                                            <button class="btn btn-sm btn-info btn-wave waves-effect waves-light" data-bs-toggle="modal"
+                                                              data-bs-target="#staticBackdrop-{{ $adminUsers->id }}">
+                                                                <i class="ri-lock align-middle me-2 d-inline-block"></i>Change Password
+                                                            </button>
+                                                            <button  class="btn btn-sm btn-danger btn-wave waves-effect waves-light">
+                                                                <a href="{{ route('admin.admin.delete.users', $adminUsers->id) }}" class="text-white fs-14 lh-1" onclick="event.preventDefault(); document.getElementById('delete-form').submit();">
+                                                                    <i class="ri-delete-bin-line align-middle me-2 d-inline-block"></i>Delete
+                                                                </a>
+                                                            </button>
+                                                            <form id="delete-form" clas="d-none" onclick="return confirm('Are you sure?');" action="{{ route('admin.admin.delete.users', $adminUsers->id) }}" method="post">
+                                                                @method('delete')
+                                                                @csrf
+                                                            </form> 
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                @include('admin.profile.edit')
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>   
+                                @else
+                                <div class="p-3">
+                                    <h5>You are permitted to create an account as a {{ $admin->role_as }}</h5>
+                                </div>
+                                @endif
+                                
                             </div>
                         </div>
                     </div>

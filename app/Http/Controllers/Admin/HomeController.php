@@ -114,8 +114,8 @@ class HomeController extends Controller
     public function profile()
     {
         $admin = Auth::guard('admin')->user();
-        // dd($admin);
-        return view('admin.profile', compact('admin'));
+        $adminUser = Admin::orderBy('id', 'desc')->get();
+        return view('admin.profile', compact('admin', 'adminUser'));
     }
 
     public function update(Request $request, $id)
@@ -129,11 +129,9 @@ class HomeController extends Controller
                 'email' => $request->email,
                 'phone' => $request->phone,
             ]);
-            Alert::success('Updated Successfully');
-            return back();
+            return back()->with('Updated Successfully');
         } else {
-            Alert::error('Something went Wrong');
-            return back();
+            return back()->with('Something went Wrong');
         }
     }
 

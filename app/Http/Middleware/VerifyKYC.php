@@ -20,8 +20,8 @@ class VerifyKYC
     {
         $user = Auth::user();
         if ($user->kycIsRequired()) {
-            return redirect(RouteServiceProvider::KYC);
-        } elseif (!$user->kycIsProcessing()) {
+            return redirect(RouteServiceProvider::HOME)->with('warning', 'Please complete your verification');
+        } elseif ($user->kycIsProcessing()) {
             return back()->with('info', 'Your documents is Undergoing verification!');
         }
         return $next($request);
