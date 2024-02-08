@@ -23,6 +23,7 @@ class RouteServiceProvider extends ServiceProvider
     public const ADMINLOIN = '/admin/login-form';
     public const KYC = '/dashboard/kyc';
 
+    
     /**
      * Define your route model bindings, pattern filters, and other route configuration.
      *
