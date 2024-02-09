@@ -22,11 +22,10 @@ class HomeController extends Controller
 
     public function index(){
         $users =  User::find(auth()->user()->id);
-        // dd($users->kycIsRequired());
-        $walletbalance = UserWallet::where('user_id', $users->id)->get();
+        $walletbalance = UserWallet::where('user_id', auth()->user()->id)->first();
         $settings = Setting::first();
         return view('users.index',[
-            'balance'=>$walletbalance->sum('amount'),
+            'balance'=>$walletbalance,
             'setting'=>$settings,
             'user'=>$users
         ]);
