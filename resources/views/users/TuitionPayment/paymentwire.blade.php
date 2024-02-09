@@ -68,7 +68,7 @@
                                         </div>
                                         <div class="deposit-card-o ">
                                             <img src="/assetss/assets/images/payments/directdebit-dark.svg" alt="" style="width: 2.25rem; height: 1.30rem; display: inline-block;">
-                                            <p  class="pt-4" style="color: rgb(73, 84, 108);">Account Balance ${{ number_format($wallet  ?  $wallet->amount : 0 , 2  ) }}</p>
+                                            <p  class="pt-4" style="color: rgb(73, 84, 108);">Account Balance {{  $wallet ?  $wallet->amount : 0  }}</p>
                                         </div>
                                     </div>
                                     <div class="deposit-card mb-4 ">

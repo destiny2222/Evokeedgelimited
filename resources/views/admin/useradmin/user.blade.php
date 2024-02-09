@@ -49,16 +49,12 @@
                                         <th scope="row">{{ $loop->index + 1 }}</th>
                                         <td>{{  $usering->name }}</td>
                                         <td>
-                                            @if (!$usering->userwallet == null)
-                                               {{   number_format($usering->userwallet->amount, 2) }}
-                                            @else
-                                                0.00
-                                            @endif
+                                            {{  $usering->userwallet ? $usering->userwallet->amount  : 0 }}
                                         </td>
                                         <td>{{  $usering->email }}</td>
                                         <td>{{  $usering->phone }}</td>
-                                        <td>{{  $usering->kyc->kyc_status }}</td>
-                                        <td>{{  $usering->city }}</td>
+                                        <td>{{  $usering->kyc ? $usering->kyc->kyc_status : 'Not Started' }}</td>
+                                        <td>{{  $usering->userwallet ? $usering->userwallet->balance : 0}}</td>
                                         <td>{{  $usering->country }}</td>
                                         <td>
                                             <div class="hstack gap-2 fs-15">
