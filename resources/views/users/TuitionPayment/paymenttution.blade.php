@@ -5,7 +5,7 @@
 
     <nav class="payment-nav">
         <div class="back-nav" >
-            <a href="{{ route('initiator-page') }}" class="text-dark btn btn-warning">
+            <a href="{{ route('school.portal') }}" class="text-dark btn btn-warning">
                 <span class="back-nav__arrow">
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M6.38065 3.95337L2.33398 8.00004L6.38065 12.0467" stroke="#2D3443" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path>

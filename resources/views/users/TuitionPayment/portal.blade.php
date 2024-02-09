@@ -39,12 +39,16 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1" class="form-label">Portal Password</label>
-                                <input type="password" name="portal_password" class="form-control" id="exampleInputEmail1" placeholder="Portal password">
-                                <span class="password-toggle" id="password-toggle" onclick="togglePasswordVisibility()">&#128065;</span>
+                                <div class="wrap-input100 validate-input input-group" id="Password-toggle">
+                                    <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                        <i class="zmdi zmdi-eye" aria-hidden="true"></i>
+                                    </a>
+                                    <input class="input100 border-start-0 ms-0 form-control" name="portal_password" required type="password" placeholder="Portal Password">
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label class="form-label">Amount</label>
-                                <input type="number" name="amount" id="" class="form-control">
+                                <input type="number" name="amount" id=""  class="form-control">
                             </div>
                         </div>
                         <div class="text-center">

@@ -24,7 +24,7 @@
                 <div class="d-flex align-items-center justify-content-around gap-5 text-center">
                     <div class="position-relative">
                         <small class="text-muted fw-bold">Available Balance</small>
-                        <h2 class="mb-2 pt-3 fw-bold ">$  <span class="user-balance">{{ number_format($userbalance->amount ?? 0, 2)  }}</span></h2>
+                        <h2 class="mb-2 pt-3 fw-bold "><span class="user-balance">{{ $userbalance->amount ? : 0  }}</span></h2>
                         <div class="d-flex asterisk" id="asterisk" >
                             <a href="javascript:void()" class="text-dark"><i class="fa fa-asterisk fs-6"></i></a>
                             <a href="javascript:void()" class="text-dark"><i class="fa fa-asterisk fs-6"></i></a>
@@ -37,7 +37,7 @@
                     <div class="position-relative">
                         <small class="text-muted fw-bold">Pending Balance</small>
                         <h2 class="mb-2 pt-3 fw-bold">
-                            $ <span class="user-balance2">{{ number_format($userbalance->balance ?? 0, 2) }}</span>
+                            $<span class="user-balance2">{{ $userbalance->balance ? : 0 }}</span>
                         </h2>
                         <div class="d-flex asterisk" id="asterisk" >
                             <a href="javascript:void()" class="text-dark"><i class="fa fa-asterisk fs-6"></i></a>

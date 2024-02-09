@@ -74,7 +74,7 @@
         <div class="d-flex">
           <div class="mt-2">
             <h6 class="">Account Balance</h6>
-            <h2 class="mb-0 number-font">${{ number_format($balance ?? 0, 2 ) }}</h2>
+            <h2 class="mb-0 number-font">${{ number_format($balance ? 0, 2 ) }}</h2>
           </div>
           <div class="ms-auto">
             <div class="chart-wrapper mt-1">

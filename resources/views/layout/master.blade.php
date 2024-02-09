@@ -193,87 +193,8 @@
 @stack('script')
 @stack('scripts')
 @stack('charts')
-<script>
-    // Get all the list items
-    const listItems = document.querySelectorAll('.card-payment');
-
-    // Add a click event listener to each list item
-    listItems.forEach(listItem => {
-    listItem.addEventListener('click', function() {
-    // Find the radio button within this list item
-    const radioButton = this.querySelector('input[type="radio"]');
-
-    // If the radio button is not checked, check it; otherwise, uncheck it
-    radioButton.checked = !radioButton.checked;
-
-    // Remove "active" class from all list items
-    listItems.forEach(li => {
-    li.classList.remove('active');
-    });
-
-    // Add "active" class to the clicked list item
-    this.classList.add('active');
-    });
-    });
-
-</script>
-<script>
-
-    var next = document.querySelector('.next');
-    var slide_one = document.querySelector('.slide-one');
-    var slide_two = document.querySelector('.slide-two');
-
-    var email = document.querySelector('.total-amount')
-    // var nameText = document.getElementById('name')
-    var back_btn = document.getElementById('back')
-    var msg = document.querySelector('.msg')
-    var msg2 = document.querySelector('.msg2')
-
-    // var container_item_2 = document.querySelector('.container-item-2')
-    
-    next.addEventListener('click', function () {
-        if (email.value == "") {
-            msg.textContent = 'Enter a valid email address, phone number, or Skype name.'
-        } else {
-            msg.textContent = ""
-            // nameText.textContent = email.value
-            slide_one.classList.add('slide-one-toggle')
-            slide_two.classList.add('slide-two-toggle')
-        }
-    })
-    back_btn.addEventListener('click', function () {
-        slide_one.classList.remove('slide-one-toggle')
-        slide_two.classList.remove('slide-two-toggle')
-    });
-
-    document.addEventListener('DOMContentLoaded', function() {
-        var amount = parseFloat(document.querySelector('input[name="amount"]').value);
-        var serviceCharge = parseFloat(document.querySelector('input[name="serviceCharge"]').value);
-        var total = amount + serviceCharge;
-        document.getElementById('total').value = total;
-    });
-
-
-   
-</script>
-<script>
-    // Get the tab elements
-    const tabs = document.querySelectorAll('.tab');
-    const tabContents = document.querySelectorAll('.content');
-
-    // Add click event listeners to tabs
-    tabs.forEach((tab, index) => {
-    tab.addEventListener('click', () => {
-        // Remove 'active' class from all tabs and contents
-        tabs.forEach(tab => tab.classList.remove('active'));
-        tabContents.forEach(content => content.classList.remove('active'));
-
-        // Add 'active' class to the clicked tab and corresponding content
-        tab.classList.add('active');
-        tabContents[index].classList.add('active');
-    });
-});
-</script>
+   <!-- SHOW PASSWORD JS -->
+   <script src="/assetss/assets/js/show-password.min.js"></script>
 <script src="{{ asset('password.js') }}"></script>
     
 </body>
