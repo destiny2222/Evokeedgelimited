@@ -28,7 +28,7 @@ class UserWallet extends Model
 
     public function getAmountAttribute($value) {
         return '$' . number_format($value, 2);
-     }
+    }
 
     // public function setAmountAttribute($value)
     // {
