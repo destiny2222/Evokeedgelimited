@@ -30,6 +30,10 @@ class UserWallet extends Model
         return '$' . number_format($value, 2);
     }
 
+    public function getBalanceAttribute($value) {
+        return '$' . number_format($value, 2);
+    }
+
     // public function setAmountAttribute($value)
     // {
     //     $this->attributes['amount'] = $value ?? 0;

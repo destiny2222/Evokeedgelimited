@@ -37,7 +37,7 @@
                     <div class="position-relative">
                         <small class="text-muted fw-bold">Pending Balance</small>
                         <h2 class="mb-2 pt-3 fw-bold">
-                            $<span class="user-balance2">{{ $userbalance ? $userbalance->balance : '0.00' }}</span>
+                            <span class="user-balance2">{{ $userbalance ? $userbalance->balance : '$0.00' }}</span>
                         </h2>
                         <div class="d-flex asterisk" id="asterisk" >
                             <a href="javascript:void()" class="text-dark"><i class="fa fa-asterisk fs-6"></i></a>
