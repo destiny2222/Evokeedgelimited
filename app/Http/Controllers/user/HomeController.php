@@ -5,6 +5,7 @@ namespace App\Http\Controllers\user;
 use App\Http\Controllers\Controller;
 use App\Models\Setting;
 use App\Models\User;
+use App\Models\user_setting;
 use Illuminate\Http\Request;
 use App\Models\UserWallet;
 use Illuminate\Support\Facades\Auth;
@@ -37,10 +38,8 @@ class HomeController extends Controller
     }
 
     public  function Setting(){
-        $user = Auth::user();
-        return view('users.settings.setting', [
-            'user'=>$user,
-        ]);
+        $announcementSettings = user_setting::where('user_id', auth()->user()->id)->latest()->first();
+        return view('users.settings.setting',compact('announcementSettings'));
     }
     public  function Profile(){
         $user = Auth::user();
@@ -48,6 +47,8 @@ class HomeController extends Controller
             'user'=>$user,
         ]);
     }
+
+
 
 
    

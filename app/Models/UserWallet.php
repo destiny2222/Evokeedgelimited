@@ -27,22 +27,15 @@ class UserWallet extends Model
     }
 
     public function getAmountAttribute($value) {
-        return '$' . number_format($value, 2);
+        // return '$' . number_format($value, 2);
+        return $value;
     }
 
     public function getBalanceAttribute($value) {
-        return '$' . number_format($value, 2);
+        // return '$' . number_format($value, 2);
+        return $value;
     }
 
-    // public function setAmountAttribute($value)
-    // {
-    //     $this->attributes['amount'] = $value ?? 0;
-    // }
-
-    // public function setBalanceAttribute($value)
-    // {
-    //     $this->attributes['balance'] = $value ?? 0;
-    // }
-
+  
 
 }

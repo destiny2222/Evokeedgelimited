@@ -9,6 +9,7 @@ use App\Http\Controllers\user\MerchandiseController;
 use App\Http\Controllers\user\OtherserviceController;
 use App\Http\Controllers\user\PageController;
 use App\Http\Controllers\user\PaymentController;
+use App\Http\Controllers\user\ProfileController;
 use App\Http\Controllers\user\TransactionsController;
 use App\Http\Controllers\user\Usercontroller;
 use App\Http\Controllers\user\VisaApplicationController;
@@ -112,6 +113,10 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'verified', 'che
         Route::post('/otherservice/payment', [PaymentController::class, 'otherservicePayment'])->name('otherservice.payment');
         Route::get('/otherservice/pay/callback', [PaymentController::class, 'otherservicePayCallback'])->name('otherservice-pay.callback');
  
+        Route::post('/deactivate/account', [ProfileController::class, 'DeactivateAccount'])->name('deactivate.account');
+        Route::post('/settings/announcement', [UserController::class, 'announcementSettings'])->name('announcement.settings');
+
+
     });
 
 

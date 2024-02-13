@@ -29,7 +29,7 @@ class LoginController extends Controller
     public function logout(Request $request)
     {
         Auth::logout();
-        $request->session()->invalidate();  // this invalidates the user's session
+        $request->session()->invalidate();
         $request->session()->regenerateToken();//this regenerates the csrf token
         return redirect()->to(RouteServiceProvider::ADMINLOIN);
     }

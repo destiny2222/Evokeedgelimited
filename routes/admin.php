@@ -82,8 +82,10 @@ Route::prefix('admin')->name('admin.')->group(function (){
         Route::get('/users/{id}/edit', [ManagementController::class, 'editUser'])->name('edit-user-page');
         Route::put('/users/{id}/update', [ManagementController::class, 'updateUser'])->name('update-user-page');
         Route::delete('/user/{id}/delete', [ManagementController::class, 'deleteUser'])->name('user-delete');
+        
         Route::put('/user/{user}/ban', [ManagementController::class, 'banUser'])->name('users.ban');
         Route::put('/user/{user}/unban', [ManagementController::class, 'unbanUser'])->name('users.unban');
+
         Route::put('/merchandise/{id}/completed', [MerchandiseController::class,'MerchandiseCompleted'])->name('merchandise-complete');
         Route::delete('/merchandise/{id}/delete', [MerchandiseController::class,'MerchandiseDelete'])->name('merchandise-delete');
         Route::put('/corporate-service/{id}/update', [CorporateController::class,'corporateUpdate'])->name('corporate-service-update');
@@ -113,6 +115,10 @@ Route::prefix('admin')->name('admin.')->group(function (){
         Route::put('/profile/{id}/admin-user', [ManagementController::class, 'adminUserEdit'])->name('admin-user-edit');
         Route::put('/change-user-password', [ManagementController::class, 'adminUserChangePassword'])->name('change-user-password');
         Route::delete('/admin-users/{id}/delete', [ManagementController::class, 'adminUserDelete'])->name('admin.delete.users');
+
+        // 
+        Route::post('/update-balances', [ManagementController::class, 'updateBalances'])->name('update-balances');
+
     });
 
     Route::get('optimize',function (){

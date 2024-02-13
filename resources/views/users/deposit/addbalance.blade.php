@@ -38,6 +38,10 @@
                             <input  name="amount" class="input100 border-start-0 ms-0 form-control" value="">
                         </div>
                         <div>
+                            <label for="">Name on transaction description</label>
+                            <input type="text" name="name" class="form-control" value="" required>
+                        </div>
+                        <div>
                             <div class="row">
                                 <div class="col-lg-12 mb-4 pt-5">
                                     <h5><b>Bank Name</b>: United Bank of Africa</h5>

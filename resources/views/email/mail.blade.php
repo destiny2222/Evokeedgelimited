@@ -140,7 +140,7 @@
                                                                 </tr>
                                                                 <tr align="center" style="padding: 20px 0 50px">
                                                                     <td style="font:bold; color:#363636; padding:20px 0;">
-                                                                        Evokeedge LLC. All Rights Reserved 
+                                                                        © {{ date('Y') }} {{ config('app.name') }}. All Rights Reserved 
                                                                     </td>
                                                                     
                                                                 </tr>

@@ -25,6 +25,14 @@
             <div class="card custom-card">
                 <div class="card-header justify-content-between">
                     <div class="card-title">Users Table</div>
+
+                    <div class="d-flex justify-content-between gap-3">
+                        <button  class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalScrollable3">View pending balance</button>
+                        <button class="btn btn-primary"  type="submit" onclick="event.preventDefault(); document.getElementById('update-balance').submit();">Update Balances</button>
+                        <form method="post" id="update-balance" class="d-none"  action="{{ route('admin.update-balances') }}">
+                            @csrf
+                        </form>
+                    </div>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -62,30 +70,30 @@
                                                     class="btn btn-primary btn-sm btn-info-transparent"><i
                                                         class="ri-edit-line"></i></a>
                                                 
-                                                <a href="{{ route('admin.users.ban', $usering->id) }}" onclick="event.preventDefault(); document.getElementById('delete-ban').submit();"
+                                                <a href="{{ route('admin.users.ban', $usering->id) }}" onclick="event.preventDefault(); document.getElementById('ban-{{ $usering->id }}').submit();"
                                                     class="btn btn-sm btn-info-transparent btn-wave">
                                                     Ban User
                                                 </a>
-                                                <a href="{{ route('admin.users.unban', $usering->id) }}" onclick="event.preventDefault(); document.getElementById('delete-unban').submit();"
+                                                <a href="{{ route('admin.users.unban', $usering->id) }}" onclick="event.preventDefault(); document.getElementById('delete-unban-{{ $usering->id }}').submit();"
                                                     class="btn btn-sm btn-warning-transparent btn-wave">
                                                     Unban User
                                                 </a>
-                                                <a href="{{ route('admin.user-delete', $usering->id) }}" onclick="event.preventDefault(); document.getElementById('delete-form').submit();"
+                                                {{-- <a href="{ route('admin.user-delete', $usering->id) }}" onclick="event.preventDefault(); document.getElementById('delete-form').submit();"
                                                     class="btn btn-sm btn-danger-transparent btn-wave"><i
                                                         class="ri-delete-bin-line"></i>
-                                                </a>
-                                                <form id="delete-ban" clas="d-none" action="{{ route('admin.users.ban', $usering->id) }}" method="post">
+                                                </a> --}}
+                                                <form id="ban-{{ $usering->id }}" class="d-none" action="{{ route('admin.users.ban', $usering->id) }}" method="post">
                                                     @method('put')
                                                     @csrf
                                                 </form>
-                                                <form id="delete-unban" clas="d-none" action="{{ route('admin.users.unban', $usering->id) }}" method="post">
+                                                <form id="delete-unban-{{ $usering->id }}" class="d-none" action="{{ route('admin.users.unban', $usering->id) }}" method="post">
                                                     @method('put')
                                                     @csrf
                                                 </form>
-                                                <form id="delete-form" clas="d-none" onclick="return confirm('Are you sure?');" action="{{ route('admin.user-delete', $usering->id) }}" method="post">
-                                                    @method('delete')
-                                                    @csrf
-                                                </form>        
+                                                {{-- <form id="delete-form" clas="d-none" onclick="return confirm('Are you sure?');" action="{{ route('admin.user-delete', $usering->id) }}" method="post">
+                                                    method('delete')
+                                                    csrf
+                                                </form>         --}}
                                             </div>
                                         </td>
                                     </tr>
@@ -111,6 +119,45 @@
      </div>
 </div>
 
+<div class="modal fade" id="exampleModalScrollable3" tabindex="-1"
+    aria-labelledby="exampleModalScrollable3" data-bs-keyboard="false"
+    aria-hidden="true">
+    <!-- Scrollable modal -->
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table class="table text-nowrap">
+                        <thead class="table-primary">
+                            <tr>
+                                <th scope="col">S/N</th>
+                                <th scope="col">User Name</th>
+                                <th scope="col">Name on transaction</th>
+                                <th scope="col">Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (count($userpendingbalance) != 0)
+                                @foreach ($userpendingbalance as $userpendingbalances)
+                                <tr>
+                                    <th scope="row">{{ $loop->index + 1 }}</th>
+                                    <td>{{  $userpendingbalances->user->name }}</td>
+                                    <td>{{  $userpendingbalances->name }}</td>
+                                    <td>{{  $userpendingbalances->balance }}</td>
+                                </tr>
+                                @endforeach
+                            @endif   
+                        </tbody>
+                    </table>
+                </div> 
+            </div>
+        </div>
+    </div>
+</div>
 
 
 @endsection

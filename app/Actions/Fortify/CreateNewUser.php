@@ -3,6 +3,7 @@
 namespace App\Actions\Fortify;
 
 use App\Models\User;
+use App\Models\UserVerify;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -55,5 +56,19 @@ class CreateNewUser implements CreatesNewUsers
             'referrence_id'=>$randomNumber,
             'password' => Hash::make($input['password']),
         ]);
+
+        // $token = Str::random(64);
+  
+        // UserVerify::create([
+        //     'user_id' => $createuser->id, 
+        //     'token' => $token
+        // ]);
+
+        // $createuser->notify()
+  
+        // Mail::send('email.emailVerificationEmail', ['token' => $token], function($message) use($request){
+        //       $message->to($request->email);
+        //       $message->subject('Email Verification Mail');
+        //   });
     }
 }

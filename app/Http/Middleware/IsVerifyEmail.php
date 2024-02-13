@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class CheckBanned
+class IsVerifyEmail
 {
     /**
      * Handle an incoming request.
@@ -14,14 +14,8 @@ class CheckBanned
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle($request, Closure $next)
-{
-    if (auth()->check() && auth()->user()->is_banned) {
-        auth()->logout();
-        return redirect()->route('login')->with('error', 'Your account has been deactivated.');
+    public function handle(Request $request, Closure $next)
+    {
+        return $next($request);
     }
-
-    return $next($request);
-}
-
 }

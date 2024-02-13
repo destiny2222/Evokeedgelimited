@@ -19,10 +19,11 @@ class ManagementController extends Controller
     
     public function UserManagement(){
         $user = User::orderBy('id', 'desc')->paginate(6);
-        return view('admin.useradmin.user',[
-            'user'=>$user,
-        ]);
+        $userpendingbalance = UserWallet::all();
+        return view('admin.useradmin.user',compact('user', 'userpendingbalance'));
     }
+
+
 
     public function editUser($id){
         $user = User::find($id);
@@ -96,14 +97,16 @@ class ManagementController extends Controller
             }
     }
 
-    public function banUser(User $user)
+    public function banUser($id)
     {
+        $user = User::find($id);
         $user->update(['is_banned' => true]);
         return redirect()->route('admin.user-page')->with('success', 'Successfuly Banned');
     }
 
-    public function unbanUser(User $user)
+    public function unbanUser($id)
     {
+        $user = User::find($id);
         $user->update(['is_banned' => false]);
         return redirect()->route('admin.user-page')->with('success', 'Successfuly Unbanned');
     }
@@ -156,4 +159,21 @@ class ManagementController extends Controller
             return back()->with('error', 'Oops Something went worry!');
         }
     }
+
+
+    public function updateBalances(Request $request){
+        $userspendingbalance = UserWallet::where('balance', '>',  0)->get();
+        if($userspendingbalance->isEmpty()){
+            return back()->with('error', 'There is no pending balance to update.');
+        } else {
+            foreach ($userspendingbalance as $wallet) {
+                $wallet->update([
+                    'amount' => $wallet->amount + $wallet->balance,
+                    'balance' => 0,
+                ]);
+            }
+            return back()->with('success', 'Pending balance updated successfully.');
+        }
+    }
+    
 }

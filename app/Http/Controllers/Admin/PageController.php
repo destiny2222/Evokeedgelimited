@@ -166,11 +166,11 @@ class PageController extends Controller
         if ($tuitionPayment) {
             $done = $request->input('done');
             $tuitionPayment->update(['done'=> $done]);
-            Alert::success('Aply Successful');
-            return back();
+
+            
+            return back()->with('success', 'updated successfully');
         } else {
-            Alert::error('Something went wrong');
-            return back();
+            return back()->with('error','Something went wrong');
         }
         
     }
@@ -275,43 +275,7 @@ class PageController extends Controller
     }
 
 
-    // public function TransactionChargesEdit($id){
-    //     try {
-    //         $charge = TransactionCharges::find($id);
-    //         return view('admin.Charges.edit',['charge' => $charge]);
-    //     } catch (\Exception $exception) {
-    //         Log::error($exception->getMessage());
-    //         Alert::error('Something went wrong');
-    //         return back();
-    //     }
-    // }
-
-
-    // public function TransactionChargesUpdate(Request $request, $id){
-    //         $charge = TransactionCharges::find($id);
-    //         if ($charge) {
-    //             $charge->update([
-    //                 'flights_charge_amount'=>$request->flights_charge_amount,
-    //                 'tuition_charge_amount'=>$request->tuition_charge_amount,
-    //                 'visa_charge_amount'=>$request->visa_charge_amount,
-    //                 'corporate_charge_amount'=>$request->corporate_charge_amount,
-    //                 'merchant_charge_amount'=>$request->merchant_charge_amount,
-    //                 'bdc_charge'=>$request->bdc_charge
-    //             ]);
-    //             Alert::info('Updated Successfully');
-    //             return redirect()->route('admin.transaction-charge-page');
-    //         }
-    //         Alert::error('Something went wrong');
-    //         return back();
-    // }
-
-
-    // public function TransactionChargesDelete($id){
-    //     $charge = TransactionCharges::find($id);
-    //     $charge->delete();
-    //     Alert::success('Charge', 'Deleted Successfully');
-    //     return redirect()->route('admin.transaction-charge-page');
-    // }
+    
 
 
     // Enable logging

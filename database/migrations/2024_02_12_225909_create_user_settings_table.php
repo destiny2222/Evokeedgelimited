@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('email_mails', function (Blueprint $table) {
+        Schema::create('user_settings', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable();;
-            $table->string('subject');
-            $table->foreignId('user_id')->constrained('user')->onDelete('CASCADE')->onUpdate('CASCADE');
-            $table->longText('message');
+            $table->boolean('announcement')->default(false);
+            $table->boolean('platform_update')->default(false);
+            $table->boolean('email_notification')->default(false);
+            $table->foreignId('user_id')->constrained('users')->onDelete('CASCADE')->onUpdate('CASCADE');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('email_mails');
+        Schema::dropIfExists('user_settings');
     }
 };

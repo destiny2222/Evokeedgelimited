@@ -63151,15 +63151,22 @@ textarea.form-control {
 .kHcUip {
     font-size: 0.875rem;
     line-height: 20px;
-    color: rgb(27, 31, 40);
+    color: rgb(73, 84, 108);
     font-weight: 400;
 }
 
+.dark-mode .kHcUip{
+    color: rgb(255, 255, 255);
+}
 
 .iCcsoS {
     font-size: 1.5rem;
     color: rgb(27, 31, 40);
     font-weight: 700;
+}
+
+.dark-mode .iCcsoS{
+    color:rgb(255, 255, 255);
 }
 
 .subtext {
@@ -63280,6 +63287,11 @@ textarea.form-control {
     height: 29px;
 }
 
+.dark-mode .payment-nav{
+    background-color: #1A1A3C;
+
+}
+
 .payment-nav .back-nav__arrow {
     display: inline-flex;
     height: 29px;
@@ -63366,3 +63378,4 @@ textarea.form-control {
 #asterisk a{
     display:none;
 }
+

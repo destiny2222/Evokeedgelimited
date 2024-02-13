@@ -66,19 +66,5 @@
 @endsection
 
 @push('scripts')
-<script>
-    function togglePasswordVisibility() {
-        const passwordInput = document.getElementById("portal_password");
-        const passwordToggle = document.getElementById("password-toggle");
-
-        if (passwordInput.type === "password") {
-            passwordInput.type = "text";
-            passwordToggle.innerHTML = "&#128064;"; // Change to the crossed eye icon
-        } else {
-            passwordInput.type = "password";
-            passwordToggle.innerHTML = "&#128065;"; // Change back to the eye icon
-        }
-    }
-</script>
 
 @endpush

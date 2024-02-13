@@ -165,7 +165,7 @@
 
     <!-- Switcher js -->
     <script src="/assetss/assets/switcher/js/switcher.js"></script>
-
+    @include('partials.message')
 </body>
 
 </html>

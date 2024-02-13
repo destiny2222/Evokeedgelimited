@@ -18,13 +18,12 @@ class VisaApplicationController extends Controller
    
     public function initiatePayment(Request $request)
     {
-        $reference = 'VS_' . uniqid();
-        $authnication = config('services.flutterwave.secretkey');
-        
+
+        $reference = Flutterwave::generateReference();
         // Get the selected payment method from the form submission
         $selectedPaymentMethod = $request->input('paymentMethod');
         $totalamount = $request->input('total');
-        $requestData = [];
+
         if ($selectedPaymentMethod == 'balance') {
             $userWallet = UserWallet::where('user_id', auth()->user()->id)->first();
             if ($userWallet->amount < $totalamount) {
@@ -65,7 +64,7 @@ class VisaApplicationController extends Controller
                 ],
     
                 "customizations" => [
-                    "title" => 'EvokeEdge  Limited',
+                    "title" => 'EvokeEdge  LLC',
                 ]
             ];
     

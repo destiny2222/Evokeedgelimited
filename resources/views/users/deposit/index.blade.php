@@ -24,7 +24,9 @@
                 <div class="d-flex align-items-center justify-content-around gap-5 text-center">
                     <div class="position-relative">
                         <small class="text-muted fw-bold">Available Balance</small>
-                        <h2 class="mb-2 pt-3 fw-bold "><span class="user-balance">{{ $userbalance ? $userbalance->amount : '$0.00'  }}</span></h2>
+                        <h2 class="mb-2 pt-3 fw-bold ">
+                            $<span class="user-balance">{{ number_format($userbalance ? $userbalance->amount : '0.00', 2)  }}</span>
+                        </h2>
                         <div class="d-flex asterisk" id="asterisk" >
                             <a href="javascript:void()" class="text-dark"><i class="fa fa-asterisk fs-6"></i></a>
                             <a href="javascript:void()" class="text-dark"><i class="fa fa-asterisk fs-6"></i></a>
@@ -37,7 +39,7 @@
                     <div class="position-relative">
                         <small class="text-muted fw-bold">Pending Balance</small>
                         <h2 class="mb-2 pt-3 fw-bold">
-                            <span class="user-balance2">{{ $userbalance ? $userbalance->balance : '$0.00' }}</span>
+                          $<span class="user-balance2">{{ number_format($userbalance ? $userbalance->balance : '0.00', 2) }}</span>
                         </h2>
                         <div class="d-flex asterisk" id="asterisk" >
                             <a href="javascript:void()" class="text-dark"><i class="fa fa-asterisk fs-6"></i></a>
@@ -68,7 +70,7 @@
             </div>
             <div class="modal-body">
                 {{-- <form class=""  method="POST"> --}}
-                    <p class="sc-dkrGVk kHcUip" style="color: rgb(73, 84, 108);">Select your choice</p>
+                    <p class="sc-dkrGVk kHcUip">Select your choice</p>
                     <div class="deposit-card mb-4">
                         <div class="">
                             <label class="pt-1">
@@ -77,7 +79,7 @@
                         </div>
                         <div class="deposit-card-o">
                             <img src="/assets/img/local.jpg" alt="" style="width: 2.25rem; height: 1.30rem; display: inline-block;">
-                            <p  class="" style="color: rgb(73, 84, 108);">Local online bank</p>
+                            <p  class="kHcUip">Local online bank</p>
                         </div>
                     </div>
                     <div class="deposit-card mb-4">
@@ -88,7 +90,7 @@
                         </div>
                         <div class="deposit-card-o">
                             <img src="/assets/img/transfer.jpg" alt="" style="width: 2.25rem; height: 1.30rem; display: inline-block;">
-                            <p  class="" style="color: rgb(73, 84, 108);">Bank wire</p>
+                            <p  class="kHcUip">Bank wire</p>
                         </div>
                     </div>
                     <div class="" style="margin-top: 12px;">

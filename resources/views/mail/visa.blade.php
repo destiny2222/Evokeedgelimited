@@ -236,7 +236,7 @@
                 <tr>
                     <td
                         style="padding-top: 1.5rem; color: #13161D; font-size: 12px;line-height: 14px; font-weight: bold;">
-                        <h2>Hello mr/mrs EvokeEdge Limited,</h2>
+                        <h2>Hello mr/mrs EvokeEdge LLC,</h2>
                     </td>
                 </tr>
                 <tr>

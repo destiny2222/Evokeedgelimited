@@ -118,6 +118,7 @@ class DepositController extends Controller
     public function initializeBankTransfer(Request $request){
         $request->validate([ 
             'amount'=>['required', 'string'],
+            'name'=>['required', 'string'],
         ]);
 
         $payment = new  Transaction;
@@ -136,10 +137,13 @@ class DepositController extends Controller
                 $wallet = new UserWallet;
                 $wallet->user_id = auth()->user()->id;
                 $wallet->balance = $payment->pending_balance;
+                $wallet->name = $request->input('name');
                 $wallet->save();
             }else{
+                $newbalance = floatVal($wallet->balance) + floatval($payment->pending_balance);
                 $wallet->update([
-                    'balance'=> $wallet->balance + $payment->pending_balance,
+                    'balance'=> $newbalance,
+                    'name'=>$request->input('name'),
                     'user_id'=> auth()->user()->id,
                 ]);
             }

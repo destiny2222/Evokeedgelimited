@@ -15,6 +15,7 @@ use App\Http\Requests\Tuition\PortalRequest;
 use App\Http\Requests\Tuition\TuitionWrieRequest;
 use App\Http\Requests\Tuition\UpdateRequest;
 use App\Http\Requests\Tuition\WireTransfer;
+use App\Http\Requests\UserSetting\StoreRequest as UserSettingStoreRequest;
 use App\Http\Requests\VisaFee\VisaApplcationRequest;
 use App\Models\Admin;
 use App\Models\Baggage;
@@ -27,6 +28,7 @@ use App\Models\Transaction;
 use App\Models\TransactionCharges;
 use App\Models\TuitionPayment;
 use App\Models\TuitionPaymentWire;
+use App\Models\user_setting;
 use App\Models\UserWallet;
 use App\Models\VisaApplication;
 use App\Notifications\PaymentMadeNotification;
@@ -155,6 +157,11 @@ class Usercontroller extends Controller
                     $pay->paid = 1;
                     $pay->save();
                 }
+
+                $userWallet->update([ 
+                    'amount'=> $userWallet->amount - $pay->amount,
+                    'user_id'=> auth()->user()->id,
+                ]);
             }
             
             $users = $pay->user;
@@ -188,7 +195,7 @@ class Usercontroller extends Controller
                 ],
     
                 "customizations" => [
-                    "title" => 'EvokeEdge  Limited',
+                    "title" => 'EvokeEdge  LLC',
                 ]
             ];
     
@@ -216,12 +223,13 @@ class Usercontroller extends Controller
                     $payment->update(['paid' => 1]);
                 }
             } elseif (isset($data['data']['meta']['tuitionw_id'])) {
-                // $tuitonwId = $data['data']['meta']['tuitionw_id'];
                 $payment = TuitionPaymentWire::where('user_id', auth()->user()->id)->latest()->first();
                 if ($payment) {
                     $payment->update(['paid' => 1]);
                 }
             }
+
+           
 
            return redirect()->route('initiator-page')->with('success', ' Payment Successfully');
         }
@@ -269,9 +277,10 @@ class Usercontroller extends Controller
         $userbalance = UserWallet::where('user_id', auth()->user()->id)->latest()->first();
         $totalprecentage =  ($charge->tuition_charge_amount / 100) * $pay->amount;
         $totalPay = $pay->amount + $totalprecentage;
-        session(['totals' => [
+        // updating the total amount
+        $pay->update([ 
             'amount' => $totalPay
-        ]]);
+        ]);
 
         return view('users.TuitionPayment.paymentwire',compact('pay','charge','totalPay', 'wallet'));
     }
@@ -447,5 +456,17 @@ class Usercontroller extends Controller
       
         return view('users.otherservice.pay', compact('pay', 'charge', 'wallet'));
     }
+
+    public function announcementSettings(UserSettingStoreRequest $request){
+        
+        if(user_setting::count()){
+            user_setting::first()->update($request->validated());
+        } else {
+            user_setting::create($request->validated());
+        }
+        return back()->with('success' , 'Updated successfully');
+    }
+    
+    
 
 }

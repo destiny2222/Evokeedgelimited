@@ -60,7 +60,7 @@ class PaymentController extends Controller
                 ],
     
                 "customizations" => [
-                    "title" => 'EvokeEdge  Limited',
+                    "title" => 'EvokeEdge  LLC',
                 ]
             ];
     
@@ -139,7 +139,7 @@ class PaymentController extends Controller
                 ],
     
                 "customizations" => [
-                    "title" => 'EvokeEdge  Limited',
+                    "title" => 'EvokeEdge  LLC',
                 ]
             ];
     
@@ -219,7 +219,7 @@ class PaymentController extends Controller
                 ],
     
                 "customizations" => [
-                    "title" => 'EvokeEdge  Limited',
+                    "title" => 'EvokeEdge  LLC',
                 ]
             ];
     
