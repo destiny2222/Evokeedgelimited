@@ -66,27 +66,51 @@
                         <form action="{{ route('announcement.settings') }}" id="form-submit" method="post">
                             @csrf
                             <input type="text" name="user_id" hidden value="{{ auth()->user()->id }}">
-                            <div class="form-group mg-b-10">
-                                <label class="custom-switch ps-0">
-                                    <input type="checkbox" name="announcement" {{ $announcementSettings->announcement ?  'checked' : '' }}  class="custom-switch-input">
-                                    <span class="custom-switch-indicator me-3"></span>
-                                    <span class="custom-switch-description mg-l-10">News Announcements</span>
-                                </label>
-                            </div>
-                            <div class="form-group mg-b-10">
-                                <label class="custom-switch ps-0">
-                                    <input type="checkbox" name="platform_update" {{ $announcementSettings->platform_update ?  'checked' : '' }} class="custom-switch-input">
-                                    <span class="custom-switch-indicator me-3"></span>
-                                    <span class="custom-switch-description mg-l-10">Platform Update</span>
-                                </label>
-                            </div>
-                            <div class="form-group mg-b-10">
-                                <label class="custom-switch ps-0">
-                                    <input type="checkbox" name="email_notification" {{ $announcementSettings->email_notification ?  'checked' : '' }} class="custom-switch-input" >
-                                    <span class="custom-switch-indicator me-3"></span>
-                                    <span class="custom-switch-description mg-l-10">Email Notification</span>
-                                </label>
-                            </div>
+                            @if ($announcementSettings)
+                                <div class="form-group mg-b-10">
+                                    <label class="custom-switch ps-0">
+                                        <input type="checkbox" name="announcement" {{ $announcementSettings->announcement ?  'checked' : '' }}  class="custom-switch-input">
+                                        <span class="custom-switch-indicator me-3"></span>
+                                        <span class="custom-switch-description mg-l-10">News Announcements</span>
+                                    </label>
+                                </div>
+                                <div class="form-group mg-b-10">
+                                    <label class="custom-switch ps-0">
+                                        <input type="checkbox" name="platform_update" {{ $announcementSettings->platform_update ?  'checked' : '' }} class="custom-switch-input">
+                                        <span class="custom-switch-indicator me-3"></span>
+                                        <span class="custom-switch-description mg-l-10">Platform Update</span>
+                                    </label>
+                                </div>
+                                <div class="form-group mg-b-10">
+                                    <label class="custom-switch ps-0">
+                                        <input type="checkbox" name="email_notification" {{ $announcementSettings->email_notification ?  'checked' : '' }} class="custom-switch-input" >
+                                        <span class="custom-switch-indicator me-3"></span>
+                                        <span class="custom-switch-description mg-l-10">Email Notification</span>
+                                    </label>
+                                </div>
+                            @else
+                                <div class="form-group mg-b-10">
+                                    <label class="custom-switch ps-0">
+                                        <input type="checkbox" name="announcement"  class="custom-switch-input">
+                                        <span class="custom-switch-indicator me-3"></span>
+                                        <span class="custom-switch-description mg-l-10">News Announcements</span>
+                                    </label>
+                                </div>
+                                <div class="form-group mg-b-10">
+                                    <label class="custom-switch ps-0">
+                                        <input type="checkbox" name="platform_update" class="custom-switch-input">
+                                        <span class="custom-switch-indicator me-3"></span>
+                                        <span class="custom-switch-description mg-l-10">Platform Update</span>
+                                    </label>
+                                </div>
+                                <div class="form-group mg-b-10">
+                                    <label class="custom-switch ps-0">
+                                        <input type="checkbox" name="email_notification"  class="custom-switch-input" >
+                                        <span class="custom-switch-indicator me-3"></span>
+                                        <span class="custom-switch-description mg-l-10">Email Notification</span>
+                                    </label>
+                                </div>
+                            @endif
                         </form>
                     </div>
                 </div>
