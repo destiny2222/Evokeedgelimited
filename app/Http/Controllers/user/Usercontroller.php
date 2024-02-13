@@ -105,7 +105,7 @@ class Usercontroller extends Controller
 
 
     public function paymentTuiton(UpdateRequest $request){
-        if(TuitionPayment::count() >= 0){
+        if(TuitionPayment::count() > 0){
             $tuition = TuitionPayment::where('user_id', auth()->user()->id)->latest()->first();
             $tuition->update($request->validated());
         }else{
@@ -458,13 +458,12 @@ class Usercontroller extends Controller
     }
 
     public function announcementSettings(UserSettingStoreRequest $request){
-        $announcementSettings = user_setting::where('user_id', auth()->user()->id)->first();
-        if($announcementSettings){
-            $announcementSettings->first()->update($request->validated());
+        if($request->createOrUpdate()){
+            return back()->with('success' , 'Updated successfully');
         } else {
-            $announcementSettings->create($request->validated());
+            return back()->with('error' , 'Something went wrong');
         }
-        return back()->with('success' , 'Updated successfully');
+        
     }
     
 

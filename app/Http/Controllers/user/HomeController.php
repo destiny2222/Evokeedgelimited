@@ -38,7 +38,7 @@ class HomeController extends Controller
     }
 
     public  function Setting(){
-        $announcementSettings = user_setting::where('user_id', auth()->user()->id)->first();
+        $announcementSettings = user_setting::where('user_id', auth()->user()->id)->latest()->first();
         return view('users.settings.setting',compact('announcementSettings'));
     }
     public  function Profile(){
