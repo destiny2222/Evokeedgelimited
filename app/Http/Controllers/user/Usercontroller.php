@@ -117,129 +117,20 @@ class Usercontroller extends Controller
 
     public function tuitionpaymentView(){
         $pay = TuitionPayment::where('user_id', auth()->user()->id)->latest()->first();
+        // user wallet
         $wallet = UserWallet::where('user_id', auth()->user()->id)->where('amount', '!=', null)->first();
+        // transaction charge
         $charge = TransactionCharges::select('tuition_charge_amount')->first();
-        $userbalance = UserWallet::where('user_id', auth()->user()->id)->latest()->first();
+        // total precentage charge
         $totalprecentage =  ($charge->tuition_charge_amount / 100) * $pay->amount;
+        // total
         $totalPay = $pay->amount + $totalprecentage;
-        session(['totals' => [
-            'amount' => $totalPay
-        ]]);
-  
+
         return view('users.TuitionPayment.paymenttution',compact('pay','charge','totalPay', 'wallet'));
     }
 
 
     
-    public function getPayment(Request $request){
-
-        $reference = Flutterwave::generateReference();
-        
-        // Get the selected payment method from the form submission
-        $selectedPaymentMethod = $request->input('paymentMethod');
-        $totalamount = session('totals');
-        
-     
-        if ($selectedPaymentMethod == 'balance') {
-            $userWallet = UserWallet::where('user_id', auth()->user()->id)->first();
-
-            if ($userWallet->amount < $totalamount['amount']) {
-                return back()->withError('Insufficient wallet balance. Please choose another payment method.');
-            } else {
-                if ($request->has('tuition_id')) {
-                    $pay = TuitionPayment::where('user_id', auth()->user()->id)->latest()->first();
-                } elseif ($request->has('tuitionw_id')) {
-                    $pay = TuitionPaymentWire::where('user_id', auth()->user()->id)->latest()->first();
-                }
-            
-                if ($pay) {
-                    $pay->amount = $totalamount['amount'];
-                    $pay->paid = 1;
-                    $pay->save();
-                }
-
-                $userWallet->update([ 
-                    'amount'=> $userWallet->amount - $pay->amount,
-                    'user_id'=> auth()->user()->id,
-                ]);
-            }
-            
-            $users = $pay->user;
-            if($users){
-                $admin = Admin::where('id', 1)->first();
-                $admin->notify(new PaymentMadeNotification($users));
-            }else{
-                return back()->with('An error occurred');
-            
-            }
-            
-            return redirect()->route('initiator-page')->with('success', 'Payed Successfully');
-
-
-        }  elseif ($selectedPaymentMethod == 'visa') {
-            $data = [
-                'payment_options' => 'card, bank, ussd,bank transfer',
-                'amount' => $request->input('amount'),
-                'email' => $request->input('email'),
-                'tx_ref' => $reference,
-                'currency' => "NGN",
-                'redirect_url' => route('tuition.callback'),
-                'meta'=> [
-                    'tuiton_id'=> $request->input('tuition_id'),
-                    'tuitionw_id'=> $request->input('tuitionw_id'),
-                ],
-                'customer' => [
-                    'email' => $request->input('email'),
-                    "phone_number" => $request->input('phone'),
-                    "name" =>  $request->input('name'),
-                ],
-    
-                "customizations" => [
-                    "title" => 'EvokeEdge  LLC',
-                ]
-            ];
-    
-            $payment = Flutterwave::initializePayment($data);
-            if ($payment && isset($payment['status']) && $payment['status'] === 'success' && isset($payment['data']['link'])) {
-                return redirect($payment['data']['link']);
-            } else {
-                return back()->with('error', 'Oops, something went wrong. Please refresh the page and try again');
-            }        
-        } else {
-            return back()->with(['error' => 'Invalid payment option']);
-        }
-    }
-
-
-    public function callback(){
-        $status = request()->status;
-        if ($status ==  'successful') {
-            $transactionID = Flutterwave::getTransactionIDFromCallback();
-            $data = Flutterwave::verifyTransaction($transactionID);
-        
-            if (isset($data['data']['meta']['tuiton_id'])) {
-                $payment = TuitionPayment::where('user_id', auth()->user()->id)->latest()->first();
-                if ($payment) {
-                    $payment->update(['paid' => 1]);
-                }
-            } elseif (isset($data['data']['meta']['tuitionw_id'])) {
-                $payment = TuitionPaymentWire::where('user_id', auth()->user()->id)->latest()->first();
-                if ($payment) {
-                    $payment->update(['paid' => 1]);
-                }
-            }
-
-           
-
-           return redirect()->route('initiator-page')->with('success', ' Payment Successfully');
-        }
-        elseif ($status ==  'cancelled'){
-            return back()->with('warning', 'transaction has been cancelled');
-        }
-        else{
-            return back()->with('error', 'transaction has failed');
-        }
-    }
 
 
     public function tuitionviaTransfer(TuitionWrieRequest $request){
@@ -272,15 +163,15 @@ class Usercontroller extends Controller
 
    public function tuitionwirepaymentView(){
         $pay = TuitionPaymentWire::where('user_id', auth()->user()->id)->latest()->first();
+        // user wallet
         $wallet = UserWallet::where('user_id', auth()->user()->id)->where('amount', '!=', null)->first();
+        // transaction charge
         $charge = TransactionCharges::select('tuition_charge_amount')->first();
-        $userbalance = UserWallet::where('user_id', auth()->user()->id)->latest()->first();
+        // total precentage
         $totalprecentage =  ($charge->tuition_charge_amount / 100) * $pay->amount;
+        // total 
         $totalPay = $pay->amount + $totalprecentage;
-        // updating the total amount
-        $pay->update([ 
-            'amount' => $totalPay
-        ]);
+        
 
         return view('users.TuitionPayment.paymentwire',compact('pay','charge','totalPay', 'wallet'));
     }
@@ -314,12 +205,14 @@ class Usercontroller extends Controller
 
      public function usPay(){
         $pay = VisaApplication::where('user_id', auth()->user()->id)->latest()->first();
+        // transaction charge
         $charge = TransactionCharges::select('visa_charge_amount')->first();
+        // user wallet
         $wallet = UserWallet::where('user_id', auth()->user()->id)->where('amount', '!=', null)->first();
-
+        // total precentage
         $totalprecentage = ($charge->visa_charge_amount / 100) * $pay->visa_fee_amount;
 
-        // dd($wallet);
+
         $totalprecentages = $pay->visa_fee_amount + $totalprecentage;
         if ($pay) {
             $pay->update([
@@ -457,7 +350,7 @@ class Usercontroller extends Controller
         return view('users.otherservice.pay', compact('pay', 'charge', 'wallet'));
     }
 
-    public function announcementSettings(UserSettingStoreRequest $request){
+    public function userSettings(UserSettingStoreRequest $request){
         if($request->createOrUpdate()){
             return back()->with('success' , 'Updated successfully');
         } else {

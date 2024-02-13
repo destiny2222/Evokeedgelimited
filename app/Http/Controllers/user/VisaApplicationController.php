@@ -22,10 +22,16 @@ class VisaApplicationController extends Controller
         $reference = Flutterwave::generateReference();
         // Get the selected payment method from the form submission
         $selectedPaymentMethod = $request->input('paymentMethod');
+        // get the amount
         $totalamount = $request->input('total');
+        // user wallet
+        $userWallet = UserWallet::where('user_id', auth()->user()->id)->first();
+
+        if($userWallet == null){
+            return back()->with('error', 'Insufficient wallet balance');
+        }
 
         if ($selectedPaymentMethod == 'balance') {
-            $userWallet = UserWallet::where('user_id', auth()->user()->id)->first();
             if ($userWallet->amount < $totalamount) {
                 return back()->withError('Insufficient wallet balance. Please choose another payment method.');
             } else {

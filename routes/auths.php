@@ -63,8 +63,8 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'verified', 'che
         Route::get('/tuition/school/portal', [Usercontroller::class, 'payschoolPortal'])->name('school.portal');
         Route::post('/tuition/school/pay', [Usercontroller::class, 'paymentTuiton'])->name('portal.tuiton');
         Route::get('/tuition/payment', [Usercontroller::class, 'tuitionpaymentView'])->name('portal-payment');
-        Route::post('/tuition/pay', [Usercontroller::class, 'getPayment'])->name('tuition-pay');
-        Route::get('/payment/callback', [Usercontroller::class, 'callback'])->name('tuition.callback');
+        Route::post('/tuition/pay', [PaymentController::class, 'getPayment'])->name('tuition-pay');
+        Route::get('/payment/callback', [PaymentController::class, 'callback'])->name('tuition.callback');
 
         Route::get('/tuition/wire-transfer', [Usercontroller::class, 'wireTransfer'])->name('tuition.wire.transfer');
         Route::post('/tuition/wire/store', [Usercontroller::class, 'tuitionviaTransfer'])->name('tuition.wire.transfer.store');
@@ -114,7 +114,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'verified', 'che
         Route::get('/otherservice/pay/callback', [PaymentController::class, 'otherservicePayCallback'])->name('otherservice-pay.callback');
  
         Route::post('/deactivate/account', [ProfileController::class, 'DeactivateAccount'])->name('deactivate.account');
-        Route::post('/settings/announcement', [UserController::class, 'announcementSettings'])->name('announcement.settings');
+        Route::post('/settings/announcement', [UserController::class, 'userSettings'])->name('announcement.settings');
 
 
     });
