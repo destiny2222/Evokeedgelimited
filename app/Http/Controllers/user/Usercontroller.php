@@ -466,7 +466,5 @@ class Usercontroller extends Controller
         }
         return back()->with('success' , 'Updated successfully');
     }
-    
-    
 
 }
