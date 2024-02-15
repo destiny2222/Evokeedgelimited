@@ -19,17 +19,14 @@
             background-color: #F2F2F2;
         }
 
-        .logo {
-            border: 0.5px solid #BDBDBD;
-        }
+        
 
         .container {
-            max-width: 600px;
+           /* max-width: 600px; */
             margin: auto;
             background: #F2F2F2;
             table-layout: fixed;
             padding: 20px;
-           
         }
 
         .wrapper-inner { 
@@ -38,7 +35,6 @@
             padding: 15px;
             border-collapse: collapse;
             table-layout: fixed;
-            word-break: break-word;
             max-width: 500px;
         }
 
@@ -90,12 +86,6 @@
             justify-content: space-between;
         }
 
-        .two-column .section {
-           /* width: 100%;
-            max-width: 240px;
-            display: inline-block;
-            vertical-align: top; */
-        }
 
         .two-column .content-inner {
             font-size: 16px;
@@ -149,6 +139,29 @@
          .table-responsive tr td{
             padding: 10px ;
          }
+
+         .table-responsive table {
+            width: 100%;
+            border: 1px solid blue;
+            }
+
+            .scroll-container {
+                overflow: auto;
+                
+              }
+              
+              .scroll {
+                margin: 0;
+              }
+
+              .scroll tr td{
+                padding: 10px;
+              }
+
+              .logo{
+                width: 180;
+                text-align: right;
+              }
         /*--- Media Queries --*/
         @media screen and (max-width:768px) {
 
@@ -171,7 +184,16 @@
             }
 
             .container{
-                padding: 15px;
+                padding: 0px;
+            }
+            .d-flex{
+                
+            }
+            .reciept-div{
+                padding-bottom: 30px;
+            }
+            .logo{
+                width: 100px;
             }
         }
 
@@ -205,6 +227,7 @@
 
 
         }
+
     </style>
 </head>
 
@@ -216,14 +239,14 @@
                     <tr >
                         <td >
                             <div class="d-flex justify-content-between" style="padding-bottom: 10%;" width="100%">
-                                <div>
+                                <div class="reciept-div">
                                     <h3 class="reciept">Reciept</h3>
                                 </div>
                                 <div style="text-align:right">
-                                    <figure style="text-align:right; padding-bottom:25px;">
-                                        <img src="https://evokeedgelimited.com/assets/img/black-logo.png" width="180" alt="Logo">
+                                    <figure style="margin:10px 0 0;padding-bottom:25px;">
+                                        <img src="https://evokeedgelimited.com/assets/img/black-logo.png" class="logo" alt="Logo">
                                     </figure>
-                                    <p style="line-height: 20px;">
+                                    <p style="line-height: 20px;text-align:right">
                                         8465 Keystone Crossing, <br> Suite 115 #1149, <br> Indianapolis, <br> Indiana 46240 US.
                                     </p>
                                 </div>
@@ -256,13 +279,13 @@
                                         <td class="inner-td">
                                             <table class="content-inner">
                                                 <tr style="margin-bottom:1rem;">
-                                                    <td>
+                                                    <td style="text-align:right">
                                                         <strong>Invoice Date:</strong><br>
                                                         <small>01/07/2024</small>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td>
+                                                    <td style="text-align:right">
                                                         <strong>Order Number:</strong><br>
                                                         <small>01/07/2024</small>
                                                     </td>
@@ -275,38 +298,30 @@
                         </td><!--- End First Column of Two Columns -->
                     </tr>
                     <tr>
-                        <td class="table-responsive" style="padding-bottom: 10%;">
-                            <table class="" border="1">
-                                <thead>
-                                    <tr>
-                                        <td class=""><strong>Package Item</strong></td>
-                                        <td class=""><strong>Total Price</strong></td>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illum, distinctio!</td>
-                                        <td class="">$150</td>
-                                    </tr>
-                                    <!-- <tr>
-                                        <td style="text-align: right;padding-top:2rem ;">
-                                            Total: $40
-                                        </td>
-                                    </tr> -->
-                                </tbody>
-                            </table>
+                        <td  style="padding-bottom: 10%;">
+                            <div class="scroll-container">
+                                <table class="table scroll" border="1">
+                                    <thead>
+                                        <tr>
+                                            <td class=""><strong>Package Item</strong></td>
+                                            <td class=""><strong>Total Price</strong></td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illum, distinctio!</td>
+                                            <td class="">$150</td>
+                                        </tr>
+                                        <!-- <tr>
+                                            <td style="text-align: right;padding-top:2rem ;">
+                                                Total: $40
+                                            </td>
+                                        </tr> -->
+                                    </tbody>
+                                </table>
+                            </div>    
                         </td>
                     </tr>
-                    
-                    <tr>
-                        <td style="padding-top: 5%;">
-                            <a class="btn-primary" href="javascript:window.print()">
-                                <i class="fa fa-print"></i> Print &
-                                Download
-                            </a> 
-                        </td>
-                    </tr>
-
                 </table><!-- main section end -->
             @else
                 <table>
