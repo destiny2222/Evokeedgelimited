@@ -149,7 +149,7 @@ class PaymentController extends Controller
         $corporate_balance =  CorporateService::where('user_id', auth()->user()->id)->latest()->first();
 
         $userWallet = UserWallet::where('user_id', auth()->user()->id)->first();
-        
+
         if($userWallet == null){
             return back()->with('error', 'Insufficient wallet balance');
         }

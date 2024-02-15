@@ -3,28 +3,24 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Baggage\UpdateRequest as BaggageUpdateRequest;
 use App\Http\Requests\Charge\ChargesRequest;
 use App\Http\Requests\Setting\UpdateRequest;
-use App\Http\Requests\StoreAdminRequest;
-use App\Mail\Email;
 use App\Models\Baggage;
 use App\Models\EmailMail;
 use App\Models\Post;
-use App\Models\Services;
 use App\Models\Setting;
 use App\Models\TransactionCharges;
 use App\Models\TuitionPayment;
 use App\Models\TuitionPaymentWire;
 use App\Models\User;
 use App\Models\VisaApplication;
+use App\Notifications\Invoice;
 use App\Notifications\MailNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Mail;
 use RealRashid\SweetAlert\Facades\Alert;
 
-use function PHPSTORM_META\map;
+
 
 class PageController extends Controller
 {
@@ -162,12 +158,11 @@ class PageController extends Controller
 
 
     public function TuitionCompleted(Request $request, $id){
-        $tuitionPayment = TuitionPayment::find($id);
-        if ($tuitionPayment) {
+        $order = TuitionPayment::find($id);
+        if ($order) {
             $done = $request->input('done');
-            $tuitionPayment->update(['done'=> $done]);
-
-            
+            $order->update(['done'=> $done]);
+            $order->user->notify(new Invoice($order));
             return back()->with('success', 'updated successfully');
         } else {
             return back()->with('error','Something went wrong');
