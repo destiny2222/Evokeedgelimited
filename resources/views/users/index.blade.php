@@ -274,39 +274,12 @@
 </div>
 
 
-<!-- approved kyc -->
-@if ($user->kyc && $user->kyc->kyc_status == 'APPROVED' && !session('modal_shown'))
-<div class="modal fade" id="modaldemo4">
-  <div class="modal-dialog modal-sm modal-dialog-centered text-center " role="document">
-      <div class="modal-content tx-size-sm">
-          <div class="modal-body text-center p-4 pb-5">
-              <button aria-label="Close" class="btn-close position-absolute" data-bs-dismiss="modal">
-                <span aria-hidden="true">&times;</span>
-              </button>
-              <i class="icon icon-check fs-70 text-success lh-1 my-5 d-inline-block"></i>
-              <h4 class="text-success tx-semibold">Congratulations!</h4>
-              <p class="mg-b-20 mg-x-20">Your kyc as been approved.</p>
-          </div>
-      </div>
-  </div>
-</div>
-@endif
+
 
 
 @endsection
 
 @push('scripts')
-<script type="text/javascript">
- $(document).ready(function() {
-  if ($('#modaldemo4').length > 0 && !sessionStorage.getItem('modal_shown')) {
-      $('#modaldemo4').modal('show');
-      sessionStorage.setItem('modal_shown', true);
-    }
-    setTimeout(function() {
-      $('#modaldemo4').modal('hide');
-    }, 2000);
-  });
-</script>
     <script>
       $('.owl-carousel').owlCarousel({
           loop:true,

@@ -275,7 +275,7 @@
 
                             <div class="section" style="padding-bottom: 20%;">
                                 <table width="100%">
-                                    <tr style="text-align: right;">
+                                    <tr>
                                         <td class="inner-td">
                                             <table class="content-inner">
                                                 <tr style="margin-bottom:1rem;">
