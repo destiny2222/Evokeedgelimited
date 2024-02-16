@@ -30,7 +30,7 @@
         }
 
         .wrapper-inner { 
-            background-color: #fff;
+            /* background-color: #fff; */
             Margin: 0 auto;
             padding: 15px;
             border-collapse: collapse;
