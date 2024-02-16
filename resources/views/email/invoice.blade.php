@@ -89,19 +89,19 @@
         }
 
 
+        .two-column .section {
+            width: 100%;
+            /* max-width: 240px; */
+            /* display: inline-block;
+            vertical-align: top; */
+        }
+
         .two-column .content-inner {
             font-size: 16px;
             line-height: 20px;
-            text-align: justify;
-        }
-
-        .content-inner {
             width: 100%;
         }
 
-        img {
-            border: 0;
-        }
 
         .layout .layout-div {
             padding-top: 0.1rem;
@@ -155,12 +155,11 @@
         /*--- Media Queries --*/
         @media screen and (max-width:768px) {
 
-            /* .two-column .section-inner {
+            .two-column .section-inner {
                 width: 100% !important;
                 max-width: 100% !important;
-                display: inline-block;
-                vertical-align: top;
-            } */
+                /* display: inline-block; */
+            }
             .layout .layout-div{
                 width: 285px;
             }
@@ -188,9 +187,9 @@
 
         @media screen and (min-width: 401px) and (max-width: 400px) {
 
-            /* .two-column .column {
-                max-width: 50% !important;
-            } */
+            .two-column .column {
+                max-width: 100% !important;
+            }
         }
 
         @media screen and (max-width:320px) {
@@ -225,12 +224,12 @@
                     <tr>
                         <td class="two-column">
 
-                            <div class="section" style="padding-bottom: 30%;" style="text-align: start !important;">
-                                <table width="100%" style="text-align: start !important;">
-                                    <tr style="text-align: start !important;">
-                                        <td class="inner-td" style="text-align: start !important;">
-                                            <table class="content-inner" style="text-align: start !important;">
-                                                <tr style="text-align: start !important;">
+                            <div class="section" style="padding-bottom: 30%;">
+                                <table width="100%">
+                                    <tr >
+                                        <td class="inner-td" >
+                                            <table class="content-inner" >
+                                                <tr >
                                                     <td  style="text-align:left;">
                                                         EvokeEdge LLC
                                                     </td>
@@ -241,11 +240,11 @@
                                 </table>
                             </div><!-- end section  -->
 
-                            <div class="section" style="padding-bottom: 20%;" style="text-align: end !important;">
-                                <table width="100%" style="text-align: end !important;">
-                                    <tr style="text-align: end !important;">
-                                        <td class="inner-td" style="text-align: end !important;">
-                                            <table class="content-inner" style="text-align: end !important;">
+                            <div class="section" style="padding-bottom: 20%;">
+                                <table width="100%" >
+                                    <tr>
+                                        <td class="inner-td" style="text-align: right">
+                                            <table class="content-inner">
                                                 <tr style="margin-bottom:1rem;">
                                                     <td style="text-align:right">
                                                         <strong>Invoice Date:</strong><br>
