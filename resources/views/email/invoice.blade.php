@@ -25,7 +25,7 @@
             max-width: 600px;
             margin: auto;
             background: #F2F2F2;
-            table-layout: fixed;
+            table-layout: auto;
             padding: 20px;
         }
 
@@ -34,7 +34,7 @@
             Margin: 0 auto;
             padding: 15px;
             border-collapse: collapse;
-            table-layout: fixed;
+            table-layout: auto;
             max-width: 500px;
         }
 
@@ -103,7 +103,7 @@
             border: 0;
         }
 
-        .layout div {
+        .layout .layout-div {
             padding-top: 0.1rem;
             text-align: left;
             vertical-align: top;
@@ -155,20 +155,14 @@
         /*--- Media Queries --*/
         @media screen and (max-width:768px) {
 
-            .two-column .section-inner {
+            /* .two-column .section-inner {
                 width: 100% !important;
                 max-width: 100% !important;
                 display: inline-block;
                 vertical-align: top;
-            }
-
-
-            .layout div{
+            } */
+            .layout .layout-div{
                 width: 285px;
-            }
-            .table-footer p {
-                line-height: 25px;
-                inline-size: 200px;
             }
             .reciept-div{
                 padding-bottom: 30px;
@@ -186,23 +180,17 @@
             .two-column .column {
                 max-width: 100% !important;
             }
-
-            
-
-            .layout div{
+            .layout .layout-div{
                 width: 285px;
             }
-            .table-footer p {
-                line-height: 25px;
-                inline-size: 200px;
-            }
+
         }
 
         @media screen and (min-width: 401px) and (max-width: 400px) {
 
-            .two-column .column {
+            /* .two-column .column {
                 max-width: 50% !important;
-            }
+            } */
         }
 
         @media screen and (max-width:320px) {
@@ -215,7 +203,7 @@
     <div class="container">
         @if ($order->done == "completed" )
             <div class="wrapper-inner completed">
-                <table>
+                <table width="100%">
                     <tr >
                         <td >
                             <div class="d-flex justify-content-between" style="padding-bottom: 10%;" width="100%">
@@ -320,23 +308,23 @@
                     </tr>
                     <tr>
                         <td class="layout">
-                            <div>Thank you for submitting your documents.</div>
+                            <div class="layout-div">Thank you for submitting your documents.</div>
                         </td>
                     </tr>
                     <tr>
                         @if ($order->done == 'pending')
                         <td class="layout">
-                            <div>
+                            <div class="layout-div">
                                 Your details is pending.
                             </div>
                         </td>
                         @elseif($order->done == 'processing')
                         <td class="layout">
-                            <div>Your details  is been processing.</div>
+                            <div class="layout-div">Your details  is been processing.</div>
                         </td>
                         @elseif($order->done == 'delined')
                         <td class="layout">
-                            <div>
+                            <div class="layout-div">
                                 Your details has been declined.   <br>
                                 <span>Please log in to your account to re-submit your Details.</span>
                             </div>
@@ -348,7 +336,7 @@
                             <table width="100%" style="border-spacing: 0; padding-top:2rem;">
                                 <tr>
                                     <td class="layout">
-                                        <div style="padding-bottom:7px;">If you have any questions, feel free to reach out
+                                        <div class="layout-div" style="padding-bottom:7px;">If you have any questions, feel free to reach out
                                             to us.</div>
                                         <a href="#">support@evokeedgellc.com</a>
                                     </td>
