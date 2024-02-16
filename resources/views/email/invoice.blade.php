@@ -35,7 +35,7 @@
             padding: 15px;
             border-collapse: collapse;
             table-layout: fixed;
-            /* max-width: 500px; */
+            max-width: 500px;
         }
 
         .process{
@@ -50,6 +50,7 @@
             border-spacing: 0;
             font-family: sans-serif;
             color: #727f80;
+            /* width:500px ; */
         }
 
 
