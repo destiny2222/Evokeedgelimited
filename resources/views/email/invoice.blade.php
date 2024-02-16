@@ -38,11 +38,11 @@
         }
 
         .process{
-            max-width: 500px;
+            /* max-width: 500px; */
         }
 
         .completed {
-            width: 330px;
+            /* width: 330px; */
         }
 
         table {
@@ -139,7 +139,7 @@
          }
 
          .table-responsive tr td{
-            padding: 10px ;
+            padding: 10px;
          }
 
          .table-responsive table {
