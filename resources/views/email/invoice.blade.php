@@ -38,6 +38,19 @@
             max-width: 500px;
         }
 
+        .wrapper-inner { 
+            background-color: #fff;
+            Margin: 0 auto;
+            padding: 15px;
+            border-collapse: collapse;
+            table-layout: fixed;
+            
+        }
+
+        .process{
+            max-width: 500px;
+        }
+
         table {
             border-spacing: 0;
             font-family: sans-serif;
@@ -130,12 +143,6 @@
             color: #000000;
          }
 
-         .btn-primary{
-            background-color: #6450EF;
-            padding: 10px;
-            text-decoration: none;
-            color: #fff;
-         }
          .table-responsive tr td{
             padding: 10px ;
          }
@@ -159,7 +166,7 @@
               }
 
               .logo{
-                width: 180px;
+                width: 100px;
                 text-align: right;
               }
         /*--- Media Queries --*/
@@ -171,9 +178,7 @@
                 display: inline-block;
                 vertical-align: top;
             }
-            .wrapper-inner {
-                max-width: 670px;
-            }
+
 
             .layout div{
                 width: 285px;
@@ -193,7 +198,7 @@
                 padding-bottom: 30px;
             }
             .logo{
-                width: 100px;
+                width: 60px;
             }
         }
 
@@ -206,8 +211,8 @@
                 max-width: 100% !important;
             }
 
-            .wrapper-inner {
-                max-width: 670px;
+            .completed {
+                width: 330px;
             }
 
             .layout div{
@@ -224,17 +229,20 @@
             .two-column .column {
                 max-width: 50% !important;
             }
-
-
         }
 
+        @media screen and (max-width:320px) {
+            .completed {
+                width: 330px;
+            }
+        }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <div class="wrapper-inner">
-            @if ($order->done == "completed" )
+        @if ($order->done == "completed" )
+            <div class="wrapper-inner completed">
                 <table>
                     <tr >
                         <td >
@@ -257,12 +265,12 @@
                     <tr>
                         <td class="two-column">
 
-                            <div class="section" style="padding-bottom: 30%;">
-                                <table width="100%">
-                                    <tr>
-                                        <td class="inner-td">
-                                            <table class="content-inner">
-                                                <tr>
+                            <div class="section" style="padding-bottom: 30%;" style="text-align: start !important;">
+                                <table width="100%" style="text-align: start !important;">
+                                    <tr style="text-align: start !important;">
+                                        <td class="inner-td" style="text-align: start !important;">
+                                            <table class="content-inner" style="text-align: start !important;">
+                                                <tr style="text-align: start !important;">
                                                     <td  style="text-align:left;">
                                                         EvokeEdge LLC
                                                     </td>
@@ -273,11 +281,11 @@
                                 </table>
                             </div><!-- end section  -->
 
-                            <div class="section" style="padding-bottom: 20%;">
-                                <table width="100%">
-                                    <tr>
-                                        <td class="inner-td">
-                                            <table class="content-inner">
+                            <div class="section" style="padding-bottom: 20%;" style="text-align: end !important;">
+                                <table width="100%" style="text-align: end !important;">
+                                    <tr style="text-align: end !important;">
+                                        <td class="inner-td" style="text-align: end !important;">
+                                            <table class="content-inner" style="text-align: end !important;">
                                                 <tr style="margin-bottom:1rem;">
                                                     <td style="text-align:right">
                                                         <strong>Invoice Date:</strong><br>
@@ -300,7 +308,7 @@
                     <tr>
                         <td  style="padding-bottom: 10%;">
                             <div class="scroll-container">
-                                <table class="table scroll" border="1">
+                                <table class="table scroll" border="1" width="100%">
                                     <thead>
                                         <tr>
                                             <td class=""><strong>Package Item</strong></td>
@@ -312,18 +320,15 @@
                                             <td class="">{{ $order->college_name }}</td>
                                             <td class="">${{ number_format($order->amount, 2) }}</td>
                                         </tr>
-                                        <!-- <tr>
-                                            <td style="text-align: right;padding-top:2rem ;">
-                                                Total: $40
-                                            </td>
-                                        </tr> -->
                                     </tbody>
                                 </table>
                             </div>    
                         </td>
                     </tr>
                 </table><!-- main section end -->
-            @else
+            </div>
+        @else
+            <div class="wrapper-inner process">
                 <table>
                     <tr>
                         <td>
@@ -380,9 +385,8 @@
                         </td>
                     </tr>
                 </table><!-- main section end -->
-
-            @endif    
-        </div>
+            </div>
+        @endif    
     </div>
 </body>
 
