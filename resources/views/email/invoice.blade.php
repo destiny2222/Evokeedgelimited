@@ -22,7 +22,7 @@
         
 
         .container {
-           /* max-width: 600px; */
+            max-width: 600px;
             margin: auto;
             background: #F2F2F2;
             table-layout: fixed;
@@ -30,26 +30,26 @@
         }
 
         .wrapper-inner { 
-            /* background-color: #fff; */
+            background-color: #fff;
             Margin: 0 auto;
             padding: 15px;
             border-collapse: collapse;
             table-layout: fixed;
+            max-width: 500px;
         }
 
         .process{
-            /* max-width: 500px; */
+            
         }
 
         .completed {
-            /* width: 330px; */
+            
         }
 
         table {
             border-spacing: 0;
             font-family: sans-serif;
             color: #727f80;
-            /* width:500px ; */
         }
 
 
@@ -79,12 +79,6 @@
         }
 
 
-        /*--- End Outer Table 1 --*/
-        .main-table-first {
-            width: 100%;
-            max-width: 610px;
-            Margin: 0 auto;
-        }
 
         /*--- Start Two Column Sections --*/
         .two-column {
@@ -138,14 +132,8 @@
             color: #000000;
          }
 
-         .table-responsive tr td{
-            padding: 10px;
-         }
 
-         .table-responsive table {
-            width: 100%;
-            border: 1px solid blue;
-            }
+
 
             .scroll-container {
                 overflow: auto;
@@ -181,13 +169,6 @@
             .table-footer p {
                 line-height: 25px;
                 inline-size: 200px;
-            }
-
-            .container{
-                padding: 0px;
-            }
-            .d-flex{
-                
             }
             .reciept-div{
                 padding-bottom: 30px;
