@@ -200,24 +200,49 @@
 
 <body>
     <div class="container">
-        @if ($order->done == "completed" )
-            <div class="wrapper-inner completed">
+        <div class="wrapper-inner">
+            @if ($order->done == "completed" )
                 <table width="100%">
                     <tr >
-                        <td >
-                            <div class="d-flex justify-content-between" style="padding-bottom: 10%;" width="100%">
-                                <div class="reciept-div">
-                                    <h3 class="reciept">Reciept</h3>
-                                </div>
-                                <div style="text-align:right">
-                                    <figure style="margin:10px 0 0;padding-bottom:25px;">
-                                        <img src="https://evokeedgelimited.com/assets/img/black-logo.png" class="logo" alt="Logo">
-                                    </figure>
-                                    <p style="line-height: 20px;text-align:right">
-                                        8465 Keystone Crossing, <br> Suite 115 #1149, <br> Indianapolis, <br> Indiana 46240 US.
-                                    </p>
-                                </div>
-                            </div>
+                        <td class="two-column">
+                            <div class="section" style="padding-bottom: 30%;">
+                                <table width="100%" >
+                                    <tr >
+                                        <td class="inner-td" >
+                                            <table class="content-inner" >
+                                                <tr>
+                                                    <td class="reciept" style="text-align:left;">
+                                                        Reciept
+                                                    </td>
+                                                </tr>
+                                            </table>   
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>   
+                                    
+                            <div class="section" style="padding-bottom: 20%;">
+                                <table width="100%" >
+                                    <tr>
+                                        <td class="inner-td" style="text-align: right">
+                                            <table class="content-inner">
+                                                <tr style="margin-bottom:1rem;">
+                                                    <td style="text-align:right">
+                                                        {{-- <figure style="margin:10px 0 0;padding-bottom:25px;"> --}}
+                                                            <img src="https://evokeedgelimited.com/assets/img/black-logo.png" class="logo" alt="Logo">
+                                                        {{-- </figure> --}}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="text-align:right">
+                                                        8465 Keystone Crossing, <br> Suite 115 #1149, <br> Indianapolis, <br> Indiana 46240 US.
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div><!-- end section  -->
                         </td>
                     </tr>
                     
@@ -225,7 +250,7 @@
                         <td class="two-column">
 
                             <div class="section" style="padding-bottom: 30%;">
-                                <table width="100%">
+                                <table width="100%" >
                                     <tr >
                                         <td class="inner-td" >
                                             <table class="content-inner" >
@@ -285,9 +310,7 @@
                         </td>
                     </tr>
                 </table><!-- main section end -->
-            </div>
-        @else
-            <div class="wrapper-inner process">
+            @else
                 <table>
                     <tr>
                         <td>
@@ -344,8 +367,8 @@
                         </td>
                     </tr>
                 </table><!-- main section end -->
-            </div>
-        @endif    
+            @endif
+        </div>        
     </div>
 </body>
 
