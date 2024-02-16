@@ -159,7 +159,7 @@
               }
 
               .logo{
-                width: 180;
+                width: 180px;
                 text-align: right;
               }
         /*--- Media Queries --*/
@@ -309,8 +309,8 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td class="">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illum, distinctio!</td>
-                                            <td class="">$150</td>
+                                            <td class="">{{ $order->college_name }}</td>
+                                            <td class="">${{ number_format($order->amount, 2) }}</td>
                                         </tr>
                                         <!-- <tr>
                                             <td style="text-align: right;padding-top:2rem ;">

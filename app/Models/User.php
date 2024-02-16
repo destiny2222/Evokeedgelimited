@@ -31,6 +31,9 @@ class User extends Authenticatable implements MustVerifyEmail
         'password',
     ];
 
+    // function getNameAttribute(){
+    //     return sprintf('%s  %s', $this->firstname , $this->lastname);
+    // }
 
     public function trans(){
         return $this->hasMany(Transaction::class);

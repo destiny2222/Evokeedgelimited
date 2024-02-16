@@ -31,6 +31,7 @@ use App\Models\TuitionPaymentWire;
 use App\Models\user_setting;
 use App\Models\UserWallet;
 use App\Models\VisaApplication;
+use App\Notifications\KycNotification;
 use App\Notifications\PaymentMadeNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -41,6 +42,8 @@ class Usercontroller extends Controller
 {
     public  function storeKyc(KycRequest $request){
         if($request->createOrUpdate()){
+            // $kyc = Kyc::where('user_id', auth()->user()->id)->first();
+            // $kyc->getUserEmail()->notify(new KycNotification($kyc));
             return redirect()->route('dashboard-page')->with('success', 'Sent successfully! Undergoing verification');
         }else{
             return back()->with('error', 'Oops Something went Worry, try again');
