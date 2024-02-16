@@ -35,20 +35,15 @@
             padding: 15px;
             border-collapse: collapse;
             table-layout: fixed;
-            max-width: 500px;
-        }
-
-        .wrapper-inner { 
-            background-color: #fff;
-            Margin: 0 auto;
-            padding: 15px;
-            border-collapse: collapse;
-            table-layout: fixed;
-            
+            /* max-width: 500px; */
         }
 
         .process{
             max-width: 500px;
+        }
+
+        .completed {
+            width: 330px;
         }
 
         table {
@@ -211,9 +206,7 @@
                 max-width: 100% !important;
             }
 
-            .completed {
-                width: 330px;
-            }
+            
 
             .layout div{
                 width: 285px;
@@ -232,9 +225,7 @@
         }
 
         @media screen and (max-width:320px) {
-            .completed {
-                width: 330px;
-            }
+            
         }
     </style>
 </head>
