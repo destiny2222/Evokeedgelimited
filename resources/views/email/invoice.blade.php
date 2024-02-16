@@ -35,7 +35,6 @@
             padding: 15px;
             border-collapse: collapse;
             table-layout: fixed;
-            max-width: 500px;
         }
 
         .process{
