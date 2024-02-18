@@ -48,7 +48,6 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'verified', 'che
         Route::get('/flight',  [Usercontroller::class, 'flight'])->name('flight-page');
         Route::get('/initiator', [Usercontroller::class, 'Initiator'])->name('initiator-page');
         Route::get('/pay-school-fee', [Usercontroller::class, 'pay_school_fee'])->name('pay_school_fee-page');
-        Route::get('/others/services', [Usercontroller::class, 'OthersPayment'])->name('others.page');
 
         //  deposit payment
         Route::get('/add/flutter', [Usercontroller::class,  'addBalance'])->name('add.balance');
@@ -107,12 +106,13 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'verified', 'che
 
 
         // Other service
-        Route::get('/otherservice', [Usercontroller::class, 'Otherservice'])->name('otherservice-page');
+        Route::get('/other/service', [Usercontroller::class, 'Otherservice'])->name('otherservice-page');
         Route::post('/otherservice/store', [Usercontroller::class, 'storeOtherservice'])->name('otherservice-store');
         Route::get('/otherservice/pay', [Usercontroller::class, 'otherPay'])->name('otherservice.pay');
         Route::post('/otherservice/payment', [PaymentController::class, 'otherservicePayment'])->name('otherservice.payment');
         Route::get('/otherservice/pay/callback', [PaymentController::class, 'otherservicePayCallback'])->name('otherservice-pay.callback');
  
+        // setting
         Route::post('/deactivate/account', [ProfileController::class, 'DeactivateAccount'])->name('deactivate.account');
         Route::post('/settings/announcement', [UserController::class, 'userSettings'])->name('announcement.settings');
 

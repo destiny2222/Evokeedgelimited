@@ -14,9 +14,10 @@
                         <div class="col-12 mb-3">
                             <label class="form-label" for="basic-default-fullname">{{ __('Action') }}</label>
                             <select name="done" id="" class="form-control">
+                                <option value="3" {{ $otherservices->done == 3 ? 'selected' : '' }}>Completed</option>
+                                <option value="2" {{ $otherservices->done == 2 ? 'selected' : '' }}>Processing</option>
+                                <option value="1" {{ $otherservices->done == 1 ? 'selected' : '' }}>Declined</option>
                                 <option value="0" {{ $otherservices->done == 0 ? 'selected' : '' }}>Pending</option>
-                                <option value="1" {{ $otherservices->done == 1 ? 'selected' : '' }}>Processing</option>
-                                <option value="2" {{ $otherservices->done == 2 ? 'selected' : '' }}>Completed</option>
                             </select>                            
                             @error('done')
                               <span class="invalid-feedback" role="alert">

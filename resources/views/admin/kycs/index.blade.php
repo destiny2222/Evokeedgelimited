@@ -55,15 +55,16 @@
                                             </td>
                                             <td scope="row">
                                                 <div class="d-flex align-items-center">
-                                                    <span class="avatar me-2 avatar-rounded">
-                                                        @if(pathinfo($events->proof_of_address, PATHINFO_EXTENSION) == 'pdf')
-                                                        <iframe src="{{ asset('storage/kyc/proof/'.$events->proof_of_address) }}" style="width:60px; height:50px;"></iframe>
+                                                    <span class="avatar me-2 avatar-rounded preview-document" data-document-path="{{ asset('storage/kyc/document/'.$events->documents) }}">
+                                                        @if(pathinfo($events->documents, PATHINFO_EXTENSION) == 'pdf')
+                                                            <img src="{{ asset('path/to/pdf-icon.png') }}" alt="PDF Icon" />
                                                         @else
-                                                            <img src="{{ asset('storage/kyc/proof/'.$events->proof_of_address) }}" alt="img" class="fullscreen-img" />
+                                                            <img src="{{ asset('storage/kyc/document/'.$events->documents) }}" alt="img" class="fullscreen-img" />
                                                         @endif
                                                     </span>
                                                 </div>
                                             </td>
+                                            
                                             <td scope="row">
                                                 <span>{{ $events->user->referrence_id  }}</span>
                                             </td>                                                           
@@ -143,6 +144,37 @@
     </div>
 
     <script>
+        const previewDocuments = document.querySelectorAll('.preview-document');
+    
+        previewDocuments.forEach(documentElement => {
+            documentElement.addEventListener('click', () => {
+                const documentPath = documentElement.dataset.documentPath;
+                const isPdf = documentPath.toLowerCase().endsWith('.pdf');
+    
+                if (isPdf) {
+                    const fullscreenIframe = document.createElement('iframe');
+                    fullscreenIframe.src = documentPath;
+                    fullscreenIframe.classList.add('fullscreen-iframe');
+    
+                    const closeButton = document.createElement('button');
+                    closeButton.innerText = 'Close';
+                    closeButton.classList.add('fullscreen-close');
+    
+                    fullscreenContainer.innerHTML = '';
+                    fullscreenContainer.appendChild(fullscreenIframe);
+                    fullscreenContainer.appendChild(closeButton);
+                    fullscreenContainer.style.display = 'flex';
+    
+                    closeButton.addEventListener('click', () => {
+                        fullscreenContainer.style.display = 'none';
+                    });
+                }
+            });
+        });
+    </script>
+    
+    <script>
+        
         const fullscreenImages = document.querySelectorAll('.fullscreen-img');
         const fullscreenContainer = document.createElement('div');
         fullscreenContainer.classList.add('fullscreen-container');

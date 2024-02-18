@@ -28,7 +28,6 @@
                                     <th scope="col">Bank Address</th>
                                     <th scope="col">Bank Account Number</th>
                                     <th scope="col">Bank Swift Code</th>
-                                    <th scope="col">Payment Method</th>
                                     <th scope="col">Amount</th>
                                     <th scope="col">Total Amount</th>
                                     <th>Time </th>
@@ -45,7 +44,6 @@
                                     <td>{{  $corporates['bank_address'] }}</td>
                                     <td>{{  $corporates['bank_account_number'] }}</td>
                                     <td>{{  $corporates['bank_swift_code'] }}</td>
-                                    <td>{{  $corporates['payment_method'] }}</td>
                                     <td>{{  number_format( $corporates['amount'], 2 ) }}</td>
                                     <td>{{  number_format( $corporates['total_amount'], 2 ) }}</td>
                                     <td>{{  $corporates->created_at->format('m-d-y h:s A')  }}</td>

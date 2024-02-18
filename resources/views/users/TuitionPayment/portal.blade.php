@@ -19,6 +19,7 @@
                         <input type="text"  value="{{  $portal->user_id }}" hidden name="user_id">
                         <input type="text"  value="{{  $portal->college_name }}" hidden name="college_name">
                         <input type="text"  value="{{  $portal->service_type }}" hidden name="service_type">
+                        <input type="text"  value="Tuition Payment" hidden name="type">
                         
                         <div class="">
                             <div class="form-group">

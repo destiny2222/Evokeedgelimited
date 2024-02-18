@@ -7,19 +7,19 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class VisaNotification extends Notification
+class InvoiceMerchandise extends Notification
 {
     use Queueable;
-    public $users;
+    public $merchandise;
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($users)
+    public function __construct($merchandise)
     {
-        //
-        $this->users = $users;
+        $this->merchandise = $merchandise;
     }
 
     /**
@@ -30,16 +30,8 @@ class VisaNotification extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail', 'database'];
+        return ['mail'];
     }
-
-    public function toDatabase($notifiable){
-        return [
-            'message' => 'A user has interacted with the Visa  Payment Service.',
-            'user_name' => $this->users->name, 
-        ];
-    }
-
 
     /**
      * Get the mail representation of the notification.
@@ -50,10 +42,11 @@ class VisaNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-        ->line('The introduction to the notification.')
-        ->line('User: ' . $this->users->name)
-        ->action('Notification Action', url('/'))
-        ->markdown('mail.visa',['users' => $this->users]);
+            ->subject('Invoice')
+            ->line('The introduction to the notification.')
+            ->action('Notification Action', url('/'))
+            ->markdown('mail.m-inovice',['order'=> $this->merchandise])
+            ->line('Thank you for using our application!');
     }
 
     /**

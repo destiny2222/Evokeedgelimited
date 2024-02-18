@@ -25,31 +25,31 @@
                             <input type="text" name="funds" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label class="form-label">Beneficiary Name*</label>
-                            <input type="text" name="beneficiary" class="form-control">
+                            <label class="form-label">Beneficiary Name<span class="text-danger">*</span></label>
+                            <input type="text" name="beneficiary" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label class="form-label">Full Name of account holder*</label>
-                            <input type="text" name="holder" class="form-control">
+                            <label class="form-label">Full Name of account holder<span class="text-danger">*</span></label>
+                            <input type="text" name="holder" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label class="form-label">IBAN/Account number*</label>
-                            <input type="number" name="account_number" class="form-control">
+                            <label class="form-label">IBAN/Account number<span class="text-danger">*</span></label>
+                            <input type="number" name="account_number" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label class="form-label">SWIFT/BIC code*</label>
-                            <input type="text" name="swift_code" class="form-control">
+                            <label class="form-label">SWIFT/BIC code<span class="text-danger">*</span></label>
+                            <input type="text" name="swift_code" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label class="form-label">Routing  Number (US & CAD only)*</label>
+                            <label class="form-label">Routing  Number (US & CAD only)<span class="text-danger">*</span></label>
                             <input type="number" name="route_number" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label class="form-label">Reference*</label>
-                            <input type="text" name="reference_number" class="form-control">  
+                            <label class="form-label">Reference<span class="text-danger">*</span></label>
+                            <input type="text" name="reference_number" class="form-control" required>  
                         </div>
                         <div class="form-group">
-                            <label class="form-label"> Amount*</label>
+                            <label class="form-label"> Amount<span class="text-danger">*</span></label>
                             <input type="number" name="amount" class="form-control" id="amount" required>
                         </div>
                         <div class="form-group text-center">

@@ -41,10 +41,11 @@ class Invoice extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->line('The introduction to the notification.')
-            ->action('Notification Action', url('/'))
-            ->markdown('email.invoice',['order' => $this->order])
-            ->line('Thank you for using our application!');
+        ->subject('Invoice')
+        ->line('The introduction to the notification.')
+        ->action('Notification Action', url('/'))
+        ->markdown('email.invoice',['order' => $this->order])
+        ->line('Thank you for using our application!');
     }
 
     /**

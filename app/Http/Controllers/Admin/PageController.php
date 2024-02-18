@@ -15,6 +15,7 @@ use App\Models\TuitionPaymentWire;
 use App\Models\User;
 use App\Models\VisaApplication;
 use App\Notifications\Invoice;
+use App\Notifications\InvoicePaid;
 use App\Notifications\MailNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -173,15 +174,14 @@ class PageController extends Controller
 
 
     public function TuitionwireProcess(Request $request, $id){
-        $tuitionPaymentWire = TuitionPaymentWire::find($id);
-        if ($tuitionPaymentWire) {
+        $order = TuitionPaymentWire::find($id);
+        if ($order) {
             $done = $request->input('done'); 
-            $tuitionPaymentWire->update(['done'=> $done]);
-          Alert::success('Aply Successfully');
-          return back();
+            $order->update(['done'=> $done]);
+            $order->user->notify(new Invoice($order));
+            return back()->with('success', 'updated successfully');
         } else {
-           Alert::error('Something went wrong');
-           return back();
+            return back()->with('error','Something went wrong');
         }
         
 
@@ -221,11 +221,10 @@ class PageController extends Controller
         if ($visaapplication) {
             $done = $request->input('done');
             $visaapplication->update(['done'=> $done]);
-            Alert::success('Aply Successful');
-            return back();
+            $visaapplication->user->notify(new InvoicePaid($visaapplication));
+            return back()->with('success', 'updated successfully');
         } else {
-            Alert::error('Something went wrong');
-            return back();
+            return back()->with('error','Something went wrong');
         }
         
 

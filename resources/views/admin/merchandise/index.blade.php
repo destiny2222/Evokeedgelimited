@@ -82,10 +82,12 @@
                                         @endif
                                     </td>
                                     <td>
-                                        @if ($merchandiser['done'] == '2')
+                                        @if ($merchandiser['done'] == 'completed')
                                            <span class="badge bg-outline-primary">Completed</span>
-                                        @elseif($merchandiser['done'] == '1')
+                                        @elseif($merchandiser['done'] == 'processing')
                                            <span class="badge bg-outline-success">Processing</span>   
+                                        @elseif($merchandiser['done'] == 'declined')
+                                           <span class="badge bg-outline-success">Declined</span>   
                                         @else
                                           <span class="badge bg-outline-secondary">Pending</span>
                                         @endif

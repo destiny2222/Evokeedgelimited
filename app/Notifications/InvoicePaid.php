@@ -10,15 +10,15 @@ use Illuminate\Notifications\Notification;
 class InvoicePaid extends Notification
 {
     use Queueable;
-    public $tuitionPayment;
+    public $visaapplication;
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($tuitionPayment)
+    public function __construct($visaapplication)
     {
-        $this->tuitionPayment = $tuitionPayment;
+        $this->visaapplication = $visaapplication;
     }
 
     /**
@@ -41,9 +41,11 @@ class InvoicePaid extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+        ->subject('Invoice')
+        ->line('The introduction to the notification.')
+        ->action('Notification Action', url('/'))
+        ->markdown('mail.invoice',['visaapplication'=>$this->visaapplication])
+        ->line('Thank you for using our application!');
     }
 
     /**

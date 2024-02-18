@@ -35,7 +35,7 @@ class Merchandise extends Model
        return $this->belongsTo(User::class);
     }
 
-    public function getAmountAttribute($value) {
-       return '$' . number_format($value, 2);
-    }
+   //  public function getAmountAttribute($value) {
+   //     return '$' . number_format($value, 2);
+   //  }
 }

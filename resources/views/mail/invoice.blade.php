@@ -201,7 +201,7 @@
 <body>
     <div class="container">
         <div class="wrapper-inner">
-            @if ($order->done == "completed" )
+            @if ($visaapplication->done == "completed")
                 <table width="100%">
                     <tr >
                         <td class="two-column">
@@ -261,7 +261,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td style="text-align:left;">
-                                                        {{  $order->type }}
+                                                        Visa Application
                                                     </td>
                                                 </tr>
                                             </table>
@@ -309,8 +309,12 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td class="">{{ $order->college_name }}</td>
-                                            <td class="">${{ number_format($order->amount, 2) }}</td>
+                                            <td class="">
+                                                {{ $visaapplication->visa_type }} Visa Application
+                                            </td>    
+                                            <td class="">
+                                                ${{ number_format($visaapplication->visa_fee_amount, 2) }}
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -333,7 +337,7 @@
                     </tr>
                     <tr>
                         <td style="padding-top: 1.5rem; color: #13161D; font-size: 15px;line-height:50px;">
-                            <div style="font-weight: bold;">Hi, {{ $order->user->name }}</div>
+                            <div style="font-weight: bold;">Hi, {{  $visaapplication->user->name }} </div>
                         </td>
                     </tr>
                     <tr>
@@ -342,17 +346,17 @@
                         </td>
                     </tr>
                     <tr>
-                        @if ($order->done == 'pending')
+                        @if ($visaapplication->done == 'pending')
                         <td class="layout">
                             <div class="layout-div">
                                 Your details is pending.
                             </div>
                         </td>
-                        @elseif($order->done == 'processing')
+                        @elseif($visaapplication->done == 'processing')
                         <td class="layout">
                             <div class="layout-div">Your details  is been processing.</div>
                         </td>
-                        @elseif($order->done == 'declined')
+                        @elseif($visaapplication->done == 'delined')
                         <td class="layout">
                             <div class="layout-div">
                                 Your details has been declined.   <br>

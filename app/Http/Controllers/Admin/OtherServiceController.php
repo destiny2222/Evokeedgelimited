@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\OtherService;
+use App\Notifications\InvoiceOther;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -25,6 +26,7 @@ class OtherServiceController extends Controller
       if ($otherservice) {
           $done = $request->input('done');
           $otherservice->update(['done'=> $done]);
+        //   $otherservice->user->notify(new InvoiceOther($otherservice));
           Alert::success('Aply Successful');
           return back();
       } else {

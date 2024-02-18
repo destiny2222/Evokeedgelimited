@@ -106,7 +106,7 @@
                         </div>
                         <div class="form-group col-lg-6  mb-4">
                             <label for="" class="form-label">Title:</label>
-                            <select name="passenger_title" class="form-control form-select select2" data-bs-placeholder="Select">
+                            <select name="title" class="form-control form-select select2" data-bs-placeholder="Select">
                                 <option selected> Select</option>
                                 <option value="Mr">Mr</option>
                                 <option value="Mrs">Mrs</option>
@@ -114,7 +114,7 @@
                         </div>
                         <div class="form-group col-lg-6 mb-4">
                             <label class="form-label">Gender On Passport:</label>
-                            <select name="passenger_gender_onpassport" class="form-control form-select select2" data-bs-placeholder="Select" required>
+                            <select name="gender" class="form-control form-select select2" data-bs-placeholder="Select" required>
                                 <option selected>Select Gender</option>
                                 <option value="female">Female</option>
                                 <option value="male">Male</option>

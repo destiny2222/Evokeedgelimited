@@ -275,8 +275,11 @@ class Usercontroller extends Controller
 
     public function paymentPay(){
         $pay =  CorporateService::where('user_id', auth()->user()->id)->latest()->first();
+        // charge transaction
         $charge = TransactionCharges::select('corporate_charge_amount')->first();
+        // total charge transaction
         $totalprecentage = ($charge->corporate_charge_amount / 100) * $pay->amount;
+        // user wallet 
         $wallet = UserWallet::where('user_id', auth()->user()->id)->where('amount', '!=', null)->first();
 
         // dd($totalprecentage);
@@ -304,9 +307,11 @@ class Usercontroller extends Controller
 
     public function MerchandisePay(){
         $pay = Merchandise::where('user_id', auth()->user()->id)->latest()->first();
+        // Wallet payment
         $wallet = UserWallet::where('user_id', auth()->user()->id)->where('amount', '!=', null)->first();
+        // charge transaction
         $charge = TransactionCharges::select('merchant_charge_amount')->first();
-        
+        // total charge transaction
         $totalprecentage = ($charge->merchant_charge_amount / 100) * $pay->amount;
 
         $Totalamount = $pay->amount + $totalprecentage;
@@ -319,10 +324,10 @@ class Usercontroller extends Controller
     }
 
 
-    
-    public function OthersPayment() {
-        $charges = TransactionCharges::where('other_service', 'id')->first();
-        return view('users.otherservice.index', compact('charges'));
+
+
+    public function otherservice(){
+        return view('users.otherservice.index');
     }
 
     public function storeOtherservice(OtherServiceStoreRequest  $request){
@@ -340,16 +345,11 @@ class Usercontroller extends Controller
 
         $ToatalAmount =  $pay->amount + $totalprecentage;
         
-        if ($pay->amount == null) {
-           return back()->with('error', 'Amount must be provided');
-        }elseif($pay){
+        if($pay){
             $pay->update([
                 'total_amount'=>$ToatalAmount,
             ]);
-        }else{
-            return back()->with('error', 'An error occurred');
         }
-      
         return view('users.otherservice.pay', compact('pay', 'charge', 'wallet'));
     }
 

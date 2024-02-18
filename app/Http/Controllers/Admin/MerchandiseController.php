@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Merchandise;
+use App\Notifications\InvoiceMerchandise;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -23,14 +24,12 @@ class MerchandiseController extends Controller
   public function MerchandiseCompleted(Request $request, $id){
     $merchandise = Merchandise::find($id);
       if ($merchandise) {
-        // $merchandise->update(['done' => $request->has('done') ? 1 : 0]);
           $done = $request->input('done'); 
           $merchandise->update(['done'=> $done]);
-          Alert::success('Aply Successful');
-          return back();
+          $merchandise->user->notify(new InvoiceMerchandise($merchandise));
+            return back()->with('success', 'updated successfully');
       } else {
-          Alert::error('Something went wrong');
-          return back();
+          return back()->with('Something went wrong');
       }
       
   }

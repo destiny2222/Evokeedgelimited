@@ -201,7 +201,7 @@
 <body>
     <div class="container">
         <div class="wrapper-inner">
-            @if ($order->done == "completed" )
+            @if ($order->done == "2" )
                 <table width="100%">
                     <tr >
                         <td class="two-column">
@@ -261,7 +261,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td style="text-align:left;">
-                                                        {{  $order->type }}
+                                                        Merchandise Payment
                                                     </td>
                                                 </tr>
                                             </table>
@@ -309,8 +309,8 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td class="">{{ $order->college_name }}</td>
-                                            <td class="">${{ number_format($order->amount, 2) }}</td>
+                                            <td class="">Merchandise Payment</td>
+                                            <td class="">${{ number_format($order->total_amount, 2) }}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -342,17 +342,17 @@
                         </td>
                     </tr>
                     <tr>
-                        @if ($order->done == 'pending')
+                        @if ($order->done == '0')
                         <td class="layout">
                             <div class="layout-div">
                                 Your details is pending.
                             </div>
                         </td>
-                        @elseif($order->done == 'processing')
+                        @elseif($order->done == '1')
                         <td class="layout">
                             <div class="layout-div">Your details  is been processing.</div>
                         </td>
-                        @elseif($order->done == 'declined')
+                        @elseif($order->done == '3')
                         <td class="layout">
                             <div class="layout-div">
                                 Your details has been declined.   <br>

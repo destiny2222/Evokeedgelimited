@@ -66,10 +66,12 @@
                                         @endif
                                     </td>
                                     <td>
-                                        @if ($otherservices['done'] == '2')
+                                        @if ($otherservices['done'] == '3')
                                            <span class="badge bg-success-transparent">Completed</span>
+                                        @elseif($otherservices['done'] == '2')
+                                           <span class="badge bg-info-transparent">Processing</span>   
                                         @elseif($otherservices['done'] == '1')
-                                           <span class="badge bg-warning-transparent">Processing</span>   
+                                          <span class="badge bg-warning-transparent">Declined</span>
                                         @else
                                           <span class="badge bg-danger-transparent">Pending</span>
                                         @endif

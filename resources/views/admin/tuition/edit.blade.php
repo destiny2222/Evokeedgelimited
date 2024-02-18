@@ -14,9 +14,10 @@
                         <div class="col-12 mb-3">
                             <label class="form-label" for="basic-default-fullname">{{ __('Action') }}</label>
                             <select name="done" id="" class="form-control">
-                                <option value="pending" {{ $tuitions->done == 'pending' ? 'selected' : '' }}>Pending</option>
-                                <option value="processing" {{ $tuitions->done == 'processing' ? 'selected' : '' }}>Processing</option>
                                 <option value="completed" {{ $tuitions->done == 'completed' ? 'selected' : '' }}>Completed</option>
+                                <option value="processing" {{ $tuitions->done == 'processing' ? 'selected' : '' }}>Processing</option>
+                                <option value="declined" {{ $tuitions->done == 'declined' ? 'selected' : '' }}>Declined</option>
+                                <option value="pending" {{ $tuitions->done == 'pending' ? 'selected' : '' }}>Pending</option>
                             </select>                            
                             @error('done')
                               <span class="invalid-feedback" role="alert">

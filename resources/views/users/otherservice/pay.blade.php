@@ -5,7 +5,7 @@
 
     <nav class="payment-nav">
         <div class="back-nav" >
-            <a href="{{ route('otherservice.pay') }}" class="text-dark btn btn-warning">
+            <a href="{{ route('otherservice-page') }}" class="text-dark btn btn-warning">
                 <span class="back-nav__arrow">
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M6.38065 3.95337L2.33398 8.00004L6.38065 12.0467" stroke="#2D3443" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -51,7 +51,7 @@
                     <div class="card  gEtoOE m-auto"  style="h-50">
                         <div class="card-body">
                             <div class=" " >
-                                <form action="{{  route('merchandise.payment') }}" method="post">
+                                <form action="{{  route('otherservice.payment') }}" method="post">
                                     @csrf
                                     <input type="hidden" name="email" value="{{ auth()->user()->email }}">
                                     <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
@@ -67,7 +67,7 @@
                                         </div>
                                         <div class="deposit-card-o ">
                                             <img src="/assetss/assets/images/payments/directdebit-dark.svg" alt="" style="width: 2.25rem; height: 1.30rem; display: inline-block;">
-                                            <p  class="pt-4" style="color: rgb(73, 84, 108);">Account Balance {{  $wallet ?  $wallet->amount : 0  }}</p>
+                                            <p  class="pt-4" style="color: rgb(73, 84, 108);">Account Balance ${{  $wallet ?  $wallet->amount : '0.00'  }}</p>
                                         </div>
                                     </div>
                                     <div class="deposit-card mb-4 ">

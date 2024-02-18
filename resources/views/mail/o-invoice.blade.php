@@ -201,7 +201,7 @@
 <body>
     <div class="container">
         <div class="wrapper-inner">
-            @if ($order->done == "completed" )
+            @if ($order->done == "3" )
                 <table width="100%">
                     <tr >
                         <td class="two-column">
@@ -228,9 +228,8 @@
                                             <table class="content-inner">
                                                 <tr style="margin-bottom:1rem;">
                                                     <td style="text-align:right">
-                                                        {{-- <figure style="margin:10px 0 0;padding-bottom:25px;"> --}}
                                                             <img src="https://evokeedgelimited.com/assets/img/black-logo.png" class="logo" alt="Logo">
-                                                        {{-- </figure> --}}
+                                                        
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -242,7 +241,7 @@
                                         </td>
                                     </tr>
                                 </table>
-                            </div><!-- end section  -->
+                            </div>
                         </td>
                     </tr>
                     
@@ -268,7 +267,7 @@
                                         </td>
                                     </tr>
                                 </table>
-                            </div><!-- end section  -->
+                            </div>
 
                             <div class="section" style="padding-bottom: 20%;">
                                 <table width="100%" >
@@ -294,8 +293,8 @@
                                         </td>
                                     </tr>
                                 </table>
-                            </div><!-- end section  -->
-                        </td><!--- End First Column of Two Columns -->
+                            </div>
+                        </td>
                     </tr>
                     <tr>
                         <td  style="padding-bottom: 10%;">
@@ -309,7 +308,7 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td class="">{{ $order->college_name }}</td>
+                                            <td class=""></td>
                                             <td class="">${{ number_format($order->amount, 2) }}</td>
                                         </tr>
                                     </tbody>
@@ -317,7 +316,7 @@
                             </div>    
                         </td>
                     </tr>
-                </table><!-- main section end -->
+                </table>
             @else
                 <table>
                     <tr>
@@ -342,17 +341,17 @@
                         </td>
                     </tr>
                     <tr>
-                        @if ($order->done == 'pending')
+                        @if ($order->done == '0')
                         <td class="layout">
                             <div class="layout-div">
                                 Your details is pending.
                             </div>
                         </td>
-                        @elseif($order->done == 'processing')
+                        @elseif($order->done == '2')
                         <td class="layout">
                             <div class="layout-div">Your details  is been processing.</div>
                         </td>
-                        @elseif($order->done == 'declined')
+                        @elseif($order->done == '1')
                         <td class="layout">
                             <div class="layout-div">
                                 Your details has been declined.   <br>
@@ -374,7 +373,7 @@
                             </table>
                         </td>
                     </tr>
-                </table><!-- main section end -->
+                </table>
             @endif
         </div>        
     </div>

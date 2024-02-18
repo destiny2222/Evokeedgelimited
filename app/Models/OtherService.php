@@ -21,7 +21,8 @@ class OtherService extends Model
         'total_amount',
         'user_id',
         'payment_method',
-        'done'
+        'done',
+        'paid',
     ];
 
     public function user(){

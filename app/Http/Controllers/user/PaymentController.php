@@ -27,13 +27,13 @@ class PaymentController extends Controller
         $selectedPaymentMethod = $request->input('paymentMethod');
         $userWallet = UserWallet::where('user_id', auth()->user()->id)->first();
         
-        if($userWallet == null){
-            return back()->with('error', 'Insufficient wallet balance');
-        }
-
-     
+        
+        
         if ($selectedPaymentMethod == 'balance') {
-
+            
+            if($userWallet == null){
+                return back()->with('error', 'Insufficient wallet balance');
+            }
             
 
             if ($userWallet->amount < $request->amount) {
@@ -145,16 +145,16 @@ class PaymentController extends Controller
     {
         $reference = Flutterwave::generateReference();
         $selectedPaymentMethod = $request->input('paymentMethod');
-
+        // corporate payment 
         $corporate_balance =  CorporateService::where('user_id', auth()->user()->id)->latest()->first();
-
+        // wallet
         $userWallet = UserWallet::where('user_id', auth()->user()->id)->first();
 
-        if($userWallet == null){
-            return back()->with('error', 'Insufficient wallet balance');
-        }
-
+        
         if ($selectedPaymentMethod == 'balance') {
+            if($userWallet == null){
+                return back()->with('error', 'Insufficient wallet balance');
+            }
             if ($userWallet->amount < $corporate_balance->total_amount) {
                 return back()->withError('Insufficient wallet balance. Please choose another payment method.');
             } else {
@@ -167,14 +167,6 @@ class PaymentController extends Controller
                 $payment->paid = 1;
                 $payment->save();   
             }
-            // $users = $payment->user;
-            // $users = User::where('id', $payment->id)->first();
-            // if($users){
-            //     $admin = Admin::where('id', 1)->first();
-            //     $admin->notify(new CorporateServiceNotification($users));
-            // }else{
-            //     return back()->with('error', 'An error occurred');
-            // }
             return redirect()->route('initiator-page')->with('success', 'Payment Successful');
 
         } elseif ($selectedPaymentMethod == 'visa') {
@@ -234,10 +226,16 @@ class PaymentController extends Controller
     public function MerchandisePayment(Request $request){
         $reference = Flutterwave::generateReference();
         $selectedPaymentMethod = $request->input('paymentMethod');
+        // MERCHANDISE 
         $payment = Merchandise::where('user_id', auth()->user()->id)->latest()->first();
+        // WALLET
+        $userWallet = UserWallet::where('user_id', auth()->user()->id)->first();
 
         if ($selectedPaymentMethod == 'balance') {
-            $userWallet = UserWallet::where('user_id', auth()->user()->id)->first();
+            if($userWallet == null){
+                return back()->with('error', 'Insufficient wallet balance');
+            }
+
             if ($userWallet->amount < $payment->total_amount) {
                 return back()->withError('Insufficient wallet balance. Please choose another payment method.');
             } else {
@@ -343,7 +341,7 @@ class PaymentController extends Controller
                 'email' => $request->input('email'),
                 'tx_ref' => $reference,
                 'currency' => "NGN",
-                'redirect_url' => route('merchandise.cellback'),
+                'redirect_url' => route('otherservice-pay.callback'),
                 'customer' => [
                     'email' => $request->input('email'),
                     "phone_number" => $request->input('phone'),
@@ -371,13 +369,12 @@ class PaymentController extends Controller
         if ($status ==  'successful') {
             $transactionID = Flutterwave::getTransactionIDFromCallback();
             $data = Flutterwave::verifyTransaction($transactionID);
-        
             if($data){
                 $payment = OtherService::where('user_id', auth()->user()->id)->latest()->first();
                 $payment->paid = 1;
-                $payment->save(); 
-            }
-           return redirect()->route('initiator-page')->with('success', ' Payment Successfully');
+                $payment->save();
+            } 
+            return redirect()->route('initiator-page')->with('success', ' Payment Successfully');
         }
         elseif ($status ==  'cancelled'){
             return back()->with('warning', 'transaction has been cancelled');

@@ -27,11 +27,11 @@ class VisaApplicationController extends Controller
         // user wallet
         $userWallet = UserWallet::where('user_id', auth()->user()->id)->first();
 
-        if($userWallet == null){
-            return back()->with('error', 'Insufficient wallet balance');
-        }
-
+        
         if ($selectedPaymentMethod == 'balance') {
+            if($userWallet == null){
+                return back()->with('error', 'Insufficient wallet balance');
+            }
             if ($userWallet->amount < $totalamount) {
                 return back()->withError('Insufficient wallet balance. Please choose another payment method.');
             } else {

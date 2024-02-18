@@ -69,11 +69,13 @@
                                     </td>
                                     <td>
                                         @if ($tuitions['done'] == 'completed')
-                                           <span class="badge bg-success-transparent">Completed</span>
+                                           <span class="badge bg-outline-primary">Completed</span>
                                         @elseif($tuitions['done'] == 'processing')
-                                           <span class="badge bg-warning-transparent">Processing</span>   
+                                           <span class="badge bg-outline-success">Processing</span>   
+                                        @elseif($tuitions['done'] == 'declined')
+                                           <span class="badge bg-outline-success">Declined</span>   
                                         @else
-                                          <span class="badge bg-danger-transparent">Pending</span>
+                                          <span class="badge bg-outline-secondary">Pending</span>
                                         @endif
                                     </td>
                                     <td>{{  $tuitions->created_at->format('m-d-y h:s A')  }}</td>

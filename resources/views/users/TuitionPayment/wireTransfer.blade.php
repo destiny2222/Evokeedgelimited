@@ -19,6 +19,7 @@
                     <input type="text"  value="{{  auth()->user()->id }}" hidden name="user_id">
                     <input type="text"  value="{{  $tuition->college_name }}" hidden name="college_name">
                     <input type="text"  value="{{  $tuition->service_type }}" hidden name="service_type">
+                    <input type="text"  value="Tuition Payment" hidden name="type">
                    <div class="row">
                         <div class="col-lg-12 col-12 mb-4">
                             <label for="student_email" class="form-label">Student Email*</label>
