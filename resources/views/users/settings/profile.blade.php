@@ -1,5 +1,6 @@
 @extends('layout.master')
 @section('content')
+@section('page-title', 'Profile')
 <!-- PAGE-HEADER -->
 @include('layout.page-header')
 <!-- PAGE-HEADER END -->
