@@ -134,7 +134,7 @@
                             <h3>Contact</h3>
                             
                             <ul class="footer-contact-info">
-                                <li><span>Location:</span> 66A Lucky Way Road, Ikpoba hill, Benin city, Edo state, Nigeria.</li> 
+                                <li><span>Location:</span> 8465 Keystone Crossing, suite 115, Indianapolis, IN, USA.</li> 
                                 <li><span>Email:</span> <a href=""><span>sales@evokeedgelimited.com</span></a></li>
                                 {{-- <li><span>Phone:</span> <a href="tel:+2348143980684">+234 814 398 0684</a></li> --}}
                             </ul>
@@ -143,7 +143,7 @@
                 </div>
 
                 <div class="copyright-area">
-                    <p>&copy; <script>document.write(new Date().getFullYear())</script> EvokeEdge Limited. All Rights Reserved.</p>
+                    <p>&copy; <script>document.write(new Date().getFullYear())</script> EvokeEdge LLC. All Rights Reserved.</p>
                 </div>
             </div>
         </footer>

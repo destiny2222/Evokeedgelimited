@@ -33,6 +33,8 @@
     <link href="/assetss/assets/switcher/css/switcher.css" rel="stylesheet">
     <link href="/assetss/assets/switcher/demo.css" rel="stylesheet">
 
+    
+
     <style>
          .logo-login{
             width: 10%;
@@ -50,7 +52,7 @@
             }
         }
     </style>
-
+     {!! NoCaptcha::renderJs() !!}
 </head>
 
 <body class="app sidebar-mini ltr login-img log">
@@ -72,7 +74,18 @@
                     </div>
                 </div> --}}
                 <div class="container-login100 ">
+                   
                     <div class="wrap-login100 p-6">
+                        {{-- @if($errors->any())
+                            <div class="alert alert-primary" role="alert">
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-hidden="true">×</button>
+                                <ul>
+                                    @foreach($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif  --}}
                         <form  action="{{ route('register') }}" method="POST">
                             @csrf
                             <span class="login100-form-title">
@@ -82,32 +95,43 @@
                                 <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                     <i class="mdi mdi-account" aria-hidden="true"></i>
                                 </a>
-                                <input class="input100 border-start-0 ms-0 form-control @error('name') is-valid @enderror" value="{{ old('name') }}" name="name" type="text" placeholder="Full name" required>
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                <input class="input100 border-start-0 ms-0 form-control @error('name') is-valid @enderror" value="{{ old('name') }}" name="name" type="text" placeholder="First name" required>
                             </div>
+                            @error('name')
+                                <div class="help-block text-danger" >
+                                    <strong>{{ $message }}</strong>
+                                </div>
+                            @enderror
+                            <div class="wrap-input100 validate-input input-group">
+                                <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                    <i class="mdi mdi-account" aria-hidden="true"></i>
+                                </a>
+                                <input class="input100 border-start-0 ms-0 form-control @error('last_name') is-valid @enderror" value="{{ old('last_name') }}" name="last_name" type="text" placeholder="Last name" required>
+                            </div>
+                            @error('last_name')
+                                <div class="help-block text-danger" >
+                                    <strong>{{ $message }}</strong>
+                                </div>
+                            @enderror
                             <div class="wrap-input100 validate-input input-group" >
                                 <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                     <i class="zmdi zmdi-email" aria-hidden="true"></i>
                                 </a>
                                 <input class="input100 border-start-0 ms-0 form-control @error('email') is-valid @enderror" type="email" name="email" placeholder="Email" value="{{ old('email') }}" required autocomplete="email">
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
                             </div>
+                            @error('email')
+                                <div class="help-block text-danger" >
+                                    <strong>{{ $message }}</strong>
+                                </div>
+                            @enderror
                             <div class="wrap-input100 validate-input input-group" style="width: 100% !important">
                                 <input type="tel" name="phone" id="phone"  class="form-control phone  @error('phone') is-valid @enderror" required>
-                                @error('phone')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
                             </div>
+                            @error('phone')
+                                <div class="help-block text-danger" >
+                                    <strong>{{ $message }}</strong>
+                                </div>
+                            @enderror
                             <div class="wrap-input100 validate-input input-group">
                                 <select name="country"  class="form-control @error('country') is-valid @enderror" required>
                                     <option selected>Select Country</option>
@@ -359,44 +383,53 @@
                                 </a>
                                 <input type="text" name="address" id="" class="form-control @error('address') is-valid @enderror"
                                     placeholder="Home Address" required>
-                                    @error('address')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                    @enderror
-                            </div>
+                                </div>
+                                @error('address')
+                                        <div class="help-block text-danger" >
+                                            <strong>{{ $message }}</strong>
+                                        </div>
+                                @enderror
 
                             <div class="wrap-input100 validate-input input-group" id="Password-toggle">
                                 <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                     <i class="zmdi zmdi-eye" aria-hidden="true"></i>
                                 </a>
                                 <input class="input100 border-start-0 ms-0 form-control @error('password') is-valid @enderror" name="password" required type="password" placeholder="Password">
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
                             </div>
+                            @error('password')
+                                <div class="help-block text-danger" >
+                                    <strong>{{ $message }}</strong>
+                                </div>
+                            @enderror
                             <div class="wrap-input100 validate-input input-group" id="Password-toggle1">
                                 <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                     <i class="zmdi zmdi-eye" aria-hidden="true"></i>
                                 </a>
                                 <input class="input100 border-start-0 ms-0 form-control @error('password_confirmation') is-valid @enderror" name="password_confirmation" required type="password" placeholder="Password">
-                                @error('password_confirmation')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
                             </div>
+                            @error('password_confirmation')
+                                <div class="help-block text-danger" >
+                                    <strong>{{ $message }}</strong>
+                                </div>
+                            @enderror
                             <label class="custom-control custom-checkbox mt-4">
 									<input type="checkbox" class="custom-control-input">
 									<span class="custom-control-label">By clicking the box below,you hereby consent to the <a href="/policy"> Privacy Policy </a> of EvokeEdge Limited</span>
 								</label>
+                                <div class="form-group pt-4 ">
+                                    {!! app('captcha')->display() !!}
+                                    @if ($errors->has('g-recaptcha-response'))
+                                        <span class="help-block text-danger">
+                                            <strong>Please verify that you are not a robot.</strong>
+                                        </span>
+                                    @endif
+                                </div>
                             <div class="container-login100-form-btn">
                                 <button type="submit"   class="login100-form-btn border-0 btn-primary">
                                     Register
                                 </button>
                             </div>
+                            
                         </form>
                         <div class="text-center pt-3">
                             <p class="text-dark mb-0 d-inline-flex">
@@ -404,6 +437,7 @@
                                 <a href="/login" class="text-primary ms-1">Sign In</a>
                             </p>
                         </div>
+                        
                     </div>
                 </div>
                 <!-- CONTAINER CLOSED -->
@@ -447,7 +481,15 @@
         });
     </script>
     <script>
-       
+        function checkRecaptcha() {
+            if (grecaptcha.getResponse().length === 0) {
+                alert("Please complete the reCAPTCHA");
+                return false;
+            } else {
+                return true;
+            }
+        }
     </script>
+
 </body>
 </html>

@@ -25,6 +25,7 @@ class CreateNewUser implements CreatesNewUsers
             'name' => ['required', 'string', 'max:255'],
             'phone'=>['required', 'string', 'min:10'],
             'country'=>['required', 'string'],
+            'g-recaptcha-response' => 'required|captcha',
             'address'=>['nullable', 'string'],
             // 'username'=>[
             //     'required', 
@@ -48,7 +49,7 @@ class CreateNewUser implements CreatesNewUsers
             'name' => $input['name'],
             'phone' => $input['phone'],
             'country' => $input['country'],
-            // 'last_name' => $input['last_name'],
+            'last_name' => $input['last_name'],
             // 'city' => $input['city'],
             // 'state' => $input['state'],
             'address' => $input['address'],

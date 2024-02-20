@@ -198,7 +198,8 @@ return [
         Unicodeveloper\Paystack\PaystackServiceProvider::class,
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
         KingFlamez\Rave\RaveServiceProvider::class,
-         
+        Biscolab\ReCaptcha\ReCaptchaServiceProvider::class, 
+        Anhskohbo\NoCaptcha\NoCaptchaServiceProvider::class,
     ],
 
     /*
@@ -217,6 +218,8 @@ return [
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
         'Paystack' => Unicodeveloper\Paystack\Facades\Paystack::class,
         'Rave' => KingFlamez\Rave\Facades\Rave::class,
+        'ReCaptcha' => Biscolab\ReCaptcha\Facades\ReCaptcha::class,
+        'NoCaptcha' => Anhskohbo\NoCaptcha\Facades\NoCaptcha::class,
     ])->toArray(),
 
 ];

@@ -63,7 +63,7 @@
                                         </div>
                                         <div id="collapse3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
                                             <div class="panel-body">
-                                                All European countries, America, Canada,United Kingdom, Africa, Australia and others with exceptions to the following countries like North Korea, Russia and Belarus.
+                                                All European countries, America, Canada,United Kingdom, Africa, Australia and others with exceptions to the  countries like North Korea, Russia and Belarus.
                                             </div>
                                         </div>
                                     </div>
@@ -133,7 +133,7 @@
                                         </div>
                                         <div id="collapse8" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
                                             <div class="panel-body">
-                                                Yes! With our secured performs we have ensured clients details are not share except a client shares his own details to a third party
+                                                Yes! We  ensured clients details are not share except a client shares his own details to a third party
                                             </div>
                                         </div>
                                     </div>
