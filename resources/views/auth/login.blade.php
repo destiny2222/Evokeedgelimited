@@ -43,7 +43,7 @@
             }
         }
     </style>
-
+{!! NoCaptcha::renderJs() !!}
 </head>
 
 <body class="app sidebar-mini ltr login-img log">
@@ -117,6 +117,14 @@
                                                             <a href="{{ route('password.request') }}" class="text-primary ms-1">Forgot Password?</a>
                                                         </p>
                                                     </div>
+                                                </div>
+                                                <div class="form-group pt-4 ">
+                                                    {!! app('captcha')->display() !!}
+                                                    @if ($errors->has('g-recaptcha-response'))
+                                                        <span class="help-block text-danger">
+                                                            <strong>Please verify that you are not a robot.</strong>
+                                                        </span>
+                                                    @endif
                                                 </div>
                                                 <div class="container-login100-form-btn">
                                                     <button type="submit" class="login100-form-btn btn-primary border-0">
