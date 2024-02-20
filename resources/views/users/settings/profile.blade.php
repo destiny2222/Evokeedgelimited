@@ -76,10 +76,16 @@
             
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-lg-12 col-md-12">
+                            <div class="col-lg-6 col-12">
                                 <div class="form-group">
                                     <label for="exampleInputname">First Name</label>
                                     <input type="text" class="form-control" name="name" readonly value="{{ $user->name }}" id="exampleInputname" placeholder="First Name">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-12">
+                                <div class="form-group">
+                                    <label for="exampleInputname">Last Name</label>
+                                    <input type="text" class="form-control" name="last_name" readonly value="{{ $user->last_name }}" id="exampleInputname" placeholder="Last Name">
                                 </div>
                             </div>
                         </div>
@@ -96,7 +102,7 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputnumber">Contact Number</label>
-                            <input type="number" class="form-control" readonly name="phone" id="exampleInputnumber" value="{{ $user->phone }}" placeholder="Contact number">
+                            <input type="text" class="form-control" readonly name="phone" id="exampleInputnumber" value="{{ $user->phone }}">
                         </div> 
                         <div class="form-group">
                             <label for="exampleInputnumber">Country</label>

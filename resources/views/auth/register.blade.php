@@ -125,7 +125,8 @@
                                 </div>
                             @enderror
                             <div class="wrap-input100 validate-input input-group" style="width: 100% !important">
-                                <input type="tel" name="phone" id="phone"  class="form-control phone  @error('phone') is-valid @enderror" required>
+                                <input type="tel"   id="phone"  class="form-control phone  @error('phone') is-valid @enderror" required>
+                                <input type="text" hidden name="phone" id="phone_number">
                             </div>
                             @error('phone')
                                 <div class="help-block text-danger" >
@@ -473,22 +474,28 @@
    <!-- Switcher js -->
    <script src="/assetss/assets/switcher/js/switcher.js"></script>
    <script  src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
-    <script>
+    {{-- <script>
         var input = document.querySelector("#phone");
         var iti = window.intlTelInput(input, {
             separateDialCode: true,
             utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
         });
-    </script>
+    </script> --}}
     <script>
-        function checkRecaptcha() {
-            if (grecaptcha.getResponse().length === 0) {
-                alert("Please complete the reCAPTCHA");
-                return false;
-            } else {
-                return true;
-            }
-        }
+        var phone_number = window.intlTelInput(document.querySelector("#phone"), {
+            separateDialCode: true,
+            preferredCountries:["in"],
+            hiddenInput: "full",
+            utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"
+            });
+
+            $("form").submit(function() {
+            var full_number = phone_number.getNumber(intlTelInputUtils.numberFormat.E164);
+            // $("input[name='phone[full]'").val(full_number);
+            $("input#phone_number").val(full_number);
+            // alert(full_number)
+            
+        });
     </script>
 
 </body>
