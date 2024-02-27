@@ -25,7 +25,9 @@ class ManagementController extends Controller
 
 
     public function retentionUser(){
-        
+        $user = User::orderBy('id', 'desc')->paginate(10);
+        $userpendingbalance = UserWallet::all();
+        return view('admin.retention.user.index',compact('user', 'userpendingbalance'));
     }
 
 

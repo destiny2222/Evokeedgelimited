@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\MerchandiseController;
 use App\Http\Controllers\Admin\OtherServiceController;
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Admin\RetentionController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -30,49 +31,43 @@ Route::prefix('admin')->name('admin.')->group(function (){
     Route::get('', [ HomeController::class,'home' ])->name('home');
     Route::get('/profile', [HomeController::class, 'profile'])->name('profile-page');
     Route::get('/post/{post}', [PageController::class, 'detailPost'])->name('blog-details');
-
     // send mail
     Route::get('/send-mail', [PageController::class, 'emailPage'])->name('send-mail-page');
-    
-
-
     // Merchanndise controller
     Route::get('/merchandise', [MerchandiseController::class,'indexMerchandise'])->name('merchandise-page');
-   
     // Corporate service
     Route::get('/corporate-service', [CorporateController::class,'corporatePage'])->name('corporate-service-page');
-
-
-
     // otherservices otherService
     Route::get('/otherservices', [OtherServiceController::class, 'otherServicepage'])->name('otherservices-page');
-    
-
     // flight controller
     Route::get('/flight/local', [FlightController::class, 'localflight'])->name('local-flight-page');
     Route::get('/flight/international', [FlightController::class, 'InternationalFLight'])->name('international-flight-page');
-   
-
-
     // Tuition Payment
     Route::get('/tuition-payment', [PageController::class, 'tuitionView'])->name('tuition-payment-page');
     Route::get('/tuition-wire-transer', [PageController::class, 'tuitionWireView'])->name('tuition-wire-transfer-page');
-   
-
     // Visa Application
     Route::get('/visa-application', [PageController::class, 'visaApplicationView'])->name('visa-application-page');
     Route::get('/visa-application/canada', [PageController::class, 'visaApplicationCanadaView'])->name('visa-application-canada-page');
-    
-
     // TransactionCharge
     Route::get('/transaction-charge', [PageController::class, 'TransactionCharges'])->name('transaction-charge-page');
-
     // search Engine
     Route::get('search', [PageController::class, 'searchEngine'])->name('search-engine');
-
     // Enable features
     Route::get('Features', [PageController::class, 'enableLogging'])->name('features-page');
     Route::get('Baggage', [PageController::class, 'baggageView'])->name('baggage-page');
+
+    // Retention users routes
+    Route::get('retention/tuition', [RetentionController::class, 'tuition'])->name('tuition.retention.index');
+    Route::get('retention/tuitionWire', [RetentionController::class, 'tuitionWire'])->name('tuitionWire.retention.index');
+    Route::get('retention/corporate', [RetentionController::class, 'corporate'])->name('corporate.retention.index');
+    Route::get('retention/visaApplication/usa', [RetentionController::class, 'visaApplicationVisa'])->name('visaApplication.retention.index');
+    Route::get('retention/visaApplication/canada', [RetentionController::class, 'visaApplicationV'])->name('visaApplicationV.retention.index');
+    Route::get('retention/merchandise', [RetentionController::class, 'indexMerchande'])->name('merchandise.retention.index');
+    Route::get('retention/otherService', [RetentionController::class, 'otherServicepage'])->name('otherservice.retention.index');
+    Route::get('retention/kyc', [RetentionController::class, 'kycretention'])->name('kyc.retention.index');
+    Route::get('retention/localflight', [RetentionController::class, 'LocalFLight'])->name('localflight.retention.index');
+    Route::get('retention/international', [RetentionController::class, 'InternationalFLight'])->name('international.retention.index');
+    Route::get('retention/user', [ManagementController::class, 'retentionUser'])->name('user.retention.index');
     
     Route::middleware(['auth:admin', 'checkAdminRole:administrator'])->group(function () {
         

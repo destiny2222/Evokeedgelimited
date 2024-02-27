@@ -209,6 +209,7 @@ class PageController extends Controller
             'visaapplication' => $visaapplication,
         ]);
     }
+    
     public function visaApplicationCanadaView(){
         $visaapplication = VisaApplication::where('visa_type', 'canada')->paginate(10);
         return view('admin.visaapplication.canada', [

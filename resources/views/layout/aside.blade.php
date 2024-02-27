@@ -49,22 +49,51 @@
                             </ul>
                         </li>
                         <!-- End::slide -->
-                        <li class="slide has-sub">
-                            <a href="javascript:void(0);" class="side-menu__item">
-                                Retention  
-                                <i class="fe fe-chevron-right side-menu__angle"></i>
-                            </a>
-                            <ul class="slide-menu child2">
-                                <li class="slide">
-                                    <a href="{{  route('admin.profile-page') }}" class="side-menu__item">Users</a>
-                                </li>
-                                <li class="slide">
-                                    <a href="{{  route('admin.user-page') }}" class="side-menu__item">Users</a>
-                                </li>
-                            </ul>
-                        </li>
+                        
                     </ul>
                 </li>    
+                <li class="slide has-sub open">
+                    <a href="javascript:void(0);" class="side-menu__item">
+                        <i class="bx bx-file side-menu__icon"></i>
+                        <span class="side-menu__label">Retention</span>
+                        <i class="fe fe-chevron-right side-menu__angle"></i>
+                    </a>
+                    <ul class="slide-menu child2">
+                        <li class="slide">
+                            <a href="{{  route('admin.user.retention.index') }}" class="side-menu__item">Users</a>
+                        </li>
+                        <li class="slide">
+                            <a href="{{  route('admin.kyc.retention.index') }}" class="side-menu__item">Kyc</a>
+                        </li>
+                        <li class="slide">
+                            <a href="{{  route('admin.corporate.retention.index') }}" class="side-menu__item">Coporate</a>
+                        </li>
+                        <li class="slide">
+                            <a href="{{  route('admin.merchandise.retention.index') }}" class="side-menu__item">Merchandise</a>
+                        </li>
+                        <li class="slide">
+                            <a href="{{  route('admin.international.retention.index') }}" class="side-menu__item">International Flight</a>
+                        </li>
+                        <li class="slide">
+                            <a href="{{  route('admin.localflight.retention.index') }}" class="side-menu__item">Local Flight</a>
+                        </li>
+                        <li class="slide">
+                            <a href="{{  route('admin.otherservice.retention.index') }}" class="side-menu__item">OtherService</a>
+                        </li>
+                        <li class="slide">
+                            <a href="{{  route('admin.visaApplicationV.retention.index') }}" class="side-menu__item">Canada VisaApplication</a>
+                        </li>
+                        <li class="slide">
+                            <a href="{{  route('admin.visaApplication.retention.index') }}" class="side-menu__item">Usa VisaApplication</a>
+                        </li>
+                        <li class="slide">
+                            <a href="{{  route('admin.tuitionWire.retention.index') }}" class="side-menu__item">Tuition payment via transfer</a>
+                        </li>
+                        <li class="slide">
+                            <a href="{{  route('admin.tuition.retention.index') }}" class="side-menu__item">Tuition payment </a>
+                        </li>
+                    </ul>
+                </li>
                 <li class="slide has-sub open">
                     <a href="javascript:void(0);" class="side-menu__item">
                         <i class="bx bx-file side-menu__icon"></i>

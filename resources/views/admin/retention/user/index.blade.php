@@ -26,13 +26,13 @@
                 <div class="card-header justify-content-between">
                     <div class="card-title">Users Table</div>
 
-                    <div class="d-flex justify-content-between gap-3">
+                    {{-- <div class="d-flex justify-content-between gap-3">
                         <button  class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalScrollable3">View pending balance</button>
                         <button class="btn btn-primary"  type="submit" onclick="event.preventDefault(); document.getElementById('update-balance').submit();">Update Balances</button>
                         <form method="post" id="update-balance" class="d-none"  action="{{ route('admin.update-balances') }}">
                             @csrf
                         </form>
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -53,7 +53,7 @@
                             <tbody>
                                 @if (count($user) != 0)
                                     @foreach ($user as $usering)
-                                        @if (optional($usering)->retention != 1)
+                                        @if (optional($usering)->retention == '1')
                                             <tr>
                                                 <th scope="row">{{ $loop->index + 1 }}</th>
                                                 <td>{{  $usering->name }}</td>
@@ -65,7 +65,7 @@
                                                 <td>{{  $usering->kyc ? $usering->kyc->kyc_status : 'Not Started' }}</td>
                                                 <td>{{  $usering->userwallet ? $usering->userwallet->balance : 0}}</td>
                                                 <td>{{  $usering->country }}</td>
-                                                <td>
+                                                {{-- <td>
                                                     <div class="hstack gap-2 fs-15">
                                                         <a href="{{ route('admin.edit-user-page', $usering->id) }}"
                                                             class="btn btn-primary btn-sm btn-info-transparent"><i
@@ -79,10 +79,10 @@
                                                             class="btn btn-sm btn-warning-transparent btn-wave">
                                                             Unban User
                                                         </a>
-                                                        {{-- <a href="{ route('admin.user-delete', $usering->id) }}" onclick="event.preventDefault(); document.getElementById('delete-form').submit();"
+                                                        <a href="{ route('admin.user-delete', $usering->id) }}" onclick="event.preventDefault(); document.getElementById('delete-form').submit();"
                                                             class="btn btn-sm btn-danger-transparent btn-wave"><i
                                                                 class="ri-delete-bin-line"></i>
-                                                        </a> --}}
+                                                        </a>
                                                         <form id="ban-{{ $usering->id }}" class="d-none" action="{{ route('admin.users.ban', $usering->id) }}" method="post">
                                                             @method('put')
                                                             @csrf
@@ -91,12 +91,12 @@
                                                             @method('put')
                                                             @csrf
                                                         </form>
-                                                        {{-- <form id="delete-form" clas="d-none" onclick="return confirm('Are you sure?');" action="{{ route('admin.user-delete', $usering->id) }}" method="post">
+                                                        <form id="delete-form" clas="d-none" onclick="return confirm('Are you sure?');" action="{{ route('admin.user-delete', $usering->id) }}" method="post">
                                                             method('delete')
                                                             csrf
-                                                        </form>         --}}
+                                                        </form>        
                                                     </div>
-                                                </td>
+                                                </td> --}}
                                             </tr>
                                         @endif    
                                     @endforeach
