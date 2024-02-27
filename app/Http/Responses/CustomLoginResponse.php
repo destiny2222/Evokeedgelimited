@@ -18,6 +18,7 @@ class CustomLoginResponse implements LoginResponseContract
      */
     public function toResponse($request)
     {
+        
         return redirect()->route('dashboard-page');
         // if (auth()->check()) {
         //     $user = $request->user();
