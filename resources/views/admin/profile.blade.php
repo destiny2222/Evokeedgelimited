@@ -150,21 +150,21 @@
                                         <div class="col-md-12 mb-2">
                                           <label for="fullname"  class="form-label">Full Name</label>
                                           <input type="text" name="name" class="form-control"
-                                              id="fullname" placeholder="Name" />
+                                              id="fullname" placeholder="Name"  required>
                                         </div>
                                         <div class="col-md-12 mb-2">
                                           <label for="email"  class="form-label">Email</label>
                                           <input type="text" name="email" class="form-control"
-                                              id="email" placeholder="Email Address" />
+                                              id="email" placeholder="Email Address"  required>
                                         </div>
                                         <div class="col-md-12 mb-2">
                                           <label for="phone"  class="form-label">Phone Number</label>
                                           <input type="text" name="phone" class="form-control"
-                                              id="phone" placeholder="Phone Number" />
+                                              id="phone" placeholder="Phone Number"  required>
                                         </div>
                                         <div class="col-md-12 mb-2">
                                           <label for="phone"  class="form-label">Role</label>
-                                          <select name="role_as" id="" class="form-control">
+                                          <select name="role_as" id="" class="form-control" required>
                                                <option value="" selected>Select</option>
                                                <option value="administrator">Administrator</option>
                                                <option value="employee">Employee</option>
@@ -174,13 +174,13 @@
                                         <div class="col-md-12 mb-2">
                                             <label for="newpassword" class="form-label">Password</label>
                                             <input type="password" name="password" class="form-control" id="newpassword"
-                                                placeholder="Password" />
+                                                placeholder="Password"  required>
                                         </div>
                                         <div class="col-md-12 mb-4">
                                             <label for="confirm-password" class="form-label">Confirm
                                                 Password</label>
                                             <input type="password" name="confirm_password" class="form-control"
-                                                id="confirm-password" placeholder="Confirm PAssword" />
+                                                id="confirm-password" placeholder="Confirm PAssword"  required>
                                         </div>
                                         <div class="col-md-12 mb-0">
                                             <div class="text-center">

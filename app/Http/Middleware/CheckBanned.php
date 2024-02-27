@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CheckBanned
 {
@@ -16,11 +17,14 @@ class CheckBanned
      */
     public function handle($request, Closure $next)
 {
-    if (auth()->check() && auth()->user()->is_banned) {
+    $user = Auth::user();
+    if ($user->is_banned) {
+        auth()->logout();
+        return redirect()->route('login')->with('error', 'Your account has been Banned.');
+    }elseif($user->retention) {
         auth()->logout();
         return redirect()->route('login')->with('error', 'Your account has been deactivated.');
     }
-
     return $next($request);
 }
 

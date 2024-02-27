@@ -15,7 +15,7 @@ class RegisterController extends Controller
           Alert::success('Created Successfully');
           return back();
         }else{
-          Alert::error('An error occurred');
+          Alert::error('Oops something went worry!');
           return back();
         }
   }

@@ -41,20 +41,21 @@ class StoreAdminRequest extends FormRequest
     
     public function createAdmin(){
         // dd($this->all());
-        if(!$this->password == $this->confirm_password){
-            Alert::error('Error! Password Mismatch');
+        if($this->password == $this->confirm_password){
+            Admin::create([
+                "name"=> $this->name,
+                "email"=> $this->email,
+                "role_as"=> $this->role_as,
+                'email_verified_at' => now(),
+                'remember_token' => Str::random(10),
+                "phone"=> $this->phone,
+                'password' => Hash::make($this['password']),
+            ]);
+            return true;
+        } else{
             return false;  
-        } 
-        Admin::create([
-            "name"=> $this->name,
-            "email"=> $this->email,
-            "role_as"=> $this->role_as,
-            'email_verified_at' => now(),
-            'remember_token' => Str::random(10),
-            "phone"=> $this->phone,
-            'password' => Hash::make($this['password']),
-        ]);
-        return true;
+        }
+        
     }
     
 }
