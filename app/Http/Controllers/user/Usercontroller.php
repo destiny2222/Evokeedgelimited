@@ -42,8 +42,8 @@ class Usercontroller extends Controller
 {
     public  function storeKyc(KycRequest $request){
         if($request->createOrUpdate()){
-            // $kyc = Kyc::where('user_id', auth()->user()->id)->first();
-            // $kyc->getUserEmail()->notify(new KycNotification($kyc));
+            $kyc = Kyc::where('user_id', $request->user_id)->first();
+            $kyc->getUserEmail()->notify(new KycNotification($kyc));
             return redirect()->route('dashboard-page')->with('success', 'Sent successfully! Undergoing verification');
         }else{
             return back()->with('error', 'Oops Something went Worry, try again');

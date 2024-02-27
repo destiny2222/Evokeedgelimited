@@ -36,6 +36,7 @@
                             </thead>
                             <tbody> 
                                 @foreach ($visaapplication  as $visaapplications)
+                                    @if (optional($visaapplications->user)->retention != 1)
                                         <tr scope="row">
                                             <th>{{  $loop->index + 1 }}</th>
                                             <td>{{  $visaapplications['name'] }}</td>
@@ -48,18 +49,18 @@
                                             </td>
                                             <td>
                                                 @if ($visaapplications['paid'] == '1') 
-                                                  <span class="badge bg-success-transparent">paid</span>
+                                                <span class="badge bg-success-transparent">paid</span>
                                                 @else
-                                                  <span class="badge bg-danger-transparent">Not paid </span>
+                                                <span class="badge bg-danger-transparent">Not paid </span>
                                                 @endif
                                             </td>
                                             <td>
                                                 @if ($visaapplications['done'] == 'completed')
-                                                   <span class="badge bg-success-transparent">Completed</span>
+                                                <span class="badge bg-success-transparent">Completed</span>
                                                 @elseif($visaapplications['done'] == 'processing')
-                                                   <span class="badge bg-warning-transparent">Processing</span>   
+                                                <span class="badge bg-warning-transparent">Processing</span>   
                                                 @else
-                                                  <span class="badge bg-danger-transparent">Pending</span>
+                                                <span class="badge bg-danger-transparent">Pending</span>
                                                 @endif
                                             </td>
                                             <td>
@@ -82,6 +83,7 @@
                                             </td>
                                         </tr>
                                         @include('admin.visaapplication.edit')
+                                    @endif
                                 @endforeach
                             </tbody>
                         </table>

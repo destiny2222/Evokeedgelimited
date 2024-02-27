@@ -41,6 +41,7 @@
                             </thead>
                             <tbody> 
                                 @foreach ($otherservice as $key => $otherservices)
+                                @if (optional($otherservices->user)->retention != '1')
                                 <tr scope="row">
                                     <th>{{  $key + 1 }}</th>
                                     <th>{{  $otherservices->user->name }}</th>
@@ -96,6 +97,7 @@
                                     </td>
                                 </tr>
                                 @include('admin.otherservice.edit')
+                                @endif
                                 @endforeach
                             </tbody>
                         </table>

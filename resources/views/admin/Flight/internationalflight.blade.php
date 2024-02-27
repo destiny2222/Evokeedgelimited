@@ -43,56 +43,58 @@
                             </thead>
                             <tbody> 
                                 @foreach ($internationalflight as $key => $internationalflights)
-                                <tr scope="row">
-                                    <th>{{  $key + 1 }}</th>
-                                    <th>{{  $internationalflights->user->name }}</th>
-                                    <td>{{  $internationalflights['airport_location_from'] }}</td>
-                                    <td>{{  $internationalflights['airport_location_to'] }}</td>
-                                    <td>
-                                        @if ($internationalflights['flight_return_date'] == null)
-                                          Not specify  
-                                        @else
-                                           {{  $internationalflights['flight_return_date'] }}
-                                        @endif
-                                    </td>
-                                    <td>
-                                        @if ($internationalflights['round_trip'] == null)
-                                            Not specify 
-                                        @else
-                                            {{ $internationalflights['round_trip'] }}
-                                        @endif
-                                    </td>
-                                    <td>{{  $internationalflights['flight_date'] }}</td>
-                                    <td>{{  $internationalflights['number_passenger'] }}</td>
-                                    <td>{{  $internationalflights['flight_class'] }}</td>
-                                    <td>
-                                        {{  $internationalflights['passenger_title']  }}
-                                    </td>
-                                    <td>
-                                        {{  $internationalflights['passenger_fname_onpassport']  }}
-                                    </td>
-                                    <td>
-                                        {{  $internationalflights['passenger_lastname_onpassport']  }}
-                                    </td>
-                                    <td>
-                                        {{  $internationalflights['passenger_gender_onpassport']  }}
-                                    </td>
-                                    <td>
-                                        {{   $internationalflights['date_of_birth'] }}
-                                    </td>
-                                    <th>{{  $internationalflights['passenger_email'] }}</th>
-                                    <th>{{  $internationalflights['passenger_phone'] }}</th>
-                                    <th>{{  $internationalflights->created_at->format('m-d-y h:s A') }}</th>
-                                    <td>
-                                        <form action="{{   route('admin.international-delete', $internationalflights->id) }}" method="post">
-                                            @csrf
-                                            @method('delete')
-                                            <button type="submit" class="btn btn-sm btn-danger btn-wave">
-                                                <i class="ri-delete-bin-line align-middle  d-inline-block"></i>Delete
-                                            </button>
-                                        </form>
-                                    </td>
-                                </tr>
+                                  @if (optional($internationalflights->user)->retention != 1)
+                                    <tr scope="row">
+                                        <th>{{  $key + 1 }}</th>
+                                        <th>{{  $internationalflights->user->name }}</th>
+                                        <td>{{  $internationalflights['airport_location_from'] }}</td>
+                                        <td>{{  $internationalflights['airport_location_to'] }}</td>
+                                        <td>
+                                            @if ($internationalflights['flight_return_date'] == null)
+                                            Not specify  
+                                            @else
+                                            {{  $internationalflights['flight_return_date'] }}
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($internationalflights['round_trip'] == null)
+                                                Not specify 
+                                            @else
+                                                {{ $internationalflights['round_trip'] }}
+                                            @endif
+                                        </td>
+                                        <td>{{  $internationalflights['flight_date'] }}</td>
+                                        <td>{{  $internationalflights['number_passenger'] }}</td>
+                                        <td>{{  $internationalflights['flight_class'] }}</td>
+                                        <td>
+                                            {{  $internationalflights['passenger_title']  }}
+                                        </td>
+                                        <td>
+                                            {{  $internationalflights['passenger_fname_onpassport']  }}
+                                        </td>
+                                        <td>
+                                            {{  $internationalflights['passenger_lastname_onpassport']  }}
+                                        </td>
+                                        <td>
+                                            {{  $internationalflights['passenger_gender_onpassport']  }}
+                                        </td>
+                                        <td>
+                                            {{   $internationalflights['date_of_birth'] }}
+                                        </td>
+                                        <th>{{  $internationalflights['passenger_email'] }}</th>
+                                        <th>{{  $internationalflights['passenger_phone'] }}</th>
+                                        <th>{{  $internationalflights->created_at->format('m-d-y h:s A') }}</th>
+                                        <td>
+                                            <form action="{{   route('admin.international-delete', $internationalflights->id) }}" method="post">
+                                                @csrf
+                                                @method('delete')
+                                                <button type="submit" class="btn btn-sm btn-danger btn-wave">
+                                                    <i class="ri-delete-bin-line align-middle  d-inline-block"></i>Delete
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                  @endif  
                                 @endforeach
                             </tbody>
                         </table>

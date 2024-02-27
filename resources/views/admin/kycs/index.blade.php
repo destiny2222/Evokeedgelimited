@@ -40,92 +40,94 @@
                                 <tbody>
                                     @if (count($kyc) != 0)
                                        @foreach ($kyc as $events)
-                                       <tr>
-                                            <td>{{ $loop->index + 1 }}</td>
-                                            <td scope="row">
-                                                <div class="d-flex align-items-center">
-                                                    <span class="avatar me-2 avatar-rounded">
-                                                        @if(pathinfo($events->documents, PATHINFO_EXTENSION) == 'pdf')
-                                                        <iframe src="{{ asset('storage/kyc/document/'.$events->documents) }}" style="width:60px; height:50px;"></iframe>
+                                          @if(optional($events->user)->retention != 1)
+                                            <tr>
+                                                    <td>{{ $loop->index + 1 }}</td>
+                                                    <td scope="row">
+                                                        <div class="d-flex align-items-center">
+                                                            <span class="avatar me-2 avatar-rounded">
+                                                                @if(pathinfo($events->documents, PATHINFO_EXTENSION) == 'pdf')
+                                                                <iframe src="{{ asset('storage/kyc/document/'.$events->documents) }}" style="width:60px; height:50px;"></iframe>
+                                                                @else
+                                                                <img src="{{ asset('storage/kyc/document/'.$events->documents) }}" alt="img" class="fullscreen-img" />
+                                                                @endif
+                                                            </span>
+                                                        </div>
+                                                    </td>
+                                                    <td scope="row">
+                                                        <div class="d-flex align-items-center">
+                                                            <span class="avatar me-2 avatar-rounded preview-document" data-document-path="{{ asset('storage/kyc/document/'.$events->documents) }}">
+                                                                @if(pathinfo($events->documents, PATHINFO_EXTENSION) == 'pdf')
+                                                                    <img src="{{ asset('path/to/pdf-icon.png') }}" alt="PDF Icon" />
+                                                                @else
+                                                                    <img src="{{ asset('storage/kyc/document/'.$events->documents) }}" alt="img" class="fullscreen-img" />
+                                                                @endif
+                                                            </span>
+                                                        </div>
+                                                    </td>
+                                                    
+                                                    <td scope="row">
+                                                        <span>{{ $events->user->referrence_id  }}</span>
+                                                    </td>                                                           
+                                                    <td>
+                                                        <span>{{ $events->user->name  }}</span>
+                                                    </td>
+                                                    <td>
+                                                        <span>{{ $events->gender  }}</span>
+                                                    </td>
+                                                    <td>
+                                                        <span>{{ $events->marital_status  }}</span>
+                                                    </td>
+                                                    <td>
+                                                        <span>{{ $events->date_birth  }}</span>
+                                                    </td>
+                                                    <td>
+                                                        <span>{{ $events->nationality  }}</span>
+                                                    </td>
+                                                    <td>
+                                                        <span>{{ $events->street_address  }}</span>
+                                                    </td>
+                                                    <td>
+                                                        <span>{{ $events->street_address_2  }}</span>
+                                                    </td>
+                                                    <td>
+                                                        {{ $events->status  }}
+                                                    </td>
+                                                    <td>
+                                                        <span>{{ $events->data_sign  }}</span>
+                                                    </td>
+                                                    <td>
+                                                        @if ($events->kyc_status == 'APPROVED')
+                                                        <span class="badge bg-outline-success">Approved</span>
+                                                        @elseif($events->kyc_status == 'DECLINED')
+                                                        <span class="badge bg-outline-danger">Delined</span>
+                                                        @elseif ($events->kyc_status == 'PROCESSING')
+                                                        <span class="badge bg-outline-primary">Processing</span>
                                                         @else
-                                                        <img src="{{ asset('storage/kyc/document/'.$events->documents) }}" alt="img" class="fullscreen-img" />
+                                                        <span class="badge bg-outline-warning">RESUBMIT</span>
                                                         @endif
-                                                    </span>
-                                                </div>
-                                            </td>
-                                            <td scope="row">
-                                                <div class="d-flex align-items-center">
-                                                    <span class="avatar me-2 avatar-rounded preview-document" data-document-path="{{ asset('storage/kyc/document/'.$events->documents) }}">
-                                                        @if(pathinfo($events->documents, PATHINFO_EXTENSION) == 'pdf')
-                                                            <img src="{{ asset('path/to/pdf-icon.png') }}" alt="PDF Icon" />
-                                                        @else
-                                                            <img src="{{ asset('storage/kyc/document/'.$events->documents) }}" alt="img" class="fullscreen-img" />
-                                                        @endif
-                                                    </span>
-                                                </div>
-                                            </td>
-                                            
-                                            <td scope="row">
-                                                <span>{{ $events->user->referrence_id  }}</span>
-                                            </td>                                                           
-                                            <td>
-                                                <span>{{ $events->user->name  }}</span>
-                                            </td>
-                                            <td>
-                                                <span>{{ $events->gender  }}</span>
-                                            </td>
-                                            <td>
-                                                <span>{{ $events->marital_status  }}</span>
-                                            </td>
-                                            <td>
-                                                <span>{{ $events->date_birth  }}</span>
-                                            </td>
-                                            <td>
-                                                <span>{{ $events->nationality  }}</span>
-                                            </td>
-                                            <td>
-                                                <span>{{ $events->street_address  }}</span>
-                                            </td>
-                                            <td>
-                                                <span>{{ $events->street_address_2  }}</span>
-                                            </td>
-                                            <td>
-                                                {{ $events->status  }}
-                                            </td>
-                                            <td>
-                                                <span>{{ $events->data_sign  }}</span>
-                                            </td>
-                                            <td>
-                                                @if ($events->kyc_status == 'APPROVED')
-                                                   <span class="badge bg-outline-success">Approved</span>
-                                                 @elseif($events->kyc_status == 'DECLINED')
-                                                   <span class="badge bg-outline-danger">Delined</span>
-                                                 @elseif ($events->kyc_status == 'PROCESSING')
-                                                   <span class="badge bg-outline-primary">Processing</span>
-                                                 @else
-                                                 <span class="badge bg-outline-warning">RESUBMIT</span>
-                                                @endif
-                                            </td>
-                                            <td>{{  $events->created_at->format('m-d-y h:s A') }}</td>
-                                            <td>
-                                                <div class="hstack d-flex gap-2 ">
-                                                    <a href="{{ route('admin.kyc.edit', $events->id) }}" class="fs-14 lh-1" >
-                                                        <button class="btn btn-primary-gradient btn-wave btn-sm waves-effect waves-light">
-                                                            <i class="ri-edit-line"></i>{{ __('Edit') }} 
-                                                        </button>
-                                                    </a>
-                                                    <a href="javascript:void(0);" class="fs-14 lh-1">
-                                                        <form action="{{  route('admin.kyc.destroy', $events->id) }}" method="post">
-                                                            @csrf
-                                                            @method('delete')
-                                                            <button class="btn btn-sm btn-danger btn-wave">
-                                                                <i class="ri-delete-bin-line"></i>Delete
-                                                            </button>
-                                                        </form>
-                                                    </a>
-                                                </div>
-                                            </td>
-                                       </tr>
+                                                    </td>
+                                                    <td>{{  $events->created_at->format('m-d-y h:s A') }}</td>
+                                                    <td>
+                                                        <div class="hstack d-flex gap-2 ">
+                                                            <a href="{{ route('admin.kyc.edit', $events->id) }}" class="fs-14 lh-1" >
+                                                                <button class="btn btn-primary-gradient btn-wave btn-sm waves-effect waves-light">
+                                                                    <i class="ri-edit-line"></i>{{ __('Edit') }} 
+                                                                </button>
+                                                            </a>
+                                                            <a href="javascript:void(0);" class="fs-14 lh-1">
+                                                                <form action="{{  route('admin.kyc.destroy', $events->id) }}" method="post">
+                                                                    @csrf
+                                                                    @method('delete')
+                                                                    <button class="btn btn-sm btn-danger btn-wave">
+                                                                        <i class="ri-delete-bin-line"></i>Delete
+                                                                    </button>
+                                                                </form>
+                                                            </a>
+                                                        </div>
+                                                    </td>
+                                            </tr>
+                                          @endif  
                                        @endforeach
                                     @endif   
                                 </tbody>

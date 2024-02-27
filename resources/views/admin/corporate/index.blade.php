@@ -36,34 +36,36 @@
                             </thead>
                             <tbody> 
                                 @foreach ($corporate as $key => $corporates)
-                                <tr scope="row">
-                                    <th>{{  $key + 1 }}</th>
-                                    <th>{{  $corporates->user->name }}</th>
-                                    <td>{{  $corporates['name'] }}</td>
-                                    <td>{{  $corporates['bank_name'] }}</td>
-                                    <td>{{  $corporates['bank_address'] }}</td>
-                                    <td>{{  $corporates['bank_account_number'] }}</td>
-                                    <td>{{  $corporates['bank_swift_code'] }}</td>
-                                    <td>{{  number_format( $corporates['amount'], 2 ) }}</td>
-                                    <td>{{  number_format( $corporates['total_amount'], 2 ) }}</td>
-                                    <td>{{  $corporates->created_at->format('m-d-y h:s A')  }}</td>
-                                    <td>
-                                        <div class="d-flex gap-2">
-                                            <button type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $corporates->id }}" class="btn btn-sm btn-info btn-wave">
-                                                <i class="ri-edit-line"></i>
-                                                Edit
-                                            </button>
-                                            <form action="{{   route('admin.corporate-service-delete', $corporates->id) }}" method="post">
-                                                @csrf
-                                                @method('delete')
-                                                <button type="submit" class="btn btn-sm btn-danger btn-wave">
-                                                    <i class="ri-delete-bin-line align-middle  d-inline-block"></i>Delete
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </td>
-                                </tr>
-                                @include('admin.corporate.edit')
+                                    @if (optional($corporates->user)->retention != 1)
+                                        <tr scope="row">
+                                            <th>{{  $key + 1 }}</th>
+                                            <th>{{  $corporates->user->name }}</th>
+                                            <td>{{  $corporates['name'] }}</td>
+                                            <td>{{  $corporates['bank_name'] }}</td>
+                                            <td>{{  $corporates['bank_address'] }}</td>
+                                            <td>{{  $corporates['bank_account_number'] }}</td>
+                                            <td>{{  $corporates['bank_swift_code'] }}</td>
+                                            <td>{{  number_format( $corporates['amount'], 2 ) }}</td>
+                                            <td>{{  number_format( $corporates['total_amount'], 2 ) }}</td>
+                                            <td>{{  $corporates->created_at->format('m-d-y h:s A')  }}</td>
+                                            <td>
+                                                <div class="d-flex gap-2">
+                                                    <button type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $corporates->id }}" class="btn btn-sm btn-info btn-wave">
+                                                        <i class="ri-edit-line"></i>
+                                                        Edit
+                                                    </button>
+                                                    <form action="{{   route('admin.corporate-service-delete', $corporates->id) }}" method="post">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button type="submit" class="btn btn-sm btn-danger btn-wave">
+                                                            <i class="ri-delete-bin-line align-middle  d-inline-block"></i>Delete
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        @include('admin.corporate.edit')
+                                    @endif
                                 @endforeach
                             </tbody>
                         </table>

@@ -38,58 +38,60 @@
                             </thead>
                             <tbody> 
                                 @foreach ($tuition as $key => $tuitions)
-                                <tr scope="row">
-                                    <th>{{  $key + 1 }}</th>
-                                    <td>{{  $tuitions['college_name'] }}</td>
-                                    <td>{{  $tuitions['service_type'] }}</td>
-                                    <td>{{  $tuitions['legal_name'] }}</td>
-                                    <td>{{  $tuitions['student_email'] }}</td>
-                                    <td>{{  $tuitions['student_id'] }}</td>
-                                    <td>{{  $tuitions['portal_link'] }}</td>
-                                    <td>
-                                        {{  $tuitions['portal_password']  }}
-                                    </td>
-                                    <td>
-                                        {{  number_format( $tuitions['amount'] ) }}
-                                    </td>
-                                    <td>
-                                        @if ($tuitions['paid'] == '1') 
-                                          <span class="badge bg-success-transparent">paid</span>
-                                        @else
-                                          <span class="badge bg-danger-transparent">Not paid </span>
-                                        @endif
-                                    </td>
-                                    <td>
-                                        @if ($tuitions['done'] == 'completed')
-                                           <span class="badge bg-outline-primary">Completed</span>
-                                        @elseif($tuitions['done'] == 'processing')
-                                           <span class="badge bg-outline-success">Processing</span>   
-                                        @elseif($tuitions['done'] == 'declined')
-                                           <span class="badge bg-outline-success">Declined</span>   
-                                        @else
-                                          <span class="badge bg-outline-secondary">Pending</span>
-                                        @endif
-                                    </td>
-                                    <td>
-                                        {{  $tuitions->created_at->format('m-d-y h:s A') }}
-                                    </td>
-                                    <td>
-                                        <div class="d-flex">
-                                            <button type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $tuitions->id }}" class="btn btn-sm btn-info btn-wave">
-                                                <i class="ri-edit-line"></i>
-                                                Edit
-                                            </button>
-                                            {{-- <form action="{{   route('admin.tuition-payment-delete', $tuitions->id) }}" method="post">
-                                                @csrf
-                                                @method('delete')
-                                                <button type="submit" class="btn btn-sm btn-danger btn-wave">
-                                                    <i class="ri-delete-bin-line align-middle  d-inline-block"></i>Delete
-                                                </button>
-                                            </form> --}}
-                                        </div>
-                                    </td>
-                                </tr>
-                                @include('admin.tuition.edit')
+                                   @if (optional($tuitions->user)->retention != 1)
+                                        <tr scope="row">
+                                            <th>{{  $key + 1 }}</th>
+                                            <td>{{  $tuitions['college_name'] }}</td>
+                                            <td>{{  $tuitions['service_type'] }}</td>
+                                            <td>{{  $tuitions['legal_name'] }}</td>
+                                            <td>{{  $tuitions['student_email'] }}</td>
+                                            <td>{{  $tuitions['student_id'] }}</td>
+                                            <td>{{  $tuitions['portal_link'] }}</td>
+                                            <td>
+                                                {{  $tuitions['portal_password']  }}
+                                            </td>
+                                            <td>
+                                                {{  number_format( $tuitions['amount'] ) }}
+                                            </td>
+                                            <td>
+                                                @if ($tuitions['paid'] == '1') 
+                                                <span class="badge bg-success-transparent">paid</span>
+                                                @else
+                                                <span class="badge bg-danger-transparent">Not paid </span>
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if ($tuitions['done'] == 'completed')
+                                                <span class="badge bg-outline-primary">Completed</span>
+                                                @elseif($tuitions['done'] == 'processing')
+                                                <span class="badge bg-outline-success">Processing</span>   
+                                                @elseif($tuitions['done'] == 'declined')
+                                                <span class="badge bg-outline-success">Declined</span>   
+                                                @else
+                                                <span class="badge bg-outline-secondary">Pending</span>
+                                                @endif
+                                            </td>
+                                            <td>
+                                                {{  $tuitions->created_at->format('m-d-y h:s A') }}
+                                            </td>
+                                            <td>
+                                                <div class="d-flex">
+                                                    <button type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $tuitions->id }}" class="btn btn-sm btn-info btn-wave">
+                                                        <i class="ri-edit-line"></i>
+                                                        Edit
+                                                    </button>
+                                                    {{-- <form action="{{   route('admin.tuition-payment-delete', $tuitions->id) }}" method="post">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button type="submit" class="btn btn-sm btn-danger btn-wave">
+                                                            <i class="ri-delete-bin-line align-middle  d-inline-block"></i>Delete
+                                                        </button>
+                                                    </form> --}}
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        @include('admin.tuition.edit')
+                                   @endif
                                 @endforeach
                             </tbody>
                         </table>

@@ -166,17 +166,6 @@
         <div class="wrapper-inner">
             <table>
                 <tr>
-                    <td>
-                        <table width="100%">
-                            <tr>
-                                <td style="text-align:center; padding-top: 10px; padding-bottom:25px;">
-                                    <a href=""><img src="https://evokeedgelimited.com/assets/img/black-logo.png" width="180" alt="Logo"></a>
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-                <tr>
                     <td style="padding-top: 1.5rem; color: #13161D; font-size: 15px;line-height:50px;">
                         <div style="font-weight: bold;">Hi, {{ $kycs->user->name }}</div>
                     </td>
@@ -200,7 +189,7 @@
                     </td>
                     @elseif($kycs->kyc_status == 'PROCESSING')
                     <td class="layout">
-                        <div>Your KYC has been approved, and is been processing.</div>
+                        <div>Your KYC has been received and is undergoing  review.</div>
                     </td>
                     @elseif($kycs->kyc_status == 'DECLINED')
                     <td class="layout">
@@ -211,19 +200,32 @@
                     </td>
                     @endif
                 </tr>
-               
-
-
-
-
                 <tr>
                     <td>
                         <table width="100%" style="border-spacing: 0; padding-top:2rem;">
                             <tr>
+                                <td style="text-align:center; padding-top: 10px; padding-bottom:25px;">
+                                    <a href=""><img src="https://evokeedgelimited.com/assets/img/black-logo.png" width="180" alt="Logo"></a>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table width="100%" style="border-spacing: 0;">
+                            {{-- <tr>
                                 <td class="layout">
-                                    <div style="padding-bottom:7px;">If you have any questions, feel free to reach out
+                                    <div class="layout-div" style="padding-bottom:7px;">If you have any questions, feel free to reach out
                                         to us.</div>
                                     <a href="#">support@evokeedgellc.com</a>
+                                </td>
+                            </tr> --}}
+                            <tr>
+                                <td>
+                                    <div style="text-align: center">
+                                        8465 Keystone Crossing,  suite 115, <br> Indianapolis, IN,  USA.
+                                    </div>
                                 </td>
                             </tr>
                         </table>

@@ -47,72 +47,74 @@
                             </thead>
                             <tbody> 
                                 @foreach ($merchandise as $key => $merchandiser)
-                                <tr scope="row">
-                                    <th>{{  $key + 1 }}</th>
-                                    <th>{{  $merchandiser->user->name }}</th>
-                                    <td>{{  $merchandiser['description'] }}</td>
-                                    <td>{{  $merchandiser['currency'] }}</td>
-                                    <td>{{  $merchandiser['seller_name'] }}</td>
-                                    <td>{{  $merchandiser['email_supplier'] }}</td>
-                                    <td>{{  $merchandiser['bank_amount_name'] }}</td>
-                                    <td>{{  $merchandiser['bank_account_number'] }}</td>
-                                    <td>{{  $merchandiser['bank_swift_code'] }}</td>
-                                    <td>
-                                        {{  $merchandiser['bank_route_number']  }}
-                                    </td>
-                                    <td>
-                                        {{  $merchandiser['bank_reference_number']  }}
-                                    </td>
-                                    <td>{{  $merchandiser['recipient']  }}</td>
-                                    <td>{{  $merchandiser['country']  }}</td>
-                                    <td>{{  $merchandiser['city']  }}</td>
-                                    <td>{{  $merchandiser['payment_method']  }}</td>
-                                    <td>{{  $merchandiser['postcode']  }}</td>
-                                    <td>
-                                        {{  number_format($merchandiser['total_amount'])  }}
-                                    </td>
-                                    <td>
-                                        {{  number_format( $merchandiser['amount'] ) }}
-                                    </td>
-                                    <td>
-                                        @if ($merchandiser['paid'] == '1') 
-                                          <span class="badge bg-success-transparent">paid</span>
-                                        @else
-                                          <span class="badge bg-danger-transparent">Not paid </span>
-                                        @endif
-                                    </td>
-                                    <td>
-                                        @if ($merchandiser['done'] == 'completed')
-                                           <span class="badge bg-outline-primary">Completed</span>
-                                        @elseif($merchandiser['done'] == 'processing')
-                                           <span class="badge bg-outline-success">Processing</span>   
-                                        @elseif($merchandiser['done'] == 'declined')
-                                           <span class="badge bg-outline-success">Declined</span>   
-                                        @else
-                                          <span class="badge bg-outline-secondary">Pending</span>
-                                        @endif
-                                    </td>
-                                    <td>
-                                        {{  $merchandiser->created_at->format('m-d-y h:s A') }}
-                                    </td>
-                                    <td>
-                                        <div class="d-flex">
-                                            <button type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $merchandiser->id }}" class="btn btn-sm btn-info btn-wave">
-                                                <i class="ri-edit-line"></i>
-                                                Edit
-                                            </button>
-                                            {{-- <form action="{{   route('admin.merchandise-delete', $merchandiser->id) }}" method="post">
-                                                @csrf
-                                                @method('delete')
-                                                <button type="submit" class="btn btn-sm btn-danger btn-wave">
-                                                    <i class="ri-delete-bin-line align-middle  d-inline-block"></i>Delete
-                                                </button>
-                                            </form> --}}
-                                            
-                                        </div>
-                                    </td>
-                                </tr>
-                                @include('admin.merchandise.edit')
+                                    @if(optional($merchandise->user)->retention != 1)
+                                        <tr scope="row">
+                                            <th>{{  $key + 1 }}</th>
+                                            <th>{{  $merchandiser->user->name }}</th>
+                                            <td>{{  $merchandiser['description'] }}</td>
+                                            <td>{{  $merchandiser['currency'] }}</td>
+                                            <td>{{  $merchandiser['seller_name'] }}</td>
+                                            <td>{{  $merchandiser['email_supplier'] }}</td>
+                                            <td>{{  $merchandiser['bank_amount_name'] }}</td>
+                                            <td>{{  $merchandiser['bank_account_number'] }}</td>
+                                            <td>{{  $merchandiser['bank_swift_code'] }}</td>
+                                            <td>
+                                                {{  $merchandiser['bank_route_number']  }}
+                                            </td>
+                                            <td>
+                                                {{  $merchandiser['bank_reference_number']  }}
+                                            </td>
+                                            <td>{{  $merchandiser['recipient']  }}</td>
+                                            <td>{{  $merchandiser['country']  }}</td>
+                                            <td>{{  $merchandiser['city']  }}</td>
+                                            <td>{{  $merchandiser['payment_method']  }}</td>
+                                            <td>{{  $merchandiser['postcode']  }}</td>
+                                            <td>
+                                                {{  number_format($merchandiser['total_amount'])  }}
+                                            </td>
+                                            <td>
+                                                {{  number_format( $merchandiser['amount'] ) }}
+                                            </td>
+                                            <td>
+                                                @if ($merchandiser['paid'] == '1') 
+                                                <span class="badge bg-success-transparent">paid</span>
+                                                @else
+                                                <span class="badge bg-danger-transparent">Not paid </span>
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if ($merchandiser['done'] == 'completed')
+                                                <span class="badge bg-outline-primary">Completed</span>
+                                                @elseif($merchandiser['done'] == 'processing')
+                                                <span class="badge bg-outline-success">Processing</span>   
+                                                @elseif($merchandiser['done'] == 'declined')
+                                                <span class="badge bg-outline-success">Declined</span>   
+                                                @else
+                                                <span class="badge bg-outline-secondary">Pending</span>
+                                                @endif
+                                            </td>
+                                            <td>
+                                                {{  $merchandiser->created_at->format('m-d-y h:s A') }}
+                                            </td>
+                                            <td>
+                                                <div class="d-flex">
+                                                    <button type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $merchandiser->id }}" class="btn btn-sm btn-info btn-wave">
+                                                        <i class="ri-edit-line"></i>
+                                                        Edit
+                                                    </button>
+                                                    {{-- <form action="{{   route('admin.merchandise-delete', $merchandiser->id) }}" method="post">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button type="submit" class="btn btn-sm btn-danger btn-wave">
+                                                            <i class="ri-delete-bin-line align-middle  d-inline-block"></i>Delete
+                                                        </button>
+                                                    </form> --}}
+                                                    
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        @include('admin.merchandise.edit')
+                                    @endif    
                                 @endforeach
                             </tbody>
                         </table>

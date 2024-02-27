@@ -18,14 +18,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
-
-        $schedule->call(function () {
-            $sevenYears = Carbon::now()->subYears(7);
-            $users = User::where('retention' , '=', 1)->where('created_at', '<=', $sevenYears)->get();
-            foreach ($users as $user) {
-                $user->delete();
-            }
-        })->daily();
+        $schedule->command('user:restriction')->everyMinute();
+        
     }
 
     /**

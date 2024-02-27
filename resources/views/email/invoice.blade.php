@@ -321,17 +321,6 @@
             @else
                 <table>
                     <tr>
-                        <td>
-                            <table width="100%">
-                                <tr>
-                                    <td style="text-align:center; padding-top: 10px; padding-bottom:25px;">
-                                        <a href=""><img src="https://evokeedgelimited.com/assets/img/black-logo.png" width="180" alt="Logo"></a>
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                    <tr>
                         <td style="padding-top: 1.5rem; color: #13161D; font-size: 15px;line-height:50px;">
                             <div style="font-weight: bold;">Hi, {{ $order->user->name }}</div>
                         </td>
@@ -363,6 +352,17 @@
                     </tr>
                     <tr>
                         <td>
+                            <table width="100%">
+                                <tr>
+                                    <td style="text-align:center; padding-top: 10px; padding-bottom:25px;">
+                                        <a href=""><img src="https://evokeedgelimited.com/assets/img/black-logo.png" width="180" alt="Logo"></a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
                             <table width="100%" style="border-spacing: 0; padding-top:2rem;">
                                 <tr>
                                     <td class="layout">
@@ -370,6 +370,11 @@
                                             to us.</div>
                                         <a href="#">support@evokeedgellc.com</a>
                                     </td>
+                                </tr>
+                                <tr>
+                                    <div style="text-align: center">
+                                        8465 Keystone Crossing, <br> suite 115, <br> Indianapolis, IN, USA.
+                                    </div>
                                 </tr>
                             </table>
                         </td>

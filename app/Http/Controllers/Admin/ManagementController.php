@@ -24,6 +24,10 @@ class ManagementController extends Controller
     }
 
 
+    public function retentionUser(){
+        
+    }
+
 
     public function editUser($id){
         $user = User::find($id);

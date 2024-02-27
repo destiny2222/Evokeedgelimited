@@ -36,46 +36,47 @@
                         <tbody class="table-border-bottom-0">
                           @if (count($transaction) != 0)
                             @foreach ($transaction as $transactions)
-                            <tr>
-                                <td>{{ $loop->index + 1 }}</td>
-                                {{-- <td>{{ $transactions->user->name }}</td> --}}
-                                <td>{{ $transactions->user->lastname}}</td>
-                                <td>{{ $transactions->created_at->format('H-i-Y') }}</td>
-                                <td>{{ $transactions->amount }}</td>
-                                <td>
-                                    @if ($transactions->status == 0 )
-                                       <span class="badge bg-label-warning me-1">Pending</span>
-                                    @else
-                                      <span class="badge bg-label-success me-1">Approved</span>
-                                    @endif
-                                </td>
-                                <td>
-                                    {{ $transactions->created_at->format('m-d-y h:s A') }}
-                                </td>
-                                <td>
-                                    <div class="dropdown">
-                                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                            data-bs-toggle="dropdown">
-                                            <i class="bx bx-dots-vertical-rounded"></i>
-                                        </button>
-                                        <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="javascript:void(0);"  data-bs-toggle="modal"
-                                            data-bs-target="#modalTop{{ $transactions->id }}"><i
-                                                    class="bx bx-edit-alt me-1"></i> Edit</a>
-                                            <a class="dropdown-item" href="javascript:void(0);">
-                                              <form action="{{ route('admin.transaction.destroy', $transactions->id) }}" method="POST">
-                                                @method('delete')
-                                                @csrf
-                                                <button class="px-2 btn" onclick="return confirm('Are you sure?');><i class=" bx bxs-trash me-1"></i>Delete</button>
-                                              </form>
-                                            </a>
+                            @if (optional($transactions->user)->retention != 1)
+                                <tr>
+                                    <td>{{ $loop->index + 1 }}</td>
+                                    {{-- <td>{{ $transactions->user->name }}</td> --}}
+                                    <td>{{ $transactions->user->lastname}}</td>
+                                    <td>{{ $transactions->created_at->format('H-i-Y') }}</td>
+                                    <td>{{ $transactions->amount }}</td>
+                                    <td>
+                                        @if ($transactions->status == 0 )
+                                        <span class="badge bg-label-warning me-1">Pending</span>
+                                        @else
+                                        <span class="badge bg-label-success me-1">Approved</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        {{ $transactions->created_at->format('m-d-y h:s A') }}
+                                    </td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
+                                                data-bs-toggle="dropdown">
+                                                <i class="bx bx-dots-vertical-rounded"></i>
+                                            </button>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="javascript:void(0);"  data-bs-toggle="modal"
+                                                data-bs-target="#modalTop{{ $transactions->id }}"><i
+                                                        class="bx bx-edit-alt me-1"></i> Edit</a>
+                                                <a class="dropdown-item" href="javascript:void(0);">
+                                                <form action="{{ route('admin.transaction.destroy', $transactions->id) }}" method="POST">
+                                                    @method('delete')
+                                                    @csrf
+                                                    <button class="px-2 btn" onclick="return confirm('Are you sure?');><i class=" bx bxs-trash me-1"></i>Delete</button>
+                                                </form>
+                                                </a>
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                            </tr>
+                                    </td>
+                                </tr>
 
-                            @include('admin.transaction.edit')
-
+                                @include('admin.transaction.edit')
+                            @endif    
                             @endforeach
                           @endif
 

@@ -49,7 +49,20 @@
                             </ul>
                         </li>
                         <!-- End::slide -->
-                        
+                        <li class="slide has-sub">
+                            <a href="javascript:void(0);" class="side-menu__item">
+                                Retention  
+                                <i class="fe fe-chevron-right side-menu__angle"></i>
+                            </a>
+                            <ul class="slide-menu child2">
+                                <li class="slide">
+                                    <a href="{{  route('admin.profile-page') }}" class="side-menu__item">Users</a>
+                                </li>
+                                <li class="slide">
+                                    <a href="{{  route('admin.user-page') }}" class="side-menu__item">Users</a>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                 </li>    
                 <li class="slide has-sub open">

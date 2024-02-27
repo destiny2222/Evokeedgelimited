@@ -46,68 +46,70 @@
                             </thead>
                             <tbody> 
                                 @foreach ($localflight as $key => $localflights)
-                                <tr scope="row">
-                                    <th>{{  $key + 1 }}</th>
-                                    <th>{{  $localflights->user->name }}</th>
-                                    <td>{{  $localflights['airport_location_from'] }}</td>
-                                    <td>{{  $localflights['airport_location_to'] }}</td>
-                                    <td>{{  $localflights['flight_date'] }}</td>
-                                    <td>{{  $localflights['flight_class'] }}</td>
-                                    <td>
-                                        @if ($localflights['adult'] == null)
-                                          no specify
-                                        @else
-                                          {{  $localflights['adult'] }}
-                                        @endif
-                                    </td>
-                                    <td>
-                                        @if ($localflights['child'] == null)
-                                          no specify
-                                        @else
-                                          {{  $localflights['child'] }}</td>
-                                        @endif
-                                    <td>
-                                        @if ($localflights['infant'] == null)
-                                          no specify
-                                        @else
-                                            {{  $localflights['infant']  }}
-                                        @endif
-                                    </td>
-                                    <td>
-                                        @if ($localflights['on_way'] == null)
+                                  @if (optional($localflights->user)->retention != '1')
+                                    <tr scope="row">
+                                        <th>{{  $key + 1 }}</th>
+                                        <th>{{  $localflights->user->name }}</th>
+                                        <td>{{  $localflights['airport_location_from'] }}</td>
+                                        <td>{{  $localflights['airport_location_to'] }}</td>
+                                        <td>{{  $localflights['flight_date'] }}</td>
+                                        <td>{{  $localflights['flight_class'] }}</td>
+                                        <td>
+                                            @if ($localflights['adult'] == null)
                                             no specify
-                                        @else
-                                           {{  $localflights['on_way']  }}
-                                        @endif
-                                    </td>
-                                    <td>
-                                        @if ($localflights['round_trip'] == null)
-                                           no specify
-                                        @else
-                                           {{  $localflights['round_trip']  }}
-                                        @endif
-                                    </td>
-                                    <td>
-                                        {{  $localflights['gender']  }}
-                                    </td>
-                                    <th>{{  $localflights['title'] }}</th>
-                                    <th>{{  $localflights['date_birth_date'] }}</th>
-                                    <th>{{  $localflights['first_name'] }}</th>
-                                    <th>{{  $localflights['last_name'] }}</th>
-                                    <th>{{  $localflights['nationality'] }}</th>
-                                    <th>{{  $localflights['phone'] }}</th>
-                                    <th>{{  $localflights['email'] }}</th>
-                                    <th>{{  $localflights->created_at->format('m-d-y h:s A') }}</th>
-                                    <td>
-                                        <form action="{{   route('admin.Local-delete', $localflights->id) }}" method="post">
-                                            @csrf
-                                            @method('delete')
-                                            <button type="submit" class="btn btn-sm btn-danger btn-wave">
-                                                <i class="ri-delete-bin-line align-middle  d-inline-block"></i>Delete
-                                            </button>
-                                        </form>
-                                    </td>
-                                </tr>
+                                            @else
+                                            {{  $localflights['adult'] }}
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($localflights['child'] == null)
+                                            no specify
+                                            @else
+                                            {{  $localflights['child'] }}</td>
+                                            @endif
+                                        <td>
+                                            @if ($localflights['infant'] == null)
+                                            no specify
+                                            @else
+                                                {{  $localflights['infant']  }}
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($localflights['on_way'] == null)
+                                                no specify
+                                            @else
+                                            {{  $localflights['on_way']  }}
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($localflights['round_trip'] == null)
+                                            no specify
+                                            @else
+                                            {{  $localflights['round_trip']  }}
+                                            @endif
+                                        </td>
+                                        <td>
+                                            {{  $localflights['gender']  }}
+                                        </td>
+                                        <th>{{  $localflights['title'] }}</th>
+                                        <th>{{  $localflights['date_birth_date'] }}</th>
+                                        <th>{{  $localflights['first_name'] }}</th>
+                                        <th>{{  $localflights['last_name'] }}</th>
+                                        <th>{{  $localflights['nationality'] }}</th>
+                                        <th>{{  $localflights['phone'] }}</th>
+                                        <th>{{  $localflights['email'] }}</th>
+                                        <th>{{  $localflights->created_at->format('m-d-y h:s A') }}</th>
+                                        <td>
+                                            <form action="{{   route('admin.Local-delete', $localflights->id) }}" method="post">
+                                                @csrf
+                                                @method('delete')
+                                                <button type="submit" class="btn btn-sm btn-danger btn-wave">
+                                                    <i class="ri-delete-bin-line align-middle  d-inline-block"></i>Delete
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                  @endif  
                                 @endforeach
                             </tbody>
                         </table>

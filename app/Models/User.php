@@ -62,6 +62,37 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(CorporateService::class);
     }
 
+    public function tuitionpayment(){
+        return $this->hasMany(TuitionPayment::class);
+    }
+
+    public function tuitionPaymentWire(){
+        return $this->hasMany(TuitionPaymentWire::class);
+    }
+
+    // otherservice
+    public function otherservice(){
+        return $this->hasMany(OtherService::class);
+    }
+
+    // localfight
+    public function localfight(){
+        return $this->hasMany(LocalFlight::class);
+    }
+
+    // internationalflight
+    public function internationalflight(){
+        return $this->hasMany(InternationalFlight::class);
+    }
+
+    // mechadise
+    public function merchandise(){
+        return $this->hasMany(Merchandise::class);
+    }
+   
+
+
+
 
     public function kycIsRequired(){
         if($this->kyc){
@@ -80,6 +111,8 @@ class User extends Authenticatable implements MustVerifyEmail
     public function kycIsApproved(){
         return $this->kyc && $this->kyc->kyc_status == "APPROVED";   
     }
+
+    
 
     /**
      * The attributes that should be hidden for serialization.
