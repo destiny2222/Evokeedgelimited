@@ -65,6 +65,7 @@ class ManagementController extends Controller
             $user->update([
                 'image' => $image_file,
                 'name' => $request->name,
+                'last_name' => $request->last_name,
                 'email' => $request->email,
                 'phone' => $request->phone,
                 'state' => $request->state,
@@ -72,6 +73,8 @@ class ManagementController extends Controller
                 'country' => $request->country,
                 'address' => $request->address,
                 'referrence_id' => $request->referrence_id,
+                // 'retention'=>$request->retention,
+                // 'is_banned'=>$request->is_banned,
             ]);
     
             // Update userwallet amount if it exists
@@ -90,9 +93,6 @@ class ManagementController extends Controller
         
     }
     
-
-
-
     public function deleteUser($id){
             $user = User::findOrFail($id);
             if ($user) {
@@ -115,6 +115,30 @@ class ManagementController extends Controller
         $user = User::find($id);
         $user->update(['is_banned' => false]);
         return redirect()->route('admin.user-page')->with('success', 'Successfuly Unbanned');
+    }
+
+    public function unRetention($id){
+        $user = User::find($id);
+        $user->update(['retention' => false]);
+        return redirect()->route('admin.user-page')->with('success', 'Successfuly UnRetention');
+    }
+
+    public function retention($id){
+        $user = User::find($id);
+        $user->update(['retention' => true]);
+        return redirect()->route('admin.user-page')->with('success', 'Successfuly Retention');
+    }
+
+    public function accessToken($id){
+        $user = User::find($id);
+        $user->update(['access_token' => true]);
+        return redirect()->route('admin.user-page')->with('success', 'Successfuly Enabled');
+    }
+
+    public function unAccessToken($id){
+        $user = User::find($id);
+        $user->update(['access_token' => false]);
+        return redirect()->route('admin.user-page')->with('success', 'Successfuly Unenabled');
     }
 
 

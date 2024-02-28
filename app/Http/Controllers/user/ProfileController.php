@@ -21,7 +21,6 @@ class ProfileController extends Controller
         $user = User::where('id', auth()->user()->id)->first();
         if(password_verify($request->current_password,  $user->password)){
             $user->update([ 
-                // 'is_banned'=> true,
                 'retention'=> true,
             ]);
             Auth::logout();

@@ -276,7 +276,8 @@ class PageController extends Controller
     // Enable logging
     public function enableLogging(){
         $setting = Setting::first();
-        return view('admin.feature.index', compact('setting'));
+        $user = User::orderBy('id', 'desc')->get();
+        return view('admin.feature.index', compact('setting', 'user'));
     }
 
     
@@ -304,11 +305,5 @@ class PageController extends Controller
         Alert::success('Updated Sucessfully');
         return back();
     }
-
-
-
-    
-    
-
 
 }

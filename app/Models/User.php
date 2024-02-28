@@ -31,6 +31,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'state',
         'city',
         'password',
+        'access_token',
     ];
 
     // function getNameAttribute(){

@@ -89,13 +89,15 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'verified', 'che
         Route::post('/flight/International/store', [Usercontroller::class, 'flightInternationalBooking'])->name('international-store');
 
 
-        // corporate service subtitle
-        Route::post('/corporate/store', [Usercontroller::class, 'store'])->name('store-page');
-        Route::get('/corporate/service', [Usercontroller::class, 'Corporate'])->name('corporate-service-page');
-        Route::get('/corporate/service/payment', [Usercontroller::class, 'paymentPay'])->name('corporate-payment-page');
-        Route::post('/corporate/service/initiate/Payment', [PaymentController::class, 'CorporatePayment'])->name('corporate-payment');
-        Route::get('/corporate/service/initiate/callback', [PaymentController::class, 'handlecallback'])->name('corporate.payment.callback');
-
+        // corporate service subtitlecheckUserAccess
+        Route::group(['middleware'=>['userAccess']], function (){
+            Route::post('/corporate/store', [Usercontroller::class, 'store'])->name('store-page');
+            Route::get('/corporate/service', [Usercontroller::class, 'Corporate'])->name('corporate-service-page');
+            Route::get('/corporate/service/payment', [Usercontroller::class, 'paymentPay'])->name('corporate-payment-page');
+            Route::post('/corporate/service/initiate/Payment', [PaymentController::class, 'CorporatePayment'])->name('corporate-payment');
+            Route::get('/corporate/service/initiate/callback', [PaymentController::class, 'handlecallback'])->name('corporate.payment.callback');
+        });
+        
         
         // Merchanndise controller
         Route::get('/merchandise', [Usercontroller::class, 'Merchandise'])->name('merchandise.page');

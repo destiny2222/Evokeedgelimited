@@ -5,6 +5,7 @@ namespace App\Http;
 use App\Http\Middleware\Admin;
 use App\Http\Middleware\AdminLogged;
 use App\Http\Middleware\CheckBanned;
+use App\Http\Middleware\CheckUserAccess;
 use App\Http\Middleware\VerifyKYC;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -72,5 +73,6 @@ class Kernel extends HttpKernel
         'checkkyc'=>VerifyKYC::class,
         'checkBanned' => CheckBanned::class,
         'checkAdminRole' => \App\Http\Middleware\CheckAdminRole::class,
+        'userAccess'=> CheckUserAccess::class,
     ];
 }

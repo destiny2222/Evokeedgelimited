@@ -4,6 +4,7 @@ namespace App\Http\Requests\FeedBack;
 
 use App\Models\FeedBack;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Mail;
 
 class StoreRequest extends FormRequest
 {
@@ -34,11 +35,13 @@ class StoreRequest extends FormRequest
 
 
     public function createHelp(){
-        FeedBack::create([
-            'name' => $this->name,
-            'email' => $this->email,
-            'message' => $this->message,
-        ]);
+        $feedback = new FeedBack;
+        $feedback->name = $this->name;
+        $feedback->email = $this->email;
+        $feedback->message = $this->message;
+        if ($feedback->save()) {
+            Mail::to('sales@evokeedgelimited.com')->send(new \App\Mail\FeedBack($feedback));
+        }
         return true;
     }
 }

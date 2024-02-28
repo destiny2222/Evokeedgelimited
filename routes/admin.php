@@ -37,6 +37,7 @@ Route::prefix('admin')->name('admin.')->group(function (){
     Route::get('/merchandise', [MerchandiseController::class,'indexMerchandise'])->name('merchandise-page');
     // Corporate service
     Route::get('/corporate-service', [CorporateController::class,'corporatePage'])->name('corporate-service-page');
+    Route::put('/coporate/access', [PageController::class, 'accessCoporate'])->name('access.coporate.store');
     // otherservices otherService
     Route::get('/otherservices', [OtherServiceController::class, 'otherServicepage'])->name('otherservices-page');
     // flight controller
@@ -80,6 +81,10 @@ Route::prefix('admin')->name('admin.')->group(function (){
         
         Route::put('/user/{user}/ban', [ManagementController::class, 'banUser'])->name('users.ban');
         Route::put('/user/{user}/unban', [ManagementController::class, 'unbanUser'])->name('users.unban');
+        Route::put('/user/{user}/retention', [ManagementController::class, 'retention'])->name('users.retention');
+        Route::put('/user/{user}/unretention', [ManagementController::class, 'unRetention'])->name('users.unretention');
+        Route::put('/user/{user}/access', [ManagementController::class, 'accessToken'])->name('users.access');
+        Route::put('/user/{user}/unaccess', [ManagementController::class, 'unAccessToken'])->name('users.unaccess');
 
         Route::put('/merchandise/{id}/completed', [MerchandiseController::class,'MerchandiseCompleted'])->name('merchandise-complete');
         Route::delete('/merchandise/{id}/delete', [MerchandiseController::class,'MerchandiseDelete'])->name('merchandise-delete');

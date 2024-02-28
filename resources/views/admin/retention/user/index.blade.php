@@ -65,24 +65,38 @@
                                                 <td>{{  $usering->kyc ? $usering->kyc->kyc_status : 'Not Started' }}</td>
                                                 <td>{{  $usering->userwallet ? $usering->userwallet->balance : 0}}</td>
                                                 <td>{{  $usering->country }}</td>
-                                                {{-- <td>
+                                                <td>
                                                     <div class="hstack gap-2 fs-15">
                                                         <a href="{{ route('admin.edit-user-page', $usering->id) }}"
                                                             class="btn btn-primary btn-sm btn-info-transparent"><i
                                                                 class="ri-edit-line"></i></a>
                                                         
-                                                        <a href="{{ route('admin.users.ban', $usering->id) }}" onclick="event.preventDefault(); document.getElementById('ban-{{ $usering->id }}').submit();"
-                                                            class="btn btn-sm btn-info-transparent btn-wave">
-                                                            Ban User
-                                                        </a>
-                                                        <a href="{{ route('admin.users.unban', $usering->id) }}" onclick="event.preventDefault(); document.getElementById('delete-unban-{{ $usering->id }}').submit();"
-                                                            class="btn btn-sm btn-warning-transparent btn-wave">
-                                                            Unban User
-                                                        </a>
-                                                        <a href="{ route('admin.user-delete', $usering->id) }}" onclick="event.preventDefault(); document.getElementById('delete-form').submit();"
+                                                        @if ($usering->is_banned == 0)
+                                                            <a href="{{ route('admin.users.ban', $usering->id) }}" onclick="event.preventDefault(); document.getElementById('ban-{{ $usering->id }}').submit();"
+                                                                class="btn btn-sm btn-info-transparent btn-wave">
+                                                                Ban User
+                                                            </a>
+                                                            @else
+                                                            <a href="{{ route('admin.users.unban', $usering->id) }}" onclick="event.preventDefault(); document.getElementById('delete-unban-{{ $usering->id }}').submit();"
+                                                                class="btn btn-sm btn-warning-transparent btn-wave">
+                                                                Unban User
+                                                            </a>
+                                                        @endif
+                                                        @if ($usering->retention == 0)
+                                                            <a href="{{ route('admin.users.retention', $usering->id) }}" onclick="event.preventDefault(); document.getElementById('retention-{{ $usering->id }}').submit();"
+                                                                class="btn btn-sm btn-info-transparent btn-wave">
+                                                                Retention User
+                                                            </a>
+                                                            @else
+                                                            <a href="{{ route('admin.users.unretention', $usering->id) }}" onclick="event.preventDefault(); document.getElementById('delete-unretention-{{ $usering->id }}').submit();"
+                                                                class="btn btn-sm btn-warning-transparent btn-wave">
+                                                                Unretention User
+                                                            </a>
+                                                        @endif
+                                                        {{-- <a href="{ route('admin.user-delete', $usering->id) }}" onclick="event.preventDefault(); document.getElementById('delete-form').submit();"
                                                             class="btn btn-sm btn-danger-transparent btn-wave"><i
                                                                 class="ri-delete-bin-line"></i>
-                                                        </a>
+                                                        </a> --}}
                                                         <form id="ban-{{ $usering->id }}" class="d-none" action="{{ route('admin.users.ban', $usering->id) }}" method="post">
                                                             @method('put')
                                                             @csrf
@@ -91,12 +105,20 @@
                                                             @method('put')
                                                             @csrf
                                                         </form>
-                                                        <form id="delete-form" clas="d-none" onclick="return confirm('Are you sure?');" action="{{ route('admin.user-delete', $usering->id) }}" method="post">
+                                                        <form id="retention-{{ $usering->id }}" class="d-none" action="{{ route('admin.users.retention', $usering->id) }}" method="post">
+                                                            @method('put')
+                                                            @csrf
+                                                        </form>
+                                                        <form id="delete-unretention-{{ $usering->id }}" class="d-none" action="{{ route('admin.users.unretention', $usering->id) }}" method="post">
+                                                            @method('put')
+                                                            @csrf
+                                                        </form>
+                                                        {{-- <form id="delete-form" clas="d-none" onclick="return confirm('Are you sure?');" action="{{ route('admin.user-delete', $usering->id) }}" method="post">
                                                             method('delete')
                                                             csrf
-                                                        </form>        
+                                                        </form>         --}}
                                                     </div>
-                                                </td> --}}
+                                                </td>
                                             </tr>
                                         @endif    
                                     @endforeach

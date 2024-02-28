@@ -65,4 +65,6 @@ class RetentionController extends Controller
         $internationalflight = InternationalFlight::paginate(10);
         return view('admin.retention.flight.internationalflight', compact('internationalflight'));
     }
+
+    
 }
