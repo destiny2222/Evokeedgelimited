@@ -88,12 +88,12 @@
                                                         <i class="zmdi zmdi-email text-muted" aria-hidden="true"></i>
                                                     </a>
                                                     <input class="input100 border-start-0 form-control ms-0 @error('email') is-valid  @enderror" name="email" type="email" placeholder="Email">
-                                                    @error('email')
-                                                        <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
                                                 </div>
+                                                @error('email')
+                                                    <span class=" text-danger" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                                 <div class="wrap-input100 validate-input input-group" id="Password-toggle">
                                                     <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                         <i class="zmdi zmdi-eye text-muted" aria-hidden="true"></i>
