@@ -48,6 +48,7 @@
                                                             <span class="avatar me-2 avatar-rounded">
                                                                 @if(pathinfo($events->documents, PATHINFO_EXTENSION) == 'pdf')
                                                                 <iframe id="iframe_view" src="{{ asset('storage/kyc/document/'.$events->documents) }}" frameborder="0" scrolling="no"   style="width:60px; height:50px;" ></iframe>
+                                                                <span class="btn btn-primary" id="fullscreen-button">View</span>
                                                                 @else
                                                                 <img src="{{ asset('storage/kyc/document/'.$events->documents) }}" alt="img" class="fullscreen-element"  />
                                                                 @endif

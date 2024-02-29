@@ -322,14 +322,14 @@
                                 <h4>Proof of Identification:</h4>
                                 <p>Driver's license, National ID Card, Nin Slip, Passport, Voters Card</p>
                                 <div>
-                                    <input type="file" class="dropify"  name="documents">
+                                    <input type="file" class="dropify" required name="documents">
                                 </div>
                             </div>
                             <div class="col-lg-12 col-sm-12 mb-4">
                                 <h4>Proof of Address</h4>
                                 <p>Utility Bill or Bank Statement</p>
                                 <div >
-                                    <input  type="file"  name="proof_of_address"  class="dropify" data-bs-height="180">
+                                    <input  type="file"  name="proof_of_address" required class="dropify" data-bs-height="180">
                                 </div>
                             </div>
                         </div>
