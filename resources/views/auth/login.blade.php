@@ -174,17 +174,6 @@
     <!-- Switcher js -->
     <script src="/assetss/assets/switcher/js/switcher.js"></script>
     @include('partials.message')
-
-    <script>
-        function checkRecaptcha() {
-            if (grecaptcha.getResponse().length === 0) {
-                alert("Please complete the reCAPTCHA");
-                return false;
-            } else {
-                return true;
-            }
-        }
-    </script>
 </body>
 
 </html>

@@ -1,104 +1,124 @@
 <!doctype html>
-<html lang="zxx" class="theme-light">
-    
+<html lang="en" dir="ltr">
+
 <head>
-        <!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <!-- Links of CSS files -->
-        <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
-        <link rel="stylesheet" href="/assets/css/animate.min.css">
-        <link rel="stylesheet" href="/assets/css/fontawesome.min.css">
-        <link rel="stylesheet" href="/assets/css/flaticon.css">
-        <link rel="stylesheet" href="/assets/css/magnific-popup.min.css">
-        <link rel="stylesheet" href="/assets/css/nice-select.css">
-        <link rel="stylesheet" href="/assets/css/slick.min.css">
-        <link rel="stylesheet" href="/assets/css/owl.carousel.min.css">
-        <link rel="stylesheet" href="/assets/css/owl.theme.default.min.css">
-        <link rel="stylesheet" href="/assets/css/meanmenu.css">
-		<link rel="stylesheet" href="/assets/css/odometer.min.css">
-        <link rel="stylesheet" href="/assets/css/style.css">
-        <link rel="stylesheet" href="/assets/css/responsive.css">
-        <link rel="stylesheet" href="/assets/css/dark-style.css">
+    <!-- META DATA -->
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
 
-        <title>EvokeEdge Limited</title>
+    <!-- FAVICON -->
+    <link rel="shortcut icon" type="image/x-icon" href="../assets/images/brand/favicon.ico">
 
-        <link rel="icon" type="image/png" href="assets/img/favicon.png">
-    </head>
+    <!-- TITLE -->
+    <title></title>
 
-        <!-- Preloader -->
-        {{-- <div class="preloader">
-            <div class="loader">
-                <div class="shadow"></div>
-                <div class="box"></div>
-            </div>
-        </div> --}}
-        <!-- End Preloader -->
+    <!-- BOOTSTRAP CSS -->
+    <link id="style" href="/assetss/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-        <!-- Start Login Area -->
-        <section class="login-area">
-            <div class="row m-0">
+    <!-- STYLE CSS -->
+     <link href="/assetss/assets/css/style.css" rel="stylesheet">
 
-                <div class="col-lg-12 col-md-12 p-0">
-                    <div class="login-content">
-                        <div class="d-table">
-                            <div class="d-table-cell">
-                                <div class="login-form">
+	<!-- Plugins CSS -->
+    <link href="/assetss/assets/css/plugins.css" rel="stylesheet">
 
-                                    <h3>Reset Password</h3>
+    <!--- FONT-ICONS CSS -->
+    <link href="/assetss/assets/css/icons.css" rel="stylesheet">
 
-                                    @if (session('status'))
-                                        <div class="mb-4 font-medium text-sm text-green-600">
-                                            {{ session('status') }}
-                                        </div>
-                                    @endif
-                                    <form action="{{ route('password.email') }}" method="POST">
-                                        @csrf
-                                        <div class="form-group">
-                                            <input type="email" name="email" id="email" placeholder="Your email address" class="form-control @error('email')  is-valid  @enderror">
-                                            @error('email')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
-                                        </div>
+    <!-- INTERNAL Switcher css -->
+    <link href="/assetss/assets/switcher/css/switcher.css" rel="stylesheet">
+    <link href="/assetss/assets/switcher/demo.css" rel="stylesheet">
 
-                                        <button type="submit" class="btn btn-primary">Reset</button>
-                                    </form>
-                                </div>
-                            </div>
+    <style>
+         .logo-login{
+            width: 10%;
+         }
+        @media (max-width: 768px){
+            .logo-login{
+                width: 30%;
+            }
+        }
+    </style>
+</head>
+
+<body class="app sidebar-mini ltr login-img log">
+
+
+    <div class="page">
+        <div class="">
+            <!-- Theme-Layout -->
+
+            <!-- CONTAINER OPEN -->
+
+
+            <!-- CONTAINER OPEN -->
+            <div class="container-login100">
+                <div class="wrap-login100 p-6">
+                    @if (session('status'))
+                        <div class="mb-4 alert alert-success text-sm text-success" role="alert">
+                            {{ session('status') }}
                         </div>
+                    @endif
+                    <form class="login100-form" action="{{ route('password.email') }}" method="POST">
+                        @csrf
+                        <span class="login100-form-title pb-5">
+                           {{ __('Forgot Password')  }}
+                        </span>
+                        <p class="text-muted">Enter the email address registered on your account</p>
+                        <div class="wrap-input100 validate-input input-group">
+                            <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                <i class="zmdi zmdi-email" aria-hidden="true"></i>
+                            </a>
+                            <input class="input100 border-start-0 ms-0 form-control" type="email" name="email" placeholder="Email">
+                        </div>
+                        @error('email')
+                            <span class="invalid-" style="color: red" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                        <div class="submit text-center">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                    <div class="text-center mt-4">
+                        <p class="text-dark mb-0 d-inline-flex">Forgot It ?<a class="text-primary ms-1" href="/login">Send me Back</a></p>
                     </div>
                 </div>
             </div>
-        </section>
-        <!-- End Login Area -->
+        </div>
+    </div>
+    <!--END PAGE -->
 
-        <!-- Dark/Light Toggle -->
-		<!-- <div class="dark-version">
-            <label id="switch" class="switch">
-                <input type="checkbox" onchange="toggleTheme()" id="slider">
-                <span class="slider round"></span>
-            </label>
-        </div> -->
 
-        <!-- Links of JS files -->
-        <script src="/assets/js/jquery.min.js"></script>
-        <script src="/assets/js/bootstrap.bundle.min.js"></script>
-        <script src="/assets/js/meanmenu.js"></script>
-        <script src="/assets/js/nice-select.min.js"></script>
-        <script src="/assets/js/slick.min.js"></script>
-        <script src="/assets/js/magnific-popup.min.js"></script>
-		<script src="/assets/js/appear.min.js"></script>
-        <script src="/assets/js/odometer.min.js"></script>
-        <script src="/assets/js/owl.carousel.min.js"></script>
-        <script src="/assets/js/parallax.min.js"></script>
-        <script src="/assets/js/wow.min.js"></script>
-        <script src="/assets/js/form-validator.min.js"></script>
-        <script src="/assets/js/contact-form-script.js"></script>
-        <script src="/assets/js/jquery.ajaxchimp.min.js"></script>
-        <script src="/assets/js/main.js"></script>
-    </body>
+       <!-- JQUERY JS -->
+    <script src="/assetss/assets/js/jquery.min.js"></script>
+
+    <!-- BOOTSTRAP JS -->
+    <script src="/assetss/assets/plugins/bootstrap/js/popper.min.js"></script>
+    <script src="/assetss/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- SHOW PASSWORD JS -->
+    <script src="/assetss/assets/js/show-password.min.js"></script>
+
+    <!-- Perfect SCROLLBAR JS-->
+    <script src="/assetss/assets/plugins/p-scroll/perfect-scrollbar.js"></script>
+
+    <!-- Color Theme js -->
+    <script src="/assetss/assets/js/themeColors.js"></script>
+
+    <!-- CUSTOM JS -->
+    <script src="/assetss/assets/js/custom.js"></script>
+
+    <!-- Custom-switcher -->
+    <script src="/assetss/assets/js/custom-swicher.js"></script>
+
+    <!-- Switcher js -->
+    <script src="/assetss/assets/switcher/js/switcher.js"></script>
+    {{-- @include('partials.message') --}}
+</body>
 
 </html>
