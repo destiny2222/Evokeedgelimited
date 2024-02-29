@@ -45,15 +45,9 @@
                                 <label for="">Status</label>
                                 <input type="text" name="status" value="{{  $kyc->status }}" class="form-control">
                             </div>
-                            <div class="col-lg-12 mb-4">
-                                <label for="">Proof of Address</label>
-                                <input type="file" name="proof_of_address" id="" value="{{ $kyc->proof_of_address }}" class="form-control">
-                            </div>
-                            <div class="col-lg-12 mb-4">
-                                <label for="">Proof of Identification</label>
-                                <input type="file" name="documents" id="" value="{{ $kyc->documents }}" class="form-control">
-                            </div>
-                            
+                            <input type="file" hidden name="proof_of_address" id="" value="{{ $kyc->proof_of_address }}" class="form-control">                            
+                            <input type="file" hidden name="documents" id="" value="{{ $kyc->documents }}" class="form-control">
+                        
                             <div class="col-lg-12 mb-4">
                                 <label class="form-label text-black fw-bold" for="basic-default-fullname">{{ __('Kyc Status') }}</label>
                                 <select name="kyc_status" id="" class="form-control">
@@ -73,4 +67,8 @@
             </div>
         </div>
     </div>
+    <script>
+        <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
+
+    </script>
 @endsection

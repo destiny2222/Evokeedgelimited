@@ -47,25 +47,25 @@
                                                         <div class="d-flex align-items-center">
                                                             <span class="avatar me-2 avatar-rounded">
                                                                 @if(pathinfo($events->documents, PATHINFO_EXTENSION) == 'pdf')
-                                                                <iframe src="{{ asset('storage/kyc/document/'.$events->documents) }}" style="width:60px; height:50px;"></iframe>
+                                                                <iframe id="iframe_view" src="{{ asset('storage/kyc/document/'.$events->documents) }}" frameborder="0" scrolling="no"   style="width:60px; height:50px;" ></iframe>
                                                                 @else
-                                                                <img src="{{ asset('storage/kyc/document/'.$events->documents) }}" alt="img" class="fullscreen-img" />
+                                                                <img src="{{ asset('storage/kyc/document/'.$events->documents) }}" alt="img" class="fullscreen-element"  />
                                                                 @endif
                                                             </span>
                                                         </div>
                                                     </td>
                                                     <td scope="row">
                                                         <div class="d-flex align-items-center">
-                                                            <span class="avatar me-2 avatar-rounded preview-document" data-document-path="{{ asset('storage/kyc/document/'.$events->documents) }}">
-                                                                @if(pathinfo($events->documents, PATHINFO_EXTENSION) == 'pdf')
-                                                                    <img src="{{ asset('path/to/pdf-icon.png') }}" alt="PDF Icon" />
+                                                            <span class="avatar me-2 avatar-rounded">
+                                                                @if(pathinfo($events->proof_of_address, PATHINFO_EXTENSION) == 'pdf')
+                                                                    <iframe id="iframe_view" src="{{ asset('storage/kyc/proof/'.$events->proof_of_address) }}" frameborder="0" scrolling="no"   style="width:60px; height:50px;"></iframe>
+                                                                    <span class="btn btn-primary" id="fullscreen-button">View</span>
                                                                 @else
-                                                                    <img src="{{ asset('storage/kyc/document/'.$events->documents) }}" alt="img" class="fullscreen-img" />
+                                                                    <img src="{{ asset('storage/kyc/proof/'.$events->proof_of_address) }}" alt="img" class="fullscreen-element"  />
                                                                 @endif
                                                             </span>
                                                         </div>
                                                     </td>
-                                                    
                                                     <td scope="row">
                                                         <span>{{ $events->user->referrence_id  }}</span>
                                                     </td>                                                           
@@ -143,68 +143,51 @@
                 {{-- {{ $deposit->links() }} --}}
             </div>
         </div>
-    </div>
-
+    </div> 
+    <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
     <script>
-        const previewDocuments = document.querySelectorAll('.preview-document');
-    
-        previewDocuments.forEach(documentElement => {
-            documentElement.addEventListener('click', () => {
-                const documentPath = documentElement.dataset.documentPath;
-                const isPdf = documentPath.toLowerCase().endsWith('.pdf');
-    
-                if (isPdf) {
-                    const fullscreenIframe = document.createElement('iframe');
-                    fullscreenIframe.src = documentPath;
-                    fullscreenIframe.classList.add('fullscreen-iframe');
-    
-                    const closeButton = document.createElement('button');
-                    closeButton.innerText = 'Close';
-                    closeButton.classList.add('fullscreen-close');
-    
-                    fullscreenContainer.innerHTML = '';
-                    fullscreenContainer.appendChild(fullscreenIframe);
-                    fullscreenContainer.appendChild(closeButton);
-                    fullscreenContainer.style.display = 'flex';
-    
-                    closeButton.addEventListener('click', () => {
-                        fullscreenContainer.style.display = 'none';
-                    });
+        const pdfIframe = document.getElementById("iframe_view");
+        const fullscreenButton = document.getElementById("fullscreen-button");
+
+        fullscreenButton.addEventListener("click", () => {
+            if (document.fullscreenEnabled) {
+                if (pdfIframe.requestFullscreen) {
+                    pdfIframe.requestFullscreen();
+                } else if (pdfIframe.mozRequestFullScreen) {
+                    pdfIframe.mozRequestFullScreen();
+                } else if (pdfIframe.webkitRequestFullscreen) {
+                    pdfIframe.webkitRequestFullscreen();
                 }
-            });
+            }
         });
     </script>
-    
     <script>
-        
-        const fullscreenImages = document.querySelectorAll('.fullscreen-img');
-        const fullscreenContainer = document.createElement('div');
-        fullscreenContainer.classList.add('fullscreen-container');
-        document.body.appendChild(fullscreenContainer);
-    
-        fullscreenImages.forEach(image => {
-            image.addEventListener('click', () => {
-                const fullscreenImage = document.createElement('img');
-                fullscreenImage.src = image.src;
-                fullscreenImage.classList.add('fullscreen-image');
-                
-                const closeButton = document.createElement('button');
-                closeButton.innerText = 'Close';
-                closeButton.classList.add('fullscreen-close');
-    
-                fullscreenContainer.innerHTML = '';
-                fullscreenContainer.appendChild(fullscreenImage);
-                fullscreenContainer.appendChild(closeButton);
-                fullscreenContainer.style.display = 'flex';
-    
-                closeButton.addEventListener('click', () => {
-                    fullscreenContainer.style.display = 'none';
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.fullscreen-element').forEach(function (element) {
+                element.addEventListener('click', function () {
+                    toggleFullScreen(element);
                 });
             });
         });
+
+        function toggleFullScreen(element) {
+            if (!document.fullscreenElement) {
+                if (element.requestFullscreen) {
+                    element.requestFullscreen().catch(err => {
+                        console.error(`Error attempting to enable full-screen mode: ${err.message}`);
+                    });
+                } else if (element.webkitRequestFullscreen) { /* Safari */
+                    element.webkitRequestFullscreen().catch(err => {
+                        console.error(`Error attempting to enable full-screen mode: ${err.message}`);
+                    });
+                }
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+            }
+        }
     </script>
-    
-    
 @endsection
 
 
