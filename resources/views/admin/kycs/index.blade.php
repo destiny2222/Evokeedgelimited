@@ -47,8 +47,8 @@
                                                         <div class="d-flex align-items-center">
                                                             <span class="avatar me-2 avatar-rounded">
                                                                 @if(pathinfo($events->documents, PATHINFO_EXTENSION) == 'pdf')
-                                                                <iframe id="iframe_view" src="{{ asset('storage/kyc/document/'.$events->documents) }}" frameborder="0" scrolling="no"   style="width:60px; height:50px;" ></iframe>
-                                                                <span class="btn btn-primary" id="fullscreen-button">View</span>
+                                                                <iframe id="pdf-iframe1" src="{{ asset('storage/kyc/document/'.$events->documents) }}" frameborder="0" scrolling="no"   style="width:60px; height:50px;" ></iframe>
+                                                                <span class="btn btn-primary fullscreen-button" data-iframe-id="pdf-iframe1">View</span>
                                                                 @else
                                                                 <img src="{{ asset('storage/kyc/document/'.$events->documents) }}" alt="img" class="fullscreen-element"  />
                                                                 @endif
@@ -59,8 +59,8 @@
                                                         <div class="d-flex align-items-center">
                                                             <span class="avatar me-2 avatar-rounded">
                                                                 @if(pathinfo($events->proof_of_address, PATHINFO_EXTENSION) == 'pdf')
-                                                                    <iframe id="iframe_view" src="{{ asset('storage/kyc/proof/'.$events->proof_of_address) }}" frameborder="0" scrolling="no"   style="width:60px; height:50px;"></iframe>
-                                                                    <span class="btn btn-primary" id="fullscreen-button">View</span>
+                                                                    <iframe id="pdf-iframe2" src="{{ asset('storage/kyc/proof/'.$events->proof_of_address) }}" frameborder="0" scrolling="no"   style="width:60px; height:50px;"></iframe>
+                                                                    <span class="btn btn-primary fullscreen-button" data-iframe-id="pdf-iframe2">View</span>
                                                                 @else
                                                                     <img src="{{ asset('storage/kyc/proof/'.$events->proof_of_address) }}" alt="img" class="fullscreen-element"  />
                                                                 @endif
@@ -147,20 +147,24 @@
     </div> 
     <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
     <script>
-        const pdfIframe = document.getElementById("iframe_view");
-        const fullscreenButton = document.getElementById("fullscreen-button");
+        const fullscreenButtons = document.querySelectorAll(".fullscreen-button");
 
-        fullscreenButton.addEventListener("click", () => {
-            if (document.fullscreenEnabled) {
-                if (pdfIframe.requestFullscreen) {
-                    pdfIframe.requestFullscreen();
-                } else if (pdfIframe.mozRequestFullScreen) {
-                    pdfIframe.mozRequestFullScreen();
-                } else if (pdfIframe.webkitRequestFullscreen) {
-                    pdfIframe.webkitRequestFullscreen();
-                }
+fullscreenButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+        const iframeId = button.getAttribute("data-iframe-id");
+        const pdfIframe = document.getElementById(iframeId);
+
+        if (document.fullscreenEnabled) {
+            if (pdfIframe.requestFullscreen) {
+                pdfIframe.requestFullscreen();
+            } else if (pdfIframe.mozRequestFullScreen) {
+                pdfIframe.mozRequestFullScreen();
+            } else if (pdfIframe.webkitRequestFullscreen) {
+                pdfIframe.webkitRequestFullscreen();
             }
-        });
+        }
+    });
+});
     </script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
