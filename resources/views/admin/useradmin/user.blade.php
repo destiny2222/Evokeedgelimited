@@ -82,7 +82,7 @@
                                                                 Unban User
                                                             </a>
                                                         @endif
-                                                        {{-- @if ($usering->retention == 0)
+                                                        @if ($usering->retention == 0)
                                                             <a href="{{ route('admin.users.retention', $usering->id) }}" onclick="event.preventDefault(); document.getElementById('retention-{{ $usering->id }}').submit();"
                                                                 class="btn btn-sm btn-info-transparent btn-wave">
                                                                 Retention User
@@ -92,7 +92,7 @@
                                                                 class="btn btn-sm btn-warning-transparent btn-wave">
                                                                 Unretention User
                                                             </a>
-                                                        @endif --}}
+                                                        @endif
                                                         @if ($usering->access_token == 0)
                                                             <a href="{{ route('admin.users.access', $usering->id) }}" onclick="event.preventDefault(); document.getElementById('access-{{ $usering->id }}').submit();"
                                                                 class="btn btn-sm btn-info-transparent btn-wave">
@@ -116,14 +116,14 @@
                                                             @method('put')
                                                             @csrf
                                                         </form>
-                                                        {{-- <form id="retention-{{ $usering->id }}" class="d-none" action="{{ route('admin.users.retention', $usering->id) }}" method="post">
+                                                        <form id="retention-{{ $usering->id }}" class="d-none" action="{{ route('admin.users.retention', $usering->id) }}" method="post">
                                                             @method('put')
                                                             @csrf
                                                         </form>
                                                         <form id="delete-unretention-{{ $usering->id }}" class="d-none" action="{{ route('admin.users.unretention', $usering->id) }}" method="post">
                                                             @method('put')
                                                             @csrf
-                                                        </form> --}}
+                                                        </form>
                                                         <form id="access-{{ $usering->id }}" class="d-none" action="{{ route('admin.users.access', $usering->id) }}" method="post">
                                                             @method('put')
                                                             @csrf

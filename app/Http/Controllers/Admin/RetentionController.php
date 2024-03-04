@@ -11,60 +11,37 @@ use App\Models\Merchandise;
 use App\Models\OtherService;
 use App\Models\TuitionPayment;
 use App\Models\TuitionPaymentWire;
+use App\Models\User;
 use App\Models\VisaApplication;
 use Illuminate\Http\Request;
 
 class RetentionController extends Controller
 {
-    public function tuition(){
-        $tuition = TuitionPayment::orderBy('id', 'desc')->paginate(10);
-        return view('admin.retention.tuition.index', compact('tuition'));
-    }
-    public function tuitionWire(){
-        $tuition = TuitionPaymentWire::orderBy('id', 'desc')->paginate(10);
-        return view('admin.retention.tuition.wiretransfer', compact('tuition'));
-    }
 
-    
-    public function corporate(){
-        $corporate = CorporateService::paginate(10);
-        return view('admin.retention.corporate.index', compact('corporate'));
+    public function retentedUserDetails($id){
+        $user = User::find($id);
+        $tuition = TuitionPayment::where('user_id', $user->id)->paginate(10);
+        $tuitionwire = TuitionPaymentWire::where('user_id', $user->id)->paginate(10);
+        $corporate = CorporateService::where('user_id', $user->id)->get();
+        $visaapplication = VisaApplication::where('user_id', $user->id)->where('visa_type', 'usa')->paginate(10);
+        $visaapplicationcanda = VisaApplication::where('user_id', $user->id)->where('visa_type', 'canada')->paginate(10);
+        $merchandise = Merchandise::where('user_id', $user->id)->paginate(10);
+        $otherservice = OtherService::where('user_id', $user->id)->paginate(10);
+        $kyc = Kyc::where('user_id', $user->id)->get();
+        $localflight = LocalFlight::where('user_id', $user->id)->paginate(10);
+        $internationalflight = InternationalFlight::where('user_id', $user->id)->paginate(10);
+        return view('admin.retention.user.user_details',[
+            'tuition'=>$tuition,
+            'tuitionwire'=>$tuitionwire,
+            'corporate'=>$corporate,
+            'visaapplication'=>$visaapplication,
+            'visaapplicationcanda'=>$visaapplicationcanda,
+            'merchandise'=>$merchandise,
+            'otherservice'=>$otherservice,
+            'kyc'=>$kyc,
+            'localflight'=>$localflight,
+            'internationalflight'=>$internationalflight,
+        ]);
     }
-
-    public function visaApplicationVisa(){
-        $visaapplication = VisaApplication::where('visa_type', 'usa')->paginate(10);
-        return view('admin.retention.visaapplication.visa', compact('visaapplication'));
-    }
-    public function visaApplicationV(){
-        $visaapplication = VisaApplication::where('visa_type', 'canada')->paginate(10);
-        return view('admin.retention.visaapplication.canada',compact('visaapplication'));
-    }
-
-    public function indexMerchande(){
-        $merchandise = Merchandise::paginate(10);
-        return view('admin.retention.merchandise.index', compact('merchandise'));
-    }
-
-    public function otherServicepage(){
-        $otherservice = OtherService::orderBy('id', 'desc')->paginate(10);
-        return view('admin.retention.otherservice.index', compact('otherservice'));
-    }
-
-
-    public function kycretention(){
-        $kyc = Kyc::orderBy('id', 'desc')->get();
-        return view('admin.retention.kyc.index', compact('kyc'));
-    }
-
-    public function LocalFLight(){
-        $localflight = LocalFlight::paginate(10);
-        return view('admin.retention.flight.localflight', compact('localflight'));
-    }
-
-    public function InternationalFLight(){
-        $internationalflight = InternationalFlight::paginate(10);
-        return view('admin.retention.flight.internationalflight', compact('internationalflight'));
-    }
-
     
 }

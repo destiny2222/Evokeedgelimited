@@ -19,7 +19,7 @@
                 <div class="tab-content">
                   <div class="tab-pane active" id="tab5">
                     <div class="table-responsive">
-                      <table id="data-table" class="table table-bordered text-nowrap mb-0">
+                      <table id="example" class="table table-bordered text-nowrap mb-0">
                         <thead class="border-top">
                           <tr>
                             <th class="bg-transparent border-bottom-0" style="width: 5%;">S/N</th>
@@ -87,8 +87,6 @@
                 </div>
               </div>
             </div>
-            {{ $tuitionpayment->links() }}
-            {{ $tuitionpaymentwire->links() }}
           </div>
         </div>
       </div>
@@ -96,5 +94,45 @@
   </div>
 </div>
 <!-- ROW-4 END -->
+@push('scripts')
+    <script>
+      function applyDataTable(){
+  
+        $('#example').DataTable( {
+                dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: 'print',
+                        text: 'Print all'
+                    },
+                    {
+                        extend: 'print',
+                        text: 'Print current page',
+                        exportOptions: {
+                            modifier: {
+                                page: 'current'
+                            }
+                        }
+                    }
+                ],
+                select: true
+            } );
+        
+        
+        }
+
+
+    $(document).ready(function() {
+        $('#trigger-update').click(function() {
+            $('#example').DataTable().destroy();
+            setTimeout(function() {
+                applyDataTable();
+            }, 2000);
+        });
+
+        applyDataTable(); 
+    });
+    </script>
+@endpush
    
 @endsection

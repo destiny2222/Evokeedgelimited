@@ -58,16 +58,7 @@ Route::prefix('admin')->name('admin.')->group(function (){
     Route::get('Baggage', [PageController::class, 'baggageView'])->name('baggage-page');
 
     // Retention users routes
-    Route::get('retention/tuition', [RetentionController::class, 'tuition'])->name('tuition.retention.index');
-    Route::get('retention/tuitionWire', [RetentionController::class, 'tuitionWire'])->name('tuitionWire.retention.index');
-    Route::get('retention/corporate', [RetentionController::class, 'corporate'])->name('corporate.retention.index');
-    Route::get('retention/visaApplication/usa', [RetentionController::class, 'visaApplicationVisa'])->name('visaApplication.retention.index');
-    Route::get('retention/visaApplication/canada', [RetentionController::class, 'visaApplicationV'])->name('visaApplicationV.retention.index');
-    Route::get('retention/merchandise', [RetentionController::class, 'indexMerchande'])->name('merchandise.retention.index');
-    Route::get('retention/otherService', [RetentionController::class, 'otherServicepage'])->name('otherservice.retention.index');
-    Route::get('retention/kyc', [RetentionController::class, 'kycretention'])->name('kyc.retention.index');
-    Route::get('retention/localflight', [RetentionController::class, 'LocalFLight'])->name('localflight.retention.index');
-    Route::get('retention/international', [RetentionController::class, 'InternationalFLight'])->name('international.retention.index');
+    Route::get('retention/{id}/details', [RetentionController::class, 'retentedUserDetails'])->name('user.retention.details');
     Route::get('retention/user', [ManagementController::class, 'retentionUser'])->name('user.retention.index');
     
     Route::middleware(['auth:admin', 'checkAdminRole:administrator'])->group(function () {

@@ -63,9 +63,7 @@
                                                 <td>{{  $usering->updated_at }}</td>
                                                 <td>
                                                     <div class="hstack gap-2 fs-15">
-                                                        
-                                                        <a href="{{ route('admin.user-delete', $usering->id) }}"
-                                                            class="btn btn-sm btn-primary-transparent btn-wave">
+                                                        <a href="{{ route('admin.user.retention.details', $usering->id) }}" class="btn btn-sm btn-primary-transparent btn-wave">
                                                             View Details
                                                         </a>
                                                         @if ($usering->retention == 0)
@@ -79,22 +77,6 @@
                                                                 Unretention User
                                                             </a>
                                                         @endif
-                                                        {{-- <a href="{ route('admin.user-delete', $usering->id) }}" onclick="event.preventDefault(); document.getElementById('delete-form').submit();"
-                                                            class="btn btn-sm btn-danger-transparent btn-wave"><i
-                                                                class="ri-delete-bin-line"></i>
-                                                        </a> --}}
-                                                        {{-- <a href="{ route('admin.user-delete', $usering->id) }}" onclick="event.preventDefault(); document.getElementById('delete-form').submit();"
-                                                            class="btn btn-sm btn-danger-transparent btn-wave"><i
-                                                                class="ri-delete-bin-line"></i>
-                                                        </a> --}}
-                                                        <form id="ban-{{ $usering->id }}" class="d-none" action="{{ route('admin.users.ban', $usering->id) }}" method="post">
-                                                            @method('put')
-                                                            @csrf
-                                                        </form>
-                                                        <form id="delete-unban-{{ $usering->id }}" class="d-none" action="{{ route('admin.users.unban', $usering->id) }}" method="post">
-                                                            @method('put')
-                                                            @csrf
-                                                        </form>
                                                         <form id="retention-{{ $usering->id }}" class="d-none" action="{{ route('admin.users.retention', $usering->id) }}" method="post">
                                                             @method('put')
                                                             @csrf
@@ -103,10 +85,6 @@
                                                             @method('put')
                                                             @csrf
                                                         </form>
-                                                        {{-- <form id="delete-form" clas="d-none" onclick="return confirm('Are you sure?');" action="{{ route('admin.user-delete', $usering->id) }}" method="post">
-                                                            method('delete')
-                                                            csrf
-                                                        </form>         --}}
                                                     </div>
                                                 </td>
                                             </tr>
@@ -132,47 +110,6 @@
         </div>
      </div>
 </div>
-
-<div class="modal fade" id="exampleModalScrollable3" tabindex="-1"
-    aria-labelledby="exampleModalScrollable3" data-bs-keyboard="false"
-    aria-hidden="true">
-    <!-- Scrollable modal -->
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                    aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="table-responsive">
-                    <table class="table text-nowrap">
-                        <thead class="table-primary">
-                            <tr>
-                                <th scope="col">S/N</th>
-                                <th scope="col">User Name</th>
-                                <th scope="col">Name on transaction</th>
-                                <th scope="col">Amount</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @if (count($userpendingbalance) != 0)
-                                @foreach ($userpendingbalance as $userpendingbalances)
-                                <tr>
-                                    <th scope="row">{{ $loop->index + 1 }}</th>
-                                    <td>{{  $userpendingbalances->user->name }}</td>
-                                    <td>{{  $userpendingbalances->name }}</td>
-                                    <td>{{  $userpendingbalances->balance }}</td>
-                                </tr>
-                                @endforeach
-                            @endif   
-                        </tbody>
-                    </table>
-                </div> 
-            </div>
-        </div>
-    </div>
-</div>
-
 
 @endsection
 <script>

@@ -41,6 +41,9 @@ data-menu-styles="dark" data-toggled="close">
     <link rel="stylesheet" href="/vendors/assets/libs/filepond/filepond.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.0/css/boxicons.min.css"/>
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.0/dist/boxicons.min.js" ></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.9/css/dataTables.bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.0.3/css/buttons.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
     <style>
         #yourBtn {
             position: relative;
@@ -260,11 +263,10 @@ data-menu-styles="dark" data-toggled="close">
     </div>
     <div id="responsive-overlay"></div>
 
-
+       
     @include('layout.script')
-    {{-- @include('partials.apexcharts') --}}
-   
     @include('partials.message')
     @include('sweetalert::alert')
+    @stack('scripts')
 </body>
 </html>        
