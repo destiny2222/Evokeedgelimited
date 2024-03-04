@@ -66,7 +66,7 @@
                                                         <a href="{{ route('admin.user.retention.details', $usering->id) }}" class="btn btn-sm btn-primary-transparent btn-wave">
                                                             View Details
                                                         </a>
-                                                        @if ($usering->retention == 0)
+                                                        {{-- @if ($usering->retention == 0)
                                                             <a href="{{ route('admin.users.retention', $usering->id) }}" onclick="event.preventDefault(); document.getElementById('retention-{{ $usering->id }}').submit();"
                                                                 class="btn btn-sm btn-info-transparent btn-wave">
                                                                 Retention User
@@ -84,7 +84,7 @@
                                                         <form id="delete-unretention-{{ $usering->id }}" class="d-none" action="{{ route('admin.users.unretention', $usering->id) }}" method="post">
                                                             @method('put')
                                                             @csrf
-                                                        </form>
+                                                        </form> --}}
                                                     </div>
                                                 </td>
                                             </tr>
