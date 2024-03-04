@@ -71,7 +71,7 @@
                                                             class="btn btn-primary btn-sm btn-info-transparent"><i
                                                                 class="ri-edit-line"></i></a>
                                                         
-                                                        {{-- @if ($usering->is_banned == 0)
+                                                        @if ($usering->is_banned == 0)
                                                             <a href="{{ route('admin.users.ban', $usering->id) }}" onclick="event.preventDefault(); document.getElementById('ban-{{ $usering->id }}').submit();"
                                                                 class="btn btn-sm btn-info-transparent btn-wave">
                                                                 Ban User
@@ -82,7 +82,7 @@
                                                                 Unban User
                                                             </a>
                                                         @endif
-                                                        @if ($usering->retention == 0)
+                                                        {{-- @if ($usering->retention == 0)
                                                             <a href="{{ route('admin.users.retention', $usering->id) }}" onclick="event.preventDefault(); document.getElementById('retention-{{ $usering->id }}').submit();"
                                                                 class="btn btn-sm btn-info-transparent btn-wave">
                                                                 Retention User
