@@ -5,7 +5,12 @@
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+        <meta name="description" content="EvokeEdge LLC, your trusted provider for comprehensive payment solutions catering to the needs of individuals and businesses in Nigeria.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="keywords" content="innovative,digital,technology,tech,payment,solutions, catering" >
+        <meta name="google-site-verification" content="kBzvVl4J539Jh_ylqXHfBilQDJKoPQtNlG2mzwgDdDI" />
+        <link rel="shortcut icon" type="image/x-icon" href="https://www.evokeedgelimited.com/assets/img/black-logo.png">
+        <meta property="og:image" content="https://www.evokeedgelimited.com/assets/img/black-logo.png" />
         <!-- Links of CSS files -->
         <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
         <link rel="stylesheet" href="/assets/css/animate.min.css">
