@@ -41,12 +41,12 @@
                                 <tr>
                                     <th scope="col">Id</th>
                                     <th scope="col">User Name</th>
-                                    <th scope="col">Amount</th>
-                                    <th scope="col">Email Address</th>
-                                    <th scope="col">Phone Number</th>
+                                    <th scope="col">Date of Registeration</th>
+                                    <th scope="col">Date of Closure</th>
+                                    {{-- <th scope="col">Phone Number</th>
                                     <th scope="col">kyc status</th>
                                     <th scope="col">Pending Balance</th>
-                                    <th scope="col">Country</th>
+                                    <th scope="col">Country</th> --}}
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -58,30 +58,16 @@
                                                 <th scope="row">{{ $loop->index + 1 }}</th>
                                                 <td>{{  $usering->name }}</td>
                                                 <td>
-                                                    {{  $usering->userwallet ? $usering->userwallet->amount  : 0 }}
+                                                    {{  $usering->created_at }}
                                                 </td>
-                                                <td>{{  $usering->email }}</td>
-                                                <td>{{  $usering->phone }}</td>
-                                                <td>{{  $usering->kyc ? $usering->kyc->kyc_status : 'Not Started' }}</td>
-                                                <td>{{  $usering->userwallet ? $usering->userwallet->balance : 0}}</td>
-                                                <td>{{  $usering->country }}</td>
+                                                <td>{{  $usering->updated_at }}</td>
                                                 <td>
                                                     <div class="hstack gap-2 fs-15">
-                                                        <a href="{{ route('admin.edit-user-page', $usering->id) }}"
-                                                            class="btn btn-primary btn-sm btn-info-transparent"><i
-                                                                class="ri-edit-line"></i></a>
                                                         
-                                                        @if ($usering->is_banned == 0)
-                                                            <a href="{{ route('admin.users.ban', $usering->id) }}" onclick="event.preventDefault(); document.getElementById('ban-{{ $usering->id }}').submit();"
-                                                                class="btn btn-sm btn-info-transparent btn-wave">
-                                                                Ban User
-                                                            </a>
-                                                            @else
-                                                            <a href="{{ route('admin.users.unban', $usering->id) }}" onclick="event.preventDefault(); document.getElementById('delete-unban-{{ $usering->id }}').submit();"
-                                                                class="btn btn-sm btn-warning-transparent btn-wave">
-                                                                Unban User
-                                                            </a>
-                                                        @endif
+                                                        <a href="{{ route('admin.user-delete', $usering->id) }}"
+                                                            class="btn btn-sm btn-primary-transparent btn-wave">
+                                                            View Details
+                                                        </a>
                                                         @if ($usering->retention == 0)
                                                             <a href="{{ route('admin.users.retention', $usering->id) }}" onclick="event.preventDefault(); document.getElementById('retention-{{ $usering->id }}').submit();"
                                                                 class="btn btn-sm btn-info-transparent btn-wave">
@@ -93,6 +79,10 @@
                                                                 Unretention User
                                                             </a>
                                                         @endif
+                                                        {{-- <a href="{ route('admin.user-delete', $usering->id) }}" onclick="event.preventDefault(); document.getElementById('delete-form').submit();"
+                                                            class="btn btn-sm btn-danger-transparent btn-wave"><i
+                                                                class="ri-delete-bin-line"></i>
+                                                        </a> --}}
                                                         {{-- <a href="{ route('admin.user-delete', $usering->id) }}" onclick="event.preventDefault(); document.getElementById('delete-form').submit();"
                                                             class="btn btn-sm btn-danger-transparent btn-wave"><i
                                                                 class="ri-delete-bin-line"></i>
