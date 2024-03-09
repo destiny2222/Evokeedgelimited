@@ -30,7 +30,7 @@
                                     </div>
                                     <span>Address</span>
                                     <p>
-                                        66A Lucky Way Road, Ikpoba hill, Benin city, Edo state, Nigeria.
+                                        8465 Keystone Crossing, suite 115, Indianapolis, IN, USA
                                     </p>
                                 </li>
 
@@ -42,13 +42,13 @@
                                     <a href="#"><span class="__cf_email__ cf_email" >sales@evokeedgelimited.com</span></a>
                                 </li>
 
-                                {{-- <li>
+                                <li>
                                     <div class="icon">
                                         <i class="fas fa-phone-volume"></i>
                                     </div>
                                     <span>Phone</span>
-                                    <a href="tel:+2348143980684">+2348143980684</a>
-                                </li> --}}
+                                    <a href="tel:+1317969-7184">+1(317) 969-7184</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
