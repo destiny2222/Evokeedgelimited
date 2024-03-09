@@ -47,7 +47,7 @@
                                     <h5><b>Bank Name</b>: United Bank of Africa</h5>
                                 </div>
                                 <div class="col-lg-12 mb-4">
-                                    <h5><b>Account Name</b>: EvokeEdge Limited</h5>
+                                    <h5><b>Account Name</b>: EvokeEdge LLC</h5>
                                 </div>
                                 <div class="col-lg-12 mb-4">
                                     <h5><b>Account Number</b>: 3004158137</h5>

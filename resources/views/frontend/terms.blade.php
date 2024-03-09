@@ -27,7 +27,7 @@
                                 <h6 class="subtitle_service">Intellectual Property</h6>
                                 <ul >
                                     <li>
-                                        <b>2.1  </b>   The Service and its original content, features, and functionality are and will remain the exclusive property of EvokeEdge Limited. The Service is protected by the laws of the Federal Republic of Nigeria. Our services shall not be used in connection with any product or service without the prior written consent of EvokeEdge Limited.
+                                        <b>2.1  </b>   The Service and its original content, features, and functionality are and will remain the exclusive property of EvokeEdge LLC. The Service is protected by the laws of the Federal Republic of Nigeria. Our services shall not be used in connection with any product or service without the prior written consent of EvokeEdge LLC.
     
                                     </li>
                                 </ul>
@@ -237,7 +237,7 @@
                             <h6 class="subtitle_service">Customer Abuse policy</h6>
                             <ul >
                                 <li>
-                                    At EvokeEdge Limited, we believe in providing exceptional service to our customers and ensuring that they are treated with respect and dignity. We believe that all customers have the right to always receive courteous and professional treatment from our team. In turn, we expect that all client(s) are expected to display the same amount of respect for our staff.
+                                    At EvokeEdge LLC, we believe in providing exceptional service to our customers and ensuring that they are treated with respect and dignity. We believe that all customers have the right to always receive courteous and professional treatment from our team. In turn, we expect that all client(s) are expected to display the same amount of respect for our staff.
                                 </li>
                                 <li>
                                     As an organization, we have a zero-tolerance policy for anyone who is abusive toward any member of our team. Where a client is unsatisfied with any of our services, they have the right to make a complaint through the appropriate channel (customer service), and such a complaint would be treated with the utmost priority.

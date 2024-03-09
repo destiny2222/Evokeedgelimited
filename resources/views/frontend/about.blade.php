@@ -5,7 +5,7 @@
         <div class="container">
             <div class="page-title-content">
                 <h2 class="policy_title">About Us</h2>
-                {{-- <p class="">The EvokeEdge Limited</p> --}}
+                {{-- <p class="">The EvokeEdge LLC</p> --}}
             </div>
         </div>
     </div>
@@ -17,11 +17,11 @@
             <div class="row align-items-center">
                 <div class="col-lg-12 col-md-12">
                     <div class="ctp-about-content">
-                        <h3 style="color: #180AA3;text-align:center;">EvokeEdge Limited</h3>
-                        <p>Welcome to EvokeEdge Limited, your trusted provider for comprehensive payment solutions catering to the needs of individuals and businesses in Nigeria. Our expertise lies in facilitating various international payments, including tuition fees for Nigerian international students, flight bookings, merchandise transactions, visa payments, and a diverse array of other payment solutions.</p>
+                        <h3 style="color: #180AA3;text-align:center;">EvokeEdge LLC</h3>
+                        <p>Welcome to EvokeEdge LLC, your trusted provider for comprehensive payment solutions catering to the needs of individuals and businesses in Nigeria. Our expertise lies in facilitating various international payments, including tuition fees for Nigerian international students, flight bookings, merchandise transactions, visa payments, and a diverse array of other payment solutions.</p>
                         <h4  style="color: #180AA3;text-align:center;">Our mission</h4>
                         <p>
-                            As we understand the challenges of cross-border payments at EvokeEdge Limited, our mission
+                            As we understand the challenges of cross-border payments at EvokeEdge LLC, our mission
                             is to simplify and streamline the payment process, making it easier for individuals and businesses
                             to transact globally.
                         </p>
@@ -189,7 +189,7 @@
                         <div class="member-content">
                             <h3>Omoefe Enagbare</h3>
                             <span>CEO & Founder</span>
-                            <p>Trailblazing entrepreneur, blazing a path of success as the CEO and Founder of EvokeEdge Limited.</p>
+                            <p>Trailblazing entrepreneur, blazing a path of success as the CEO and Founder of EvokeEdge LLC.</p>
                         </div>
                     </div>
                 </div>
@@ -266,7 +266,7 @@
                         <div class="member-content">
                             <h3>Oyindamola M. Odofin</h3>
                             <span>EVP, Financial Department</span>
-                            <p>Result-driven team worker, dedicated to the success of EvokeEdge Limited.</p>
+                            <p>Result-driven team worker, dedicated to the success of EvokeEdge LLC.</p>
                         </div>
                     </div>
                 </div>
@@ -305,7 +305,7 @@
                 <!--            <div class="member-content">-->
                 <!--                <h3>Hilary C. Anaghara</h3>-->
                 <!--                <span>Head of Sales</span>-->
-                <!--                <p>EvokeEdge Limited takes pride in its dynamic marketing and sales department, leveraging innovative strategies to effectively promote our comprehensive payment solutions and drive business growth for individuals and businesses in Nigeria.</p>-->
+                <!--                <p>EvokeEdge LLC takes pride in its dynamic marketing and sales department, leveraging innovative strategies to effectively promote our comprehensive payment solutions and drive business growth for individuals and businesses in Nigeria.</p>-->
                 <!--            </div>-->
                 <!--        </div>-->
                 <!--    </div>-->
@@ -325,7 +325,7 @@
                 <!--            <div class="member-content">-->
                 <!--                <h3> Desmond E. Odeh</h3>-->
                 <!--                <span>EVP, Marketing Department</span>-->
-                <!--                <p>At EvokeEdge Limited, we employ innovative marketing strategies to captivate audiences, build a strong brand presence, and drive meaningful connections that propel our business forward.</p>-->
+                <!--                <p>At EvokeEdge LLC, we employ innovative marketing strategies to captivate audiences, build a strong brand presence, and drive meaningful connections that propel our business forward.</p>-->
                             
                 <!--            </div>-->
                 <!--        </div>-->

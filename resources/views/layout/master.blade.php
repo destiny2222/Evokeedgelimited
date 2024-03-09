@@ -33,7 +33,7 @@
     <meta property="fb:app_id" content="" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content=" EvokeEdge limited | Dashboard" />
+    <meta property="og:title" content=" EvokeEdge LLC | Dashboard" />
     <meta property="og:url" content="" />
     <meta property="og:image" content="" />
     <meta property="og:description" content="" />
@@ -42,7 +42,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="/assetss/assets/images/brand/favicon.ico">
 
     <!-- TITLE -->
-    <title>EvokeEdge limited | Dashboard</title>
+    <title>EvokeEdge LLC | Dashboard</title>
 
     <!-- BOOTSTRAP CSS -->
     <link id="style" href="/assetss/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">

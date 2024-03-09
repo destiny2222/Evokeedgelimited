@@ -339,7 +339,7 @@
                             <span class="custom-control-label">
                                 By clicking the box below,i hereby state that I affirm the accuarcy and completeness
                                 of the provided information. Any discrepancies may affect the account profile creation process.
-                                I also accept EvokeEdge Limited's terms of service and privacy policy.
+                                I also accept EvokeEdge LLC's terms of service and privacy policy.
                             </span>
                         </label>
                         <div class="form-group mb-4 mt-4">

@@ -6,7 +6,7 @@
                     <div class="row align-items-center">
                         <div class="col-lg-6 col-md-12">
                             <div class="banner-wrapper-content">
-                                <h1>EvokeEdge Limited</h1>
+                                <h1>EvokeEdge LLC</h1>
                                 <p> We are committed to protecting the privacy and confidentiality of our client's personal and financial information. </p>
                                 <a href="{{ route('register') }}" class="btn btn-primary">Get Started</a>
                             </div>
@@ -37,7 +37,7 @@
                             <div class="support-content">
                                 <h2>Integrity</h2>
                                 <p>
-                                    At EvokeEdge Limited, integrity is not a mere word but a 
+                                    At EvokeEdge LLC, integrity is not a mere word but a 
                                     fundamental principle underpinning our services. We conduct 
                                     business with unwavering honesty, transparency, and responsibility,
                                     strictly abiding by the laws that govern our operations. Our commitment 

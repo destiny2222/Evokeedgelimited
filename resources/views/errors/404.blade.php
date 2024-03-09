@@ -21,7 +21,7 @@
         <link rel="stylesheet" href="/assets/css/responsive.css">
         <link rel="stylesheet" href="/assets/css/dark-style.css">
 
-        <title>EvokeEdge Limited</title>
+        <title>EvokeEdge LLC</title>
 
         <link rel="icon" type="image/png" href="assets/img/favicon.pg">
     </head>

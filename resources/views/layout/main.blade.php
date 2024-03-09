@@ -29,7 +29,7 @@
         <link rel="stylesheet" href="/assets/css/dark-style.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"/>
         <script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/js/all.min.js"></script>
-        <title>EvokeEdge Limited</title>
+        <title>EvokeEdge LLC</title>
 
         <link rel="icon" type="image/png" href="assets/img/favicon.png">
     </head>
@@ -97,7 +97,7 @@
                             <div class="logo">
                                 <a href="{{ route('home-page') }}" class="black-logo"><img src="/assets/img/black-logo.png" alt="logo"></a>
                                 <a href="{{ route('home-page') }}" class="white-logo"><img src="/assets/img/logo.png" alt="logo"></a> 
-                                <p>EvokeEdge Limited, your trusted provider for comprehensive payment solutions catering to the needs of individuals and businesses in Nigeria.</p>
+                                <p>EvokeEdge LLC, your trusted provider for comprehensive payment solutions catering to the needs of individuals and businesses in Nigeria.</p>
                             </div>
                             
                             <ul class="social-links">

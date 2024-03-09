@@ -18,7 +18,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-12 col-12 mb-5">
                         <p>
-                            At EvokeEdge Limited, we are committed to protecting the privacy and confidentiality of our client's personal and financial information. This Privacy Policy outlines how we collect, use, disclose, and safeguard your information when you visit our website or use our services. By accessing or using our website or services, you acknowledge that you have read, understood, and agreed to be bound by this Privacy Policy.
+                            At EvokeEdge LLC, we are committed to protecting the privacy and confidentiality of our client's personal and financial information. This Privacy Policy outlines how we collect, use, disclose, and safeguard your information when you visit our website or use our services. By accessing or using our website or services, you acknowledge that you have read, understood, and agreed to be bound by this Privacy Policy.
                         </p>
                         <p>    
                             Please note that we regularly review and update our Privacy Policy to ensure its compliance with new laws and technological advancements, as well as to reflect any changes in our operations and practices. The most up-to-date version of our Privacy Policy will always be available on our website(s), and any information we hold will be governed by the provisions outlined in the current Privacy Policy.

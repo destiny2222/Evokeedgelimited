@@ -29,7 +29,7 @@
                                         <div class="panel-heading " role="tab" id="headingOne1">
                                             <h4 class="panel-title">
                                                 <a role="button" data-bs-toggle="collapse" data-bs-parent="#accordion" href="#collapse1" aria-expanded="true" aria-controls="collapse1">
-                                                    What is Evokeedge Limited?
+                                                    What is EvokeEdge LLC?
                                                 </a>
                                             </h4>
                                         </div>

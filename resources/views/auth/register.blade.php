@@ -415,7 +415,7 @@
                             @enderror
                             <label class="custom-control custom-checkbox mt-4">
 									<input type="checkbox" class="custom-control-input">
-									<span class="custom-control-label">By clicking the box below,you hereby consent to the <a href="/policy"> Privacy Policy </a> of EvokeEdge Limited</span>
+									<span class="custom-control-label">By clicking the box below,you hereby consent to the <a href="/policy"> Privacy Policy </a> of EvokeEdge LLC</span>
 								</label>
                                 <div class="form-group pt-4 ">
                                     {!! app('captcha')->display() !!}
