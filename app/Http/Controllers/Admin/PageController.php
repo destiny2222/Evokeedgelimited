@@ -116,8 +116,11 @@ class PageController extends Controller
             [function ($query) use ($request) {
                 if (($search = $request->search)) {
                     $query->orWhere('name', 'LIKE', '%' . $search . '%')
+                        ->orWhere('last_name', 'LIKE', '%' . $search . '%')
                         ->orWhere('email', 'LIKE', '%' . $search . '%')
                         ->get();
+                }else{
+                    return back()->with('error','Your request was not founded.');   
                 }
             }]
         ])->paginate(6);
