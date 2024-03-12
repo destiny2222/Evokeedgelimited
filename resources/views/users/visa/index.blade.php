@@ -55,7 +55,7 @@
                             <div class="deposit-card mb-4">
                                 <div class="">
                                     <label class="pt-1">
-                                        <input type="radio"  name="selected" value="online-transfer">
+                                        <input type="radio"  name="selected" value="united_kingdom">
                                         <span class="checkmark" style="display: none"></span>
                                     </label>
                                 </div>
@@ -108,6 +108,8 @@
                     window.location.href = "/dashboard/canada_visa";
                 } else if (selectedPaymentMethod === 'united_state') {
                     window.location.href = "/dashboard/us_visa";
+                }else if(selectedPaymentMethod = 'united_kingdom'){
+                    swal("Coming Soon");
                 }
             }
         });

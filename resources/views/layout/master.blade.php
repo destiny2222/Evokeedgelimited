@@ -158,7 +158,7 @@
     <script src="/assetss/assets/plugins/notify/js/jquery.growl.js"></script>
     <script src="/assetss/assets/plugins/notify/js/notifIt.js"></script>
     @include('partials.notify')
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" ></script>
     <!-- INTERNAL Vector js -->
     <script src="/assetss/assets/plugins/jvectormap/jquery-jvectormap-2.0.2.min.js"></script>
     <script src="/assetss/assets/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
