@@ -121,7 +121,7 @@
                                     class="fe fe-chevron-right side-menu__angle"></i></a>
                             <ul class="slide-menu child2">
                                 <li class="slide">
-                                    <a href="{{  route('admin.otherservices-page') }}" class="side-menu__item">Otherservice </a>
+                                    <a href="{{  route('admin.otherservices-page') }}" class="side-menu__item">Other services </a>
                                 </li>
                             </ul>
                         </li>

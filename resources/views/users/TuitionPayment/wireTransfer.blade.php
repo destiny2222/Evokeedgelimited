@@ -10,6 +10,10 @@
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title text-center">{{   $tuition->college_name }}</h4>
+                <a href="{{ route('initiator-page') }}" class="btn btn-warning" style="text-decoration:none;">
+                    <i class="bi bi-arrow-left"></i>                         
+                    Go Back  
+                </a>
             </div>
             <div class="card-body">
                 <h4 class="mb-4 text-center">Provide login details we can use to access your school’s portal to complete the payment</h4>
