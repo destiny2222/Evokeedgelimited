@@ -19,7 +19,7 @@ class ManagementController extends Controller
     
     public function UserManagement(){
         $user = User::orderBy('id', 'desc')->paginate(10);
-        $userpendingbalance = UserWallet::all();
+        $userpendingbalance = UserWallet::orderBy('id', 'desc')->paginate(5);
         return view('admin.useradmin.user',compact('user', 'userpendingbalance'));
     }
 

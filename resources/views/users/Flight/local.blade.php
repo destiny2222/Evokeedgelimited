@@ -40,17 +40,23 @@
                         <input type="text" class="form-control" name="airport_location_to" placeholder="various airports & location  (TO)" required>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-md-6 mb-4">
+                        <div class="form-group col-12 col-md-6 mb-4">
                             <div class="form-group">
                                 <label for="" class="form-label">Departure Date</label>
                                 <input type="date" class="form-control" name="flight_date" placeholder=" Date of trip" required>
                             </div>
                         </div>
-                        <div class="form-group col-md-6 mb-4">
+                        <div class="form-group col-12 col-md-6 mb-4">
+                            <div class="form-group">
+                                <label for="" class="form-label">Return Date</label>
+                                <input type="date" class="form-control" name="flight_return_date" placeholder=" Date of return trip" required>
+                            </div>
+                        </div>
+                        <div class="form-group col-12 col-md-6 mb-4">
                             <div class="form-group">
                                 <label class="form-label">Adult <span class="text-red">*</span></label>
                                 <select name="adult" class="form-control form-select select2" required data-bs-placeholder="Select">
-                                    <option value="">Adult(12+ Yrs)</option>
+                                    <option value="" selected>Adult(12+ Yrs)</option> 
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
@@ -59,13 +65,14 @@
                                 </select>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6 mb-4">
+                    {{-- </div>
+                    <div class="form-row"> --}}
+                        <div class="form-group col-12 col-md-6 mb-4">
                             <div class="form-group">
                                 <label for="" class="form-label">Children</label>
                                 <select name="child" class="form-control form-select select2" data-bs-placeholder="Select" required>
                                     <option value="" selected>Children(2-11 Yrs)</option>
+                                    <option value="0">0</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
@@ -74,7 +81,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group col-md-6 mb-4">
+                        <div class="form-group col-12 col-md-6 mb-4">
                             <div class="form-group">
                                 <label for="" class="form-label">Infant</label>
                                 <select name="infant" class="form-control form-select select2" data-bs-placeholder="Select" required>
@@ -87,7 +94,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group col-md-12 mb-4">
+                        <div class="form-group col-12 col-md-6 mb-4">
                             <div class="form-group">
                                 <label for="" class="form-label">Travel Class</label>
                                 <select name="flight_class" class="form-control form-select select2" data-bs-placeholder="Select" required>
@@ -104,15 +111,16 @@
                         <div class="form-group col-md-12 mb-4">
                             <label for="" class="form-label">Passenger Details</label>
                         </div>
-                        <div class="form-group col-lg-6  mb-4">
+                        <div class="form-group col-12 col-lg-6  mb-4">
                             <label for="" class="form-label">Title:</label>
                             <select name="title" class="form-control form-select select2" data-bs-placeholder="Select">
                                 <option selected> Select</option>
                                 <option value="Mr">Mr</option>
                                 <option value="Mrs">Mrs</option>
+                                <option value="Miss">Miss</option>
                             </select>
                         </div>
-                        <div class="form-group col-lg-6 mb-4">
+                        <div class="form-group col-12 col-lg-6 mb-4">
                             <label class="form-label">Gender On Passport:</label>
                             <select name="gender" class="form-control form-select select2" data-bs-placeholder="Select" required>
                                 <option selected>Select Gender</option>
@@ -120,7 +128,7 @@
                                 <option value="male">Male</option>
                             </select>
                         </div>
-                        <div class="form-group col-lg-6 mb-4">
+                        <div class="form-group col-12 col-lg-6 mb-4">
                             <label class="form-label">First Name:</label>
                             <input type="text" name="first_name" class="form-control" required>
                         </div>

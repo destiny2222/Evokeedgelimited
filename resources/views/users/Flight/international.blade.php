@@ -98,6 +98,7 @@
                                 <option selected> Select</option>
                                 <option value="Mr">Mr</option>
                                 <option value="Mrs">Mrs</option>
+                                <option value="Miss">Miss</option>
                             </select>
                         </div>
                         <div class="form-group col-lg-6 mb-4">

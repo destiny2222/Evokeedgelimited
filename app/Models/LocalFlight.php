@@ -23,6 +23,7 @@ class LocalFlight extends Model
         'title',
         'date_birth_date',
         'first_name',
+        'flight_return_date',
         'last_name',
         'nationality',
         'phone',

@@ -30,7 +30,7 @@
                                     <th scope="">Bank Amount Name</th>
                                     <th scope="">Bank Account Number</th>
                                     <th scope="">Bank Swift Code</th>
-                                    <th scope="">Bank Route Number</th>
+                                    <th scope="">Bank Routing Number</th>
                                     <th scope="">Bank Reference Number</th>
                                     <th scope="">Recipient</th> 
                                     <th scope="">Country</th>

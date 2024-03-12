@@ -26,6 +26,10 @@ class UserWallet extends Model
       return  $this->hasMany(Transaction::class, 'user_id');
     }
 
+    public function wallet(){
+        return $this->hasMany(UserWallet::class);
+    }
+
     public function getAmountAttribute($value) {
         // return '$' . number_format($value, 2);
         return $value;

@@ -28,7 +28,7 @@ class LocalRequest extends FormRequest
             'airport_location_from'=>'nullable|string',
             'airport_location_to'=>'nullable|string',
             'flight_date'=>'nullable|date',
-            // 'flight_return_date'=>'nullable|date',
+            'flight_return_date'=>'nullable|date',
             'flight_class'=>'nullable|string',
             'adult'=>'nullable|string',
             'child'=>'nullable|string',
@@ -64,6 +64,7 @@ class LocalRequest extends FormRequest
             'phone'=>$this->phone,
             'email'=>$this->email,
             'user_id'=>$this->user_id,
+            'flight_return_date'=>$this->flight_return_date,
             'on_way'=>$this->on_way,
             'round_trip'=>$this->round_trip,
         ]);

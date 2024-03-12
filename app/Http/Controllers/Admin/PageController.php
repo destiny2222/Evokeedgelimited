@@ -47,6 +47,11 @@ class PageController extends Controller
 
     public function sendMail(){
         $user = User::orderBy('id', 'desc')->get();
+        try{
+
+        }catch(\Exception $e){
+            Log::error($e->getMessage());
+        }
         return view('admin.emails.create', compact('user'));
     }
 
@@ -113,6 +118,7 @@ class PageController extends Controller
     public function searchEngine(Request $request){
         $user = User::where([
             ['name', '!=', Null],
+            ['last_name', '!=', Null],
             [function ($query) use ($request) {
                 if (($search = $request->search)) {
                     $query->orWhere('name', 'LIKE', '%' . $search . '%')
@@ -125,7 +131,7 @@ class PageController extends Controller
             }]
         ])->paginate(6);
 
-        return view('admin.useradmin.user', compact('user'));
+        return view('admin.useradmin.searchengine', compact('user'));
     }
 
 
