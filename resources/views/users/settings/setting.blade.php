@@ -99,7 +99,9 @@
                         <div class="card-title">Close Your Account</div>
                     </div>
                     <div class="card-body">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt ipsum cumque molestias!</p>
+                        <p>
+                            By closing your account, you will no longer have access to your data, use any features or services, or enjoy the benefits associated with your EvokeEdge LLC account.
+                        </p>
                         <form action="{{ route('deactivate.account') }}" method="post">
                             @csrf
                             <div class="wrap-input100 validate-input input-group mb-4" id="Password-toggle1">

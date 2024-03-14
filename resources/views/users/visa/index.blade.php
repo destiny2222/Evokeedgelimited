@@ -60,7 +60,7 @@
                                     </label>
                                 </div>
                                 <div class="deposit-card-o">
-                                    <img src="/assetss/assets/images/flags-svg/um.svg" alt="" style="width: 2.25rem; height: 1.30rem; display: inline-block;">
+                                    <img src="/assetss/assets/images/flags-svg/uk.svg" alt="" style="width: 2.50rem; height: 1.30rem; display: inline-block;">
                                     <span  class="" style="color: rgb(73, 84, 108);">United Kingdom</span>
                                 </div>
                             </div>

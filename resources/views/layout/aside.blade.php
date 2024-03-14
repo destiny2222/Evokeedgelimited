@@ -117,7 +117,7 @@
                         </li>
                         <li class="slide has-sub">
                             <a href="javascript:void(0);" class="side-menu__item">
-                                Otherservice  Transactions <i
+                                Other services  Transactions <i
                                     class="fe fe-chevron-right side-menu__angle"></i></a>
                             <ul class="slide-menu child2">
                                 <li class="slide">

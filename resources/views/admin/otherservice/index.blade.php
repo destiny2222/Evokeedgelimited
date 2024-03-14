@@ -28,7 +28,7 @@
                                     <th scope="">Full Name of account holder</th>
                                     <th scope="">IBAN/Account number</th>
                                     <th scope="">SWIFT/BIC code</th>
-                                    <th scope="">Routine Number (US & CAD only)</th>
+                                    <th scope="">Routing Number (US & CAD only)</th>
                                     <th scope="">Reference</th>
                                     <th scope="">Payment Method</th>
                                     <th scope="">Total Amount</th>
