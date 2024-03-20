@@ -31,6 +31,7 @@
                                     <th scope="col">Number of Passengers</th>
                                     <th scope="col">Travel Class</th>
                                     <th scope="col">Title</th>
+                                    <th scope="col">Baggage</th>
                                     <th scope="col">First Name On Passport</th>
                                     <th scope="col">Last Name On Passport</th>
                                     <th scope="col">Gender On Passport</th>
@@ -68,6 +69,9 @@
                                         <td>{{  $internationalflights['flight_class'] }}</td>
                                         <td>
                                             {{  $internationalflights['passenger_title']  }}
+                                        </td>
+                                        <td>
+                                            {{  $internationalflights['baggage_weight']kg }}
                                         </td>
                                         <td>
                                             {{  $internationalflights['passenger_fname_onpassport']  }}

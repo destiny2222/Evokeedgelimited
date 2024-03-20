@@ -81,9 +81,9 @@
                                 <label for="" class="form-label">Baggage Weight</label>
                                 <select name="baggage_weight" class="form-control form-select select2" data-bs-placeholder="Select" required>
                                     <option selected >Economy (checked baggage)</option>
-                                    @if ($baggages)
-                                     <option value="{{ $baggages->baggage  }}">{{ $baggages->baggage  }}Kg</option>
-                                    @endif
+                                    {{-- @if ($baggages) --}}
+                                     <option value="{{ $baggage->international_baggage  }}">{{ $baggage->international_baggage  }}Kg</option>
+                                    {{-- @endif --}}
                                 </select>
                             </div>
                         </div>

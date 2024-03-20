@@ -24,13 +24,15 @@
                                     <thead>
                                         <tr>
                                             {{-- <th>ID</th> --}}
-                                            <th scope="col">Baggage</th>
+                                            <th scope="col">Local Flight Baggage</th>
+                                            <th scope="col">International Flight Baggage</th>
                                             {{-- <th scope="col">Action</th> --}}
                                         </tr>
                                     </thead>
                                     <tbody> 
                                         <tr scope="row">
                                             <td>{{  $baggage['baggage']  }}kg</td>
+                                            <td>{{  $baggage['international_baggage']  }}kg</td>
                                                 
                                             </td>
                                             <td>

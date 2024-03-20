@@ -109,6 +109,19 @@
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-12 mb-4">
+                            <div class="form-group">
+                                <label for="" class="form-label">Baggage Weight</label>
+                                <select name="baggage_weight" class="form-control form-select select2" data-bs-placeholder="Select" required>
+                                    <option selected >Economy (checked baggage)</option>
+                                    {{-- @if ($baggages) --}}
+                                     <option value="{{ $baggage->baggage  }}">{{ $baggage->baggage  }}Kg</option>
+                                    {{-- @endif --}}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12 mb-4">
                             <label for="" class="form-label">Passenger Details</label>
                         </div>
                         <div class="form-group col-12 col-lg-6  mb-4">

@@ -231,14 +231,16 @@ class Usercontroller extends Controller
       }
 
     public function InternationalFlight(){
-        $baggage = Baggage::all();
-        foreach($baggage as $baggages)
-        return view('users.Flight.international', compact('baggages'));
+        $baggage = Baggage::select('international_baggage')->first();
+        // foreach($baggage as $baggages)
+        // dd($baggage->international_baggage);
+        return view('users.Flight.international', compact('baggage'));
     }
 
 
     public function LocalFlight(){
-        $baggage = Baggage::all();
+        $baggage = Baggage::select('baggage')->first();
+        // dd($baggage->baggage);
         return view('users.Flight.local', compact('baggage'));
     }
 

@@ -10,9 +10,13 @@
           <form action="{{  route('admin.update-baggage')  }}" method="post">
             @csrf
             <div class="card-body">
-                <div class="form-check form-switch mb-2"> 
-                    <label class="form-check-label" for="switched-visa">Number Baggage</label>
+                <div class="form-check form-switch mb-4"> 
+                    <label class="form-check-label" for="switched-visa">Local Flight Baggage</label>
                     <input class="form-control" type="number" name="baggage"  id="switched-visa" value="{{ $baggage->baggage}}"> 
+                </div>
+                <div class="form-check form-switch mb-4"> 
+                    <label class="form-check-label" for="switched-visa">International Flight Baggage</label>
+                    <input class="form-control" type="number" name="international_baggage"  id="switched-visa" value="{{ $baggage->international_baggage}}"> 
                 </div>
                 <div class="mb-3">
                     <input type="submit" value="Submit" class="form-control btn btn-primary">

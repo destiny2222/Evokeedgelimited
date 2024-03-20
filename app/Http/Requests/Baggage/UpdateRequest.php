@@ -24,7 +24,8 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'baggage' =>['nullable']
+            'baggage' =>['nullable','string'],
+            'international_baggage' =>['nullable','string']
         ];
     }
 }

@@ -26,6 +26,7 @@ class LocalFlight extends Model
         'flight_return_date',
         'last_name',
         'nationality',
+        'baggage_weight',
         'phone',
         'email',
         'user_id',

@@ -34,6 +34,7 @@
                                     <th scope="col">Round Trip</th>
                                     <th scope="col">Gender</th>
                                     <th scope="col">Title</th>
+                                    <th scope="col">Baggage</th>
                                     <th scope="col">Date of Birth</th>
                                     <th scope="col">First Name</th>
                                     <th scope="col">Last Name</th>
@@ -92,6 +93,7 @@
                                             {{  $localflights['gender']  }}
                                         </td>
                                         <th>{{  $localflights['title'] }}</th>
+                                        <th>{{  $localflights['baggage_weight']kg }}</th>
                                         <th>{{  $localflights['date_birth_date'] }}</th>
                                         <th>{{  $localflights['first_name'] }}</th>
                                         <th>{{  $localflights['last_name'] }}</th>

@@ -11,9 +11,14 @@ class Baggage extends Model
 
     protected $fillable = [
         'baggage',
+        'international_baggage'
     ];
 
     public function international(){
         return $this->belongsTo(InternationalFlight::class);
+    }
+
+    public function local(){
+        return $this->belongsTo(LocalFlight::class);
     }
 }
