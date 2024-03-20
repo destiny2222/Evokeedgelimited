@@ -12,7 +12,7 @@
     <meta name="keywords" content="">
 
     <!-- FAVICON -->
-    <link rel="shortcut icon" type="image/x-icon" href="../assets/images/brand/favicon.ico">
+    <link rel="icon" type="image/png" href="/assets/img/favicon.png">
 
     <!-- TITLE -->
     <title></title>
@@ -130,10 +130,12 @@
                                                     <button type="submit" class="login100-form-btn btn-primary border-0">
                                                         Login
                                                     </button>
+
                                                 </div>
                                             </form>
                                             <div class="text-center pt-3">
                                                 <p class="text-dark mb-0">Not a member?<a href="/register" class="text-primary ms-1">Sign UP</a></p>
+                                                <a href="/">Back Home</a>
                                             </div>
                                         </div>
                                     </div>

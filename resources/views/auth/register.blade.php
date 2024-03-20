@@ -12,7 +12,7 @@
     <meta name="keywords" content="">
 
     <!-- FAVICON -->
-    <link rel="shortcut icon" type="image/x-icon" href="../assets/images/brand/favicon.ico">
+    <link rel="icon" type="image/png" href="/assets/img/favicon.png">
 
     <!-- TITLE -->
     <title></title>
@@ -436,7 +436,8 @@
                             <p class="text-dark mb-0 d-inline-flex">
                                 Already have account ?
                                 <a href="/login" class="text-primary ms-1">Sign In</a>
-                            </p>
+                            </p> <br>
+                            <a href="/">Back Home</a>
                         </div>
                         
                     </div>

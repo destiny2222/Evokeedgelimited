@@ -38,10 +38,6 @@
                                 <input type="text" class="form-control" name="bank_address" id="exampleInputAddress"  placeholder="Address">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputAddress" class="form-label">Bank Address</label>
-                                <input type="text" class="form-control" name="bank_address" id="exampleInputAddress"  placeholder="Address">
-                            </div>
-                            <div class="form-group">
                                 <label class="form-label" for="exampleInputSwift">Swift Code</label>
                                 <input type="text" class="form-control" name="bank_swift_code" id="exampleInputSwift" placeholder="code">
                             </div>

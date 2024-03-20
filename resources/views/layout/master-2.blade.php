@@ -44,6 +44,7 @@ data-menu-styles="dark" data-toggled="close">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.9/css/dataTables.bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.0.3/css/buttons.dataTables.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
+    <link rel="icon" type="image/png" href="/assets/img/favicon.png">
     <style>
         #yourBtn {
             position: relative;

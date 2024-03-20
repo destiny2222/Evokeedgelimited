@@ -33,10 +33,10 @@ class MerchandiseRequest extends FormRequest
             'email_supplier' =>'nullable|string',
             'bank_amount_name' =>'nullable|string',
             'paid' =>'nullable|string',
-            'bank_account_number' =>'nullable|numeric',
+            'bank_account_number' =>'nullable|string',
             'bank_swift_code' =>'nullable|string',
             'bank_route_number' =>'nullable|string',
-            'bank_reference_number' =>'nullable|numeric',
+            'bank_reference_number' =>'nullable|string',
             'recipient' =>'nullable|string',
             'country' =>'nullable|string',
             'city' =>'nullable|string',
@@ -47,6 +47,7 @@ class MerchandiseRequest extends FormRequest
     }
 
     public function createMerhance(){
+       
         Merchandise::create([
             'description' => $this->description,
             'currency' => $this->currency,

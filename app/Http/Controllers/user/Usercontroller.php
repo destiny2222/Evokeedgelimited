@@ -299,6 +299,7 @@ class Usercontroller extends Controller
 
     public function merchandiseStore(MerchandiseRequest $request){
         if ($request->createMerhance()) {
+            // dd($request->all());
             return redirect()->route('merchandise.pay');
         }else{
             return back()->with('error', 'Something went wrong');

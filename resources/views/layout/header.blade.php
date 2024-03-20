@@ -7,13 +7,13 @@
             <div class="header-element">
                 <div class="horizontal-logo">
                     <a href="{{  route('admin.home') }}" class="header-logo">
-                        <img src="/assets/img/logo.png" alt="logo"
+                        <img src="/vendors/assets/images/black-logo.png" alt="logo"
                             class="desktop-logo" />
-                        <img src="/assets/img/logo.png" alt="logo"
+                        <img src="/vendors/assets/images/black-logo.png" alt="logo"
                             class="toggle-logo" />
-                        <img src="/assets/img/logo-white.png" alt="logo"
+                        <img src="/vendors/assets/images/black-logo.png" alt="logo"
                             class="desktop-dark" />
-                        <img src="/assets/img/logo-white.png" alt="logo"
+                        <img src="/vendors/assets/images/black-logo.png" alt="logo"
                             class="toggle-dark" />
                     </a>
                 </div>

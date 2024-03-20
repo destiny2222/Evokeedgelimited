@@ -30,7 +30,8 @@ class AdminRequest extends FormRequest
         return [
             //
             'field'=>['required','string'],
-            'password'=>['required']
+            'password'=>['required'],
+            'g-recaptcha-response' => 'required|captcha',
         ];
     }
     public function authenticate()

@@ -23,13 +23,14 @@
                                         <th scope="col">Proof of Identification:</th>
                                         <th scope="col">Proof of Address</th>
                                         <th scope="col">Membership Number:</th>
-                                        <th scope="col">User</th>
+                                        <th scope="col">First name</th>
+                                        <th scope="col">Last name</th>
                                         <th scope="col">Gender</th>
                                         <th scope="col">Marital Status</th>
                                         <th scope="col">Date of Birth</th>
                                         <th scope="col">Nationality</th>
-                                        <th scope="col">Address</th>
-                                        <th scope="col">Address 2</th>
+                                        {{-- <th scope="col">Address</th>
+                                        <th scope="col">Address 2</th> --}}
                                         <th scope="col">Status</th>
                                         <th scope="col">Data Sign</th>
                                         <th scope="col">{{ __('Approve Status')  }}</th>
@@ -74,6 +75,9 @@
                                                         <span>{{ $events->user->name  }}</span>
                                                     </td>
                                                     <td>
+                                                        <span>{{ $events->user->last_name  }}</span>
+                                                    </td>
+                                                    <td>
                                                         <span>{{ $events->gender  }}</span>
                                                     </td>
                                                     <td>
@@ -85,12 +89,12 @@
                                                     <td>
                                                         <span>{{ $events->nationality  }}</span>
                                                     </td>
-                                                    <td>
+                                                    {{-- <td>
                                                         <span>{{ $events->street_address  }}</span>
                                                     </td>
                                                     <td>
                                                         <span>{{ $events->street_address_2  }}</span>
-                                                    </td>
+                                                    </td> --}}
                                                     <td>
                                                         {{ $events->status  }}
                                                     </td>

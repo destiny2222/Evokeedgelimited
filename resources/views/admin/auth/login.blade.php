@@ -38,9 +38,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.0/css/boxicons.min.css" />
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.0/dist/boxicons.min.js"></script>
     <meta http-equiv="imagetoolbar" content="no" />
+    {!! NoCaptcha::renderJs() !!}
 </head>
 
-<body>
+
+<body class="login-img">
 
     <div class="container">
         <div class="row justify-content-center align-items-center authentication authentication-basic h-100">
@@ -60,9 +62,12 @@
                                     placeholder="user name" />
                             </div>
                             <div class="col-xl-12 mb-2">
-                                <label for="signin-password" class="form-label text-default d-block">Password<a
+                                <label for="signin-password" class="form-label text-default d-block">
+                                    Password
+                                    {{-- <a
                                         href="reset-password-basic.html" class="float-end text-danger">Forget password
-                                        ?</a></label>
+                                        ?</a> --}}
+                                    </label>
                                 <div class="input-group">
                                     <input type="password" class="form-control form-control-lg @error('password') is-invalid @enderror" name="password" id="signin-password"
                                         placeholder="password" />
@@ -72,12 +77,13 @@
                                     </button>
                                 </div>
                                 <div class="mt-2">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value=""
-                                            id="defaultCheck1" />
-                                        <label class="form-check-label text-muted fw-normal" for="defaultCheck1">
-                                            Remember password ?
-                                        </label>
+                                    <div class="form-group pt-4 ">
+                                        {!! app('captcha')->display() !!}
+                                        @if ($errors->has('g-recaptcha-response'))
+                                            <span class="help-block text-danger">
+                                                <strong>Please verify that you are not a robot.</strong>
+                                            </span>
+                                        @endif
                                     </div>
                                 </div>
                             </div>

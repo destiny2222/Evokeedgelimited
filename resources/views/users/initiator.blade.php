@@ -43,7 +43,7 @@
                      <a href="{{ route('visa-page') }}">
                         <div class="d-flex align-items-center">
                            <div class="mt-2">
-                               <h2 class="number-font fs-5">Visa <br> Fee</h2>
+                               <h2 class="number-font fs-5">Visa <br> Payment</h2>
                            </div>
                            <div class="ms-auto">
                                <div class="chart-wrapper mt-1">
@@ -105,7 +105,7 @@
                         <a href="/dashboard/corporate/service">
                            <div class="d-flex align-items-center">
                               <div class="mt-2">
-                                  <h2 class="fs-5 number-font">Cooperate Service</h2>
+                                  <h2 class="fs-5 number-font">Corporate Service</h2>
                               </div>
                               <div class="ms-auto">
                                   <div class="chart-wrapper mt-1">

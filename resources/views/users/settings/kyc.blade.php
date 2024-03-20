@@ -292,14 +292,14 @@
                                 <option value="Zimbabwe">Zimbabwe</option>
                             </select>
                         </div>
-                        <div class="form-group mb-4 mb-lg-0">
+                        {{-- <div class="form-group mb-4 mb-lg-0">
                             <label class="form-label">Street Address</label>
                             <input type="text" name="street_address" class="form-control" required>
                         </div>
                         <div class="form-group mb-4 mb-lg-0">
                             <label class="form-label">Street Address Line 2</label>
                             <input type="text" name="street_address_2" class="form-control" required>
-                        </div>
+                        </div> --}}
                         <div class="form-group row mb-4 mb-lg-4">
                             <div class="form-label">Status</div>
                             <div class="custom-controls-stacked">

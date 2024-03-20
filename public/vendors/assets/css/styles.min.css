@@ -24105,4 +24105,19 @@ a:hover {
     }
 
 
+    .login-img{
+        background-image: url('../images/black-logo.png');
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    
+    .login-img::before {
+        content: "";
+        background: linear-gradient(to right, var(--primary06) 0%, #05c3fb91 100%);
+        height: 100%;
+        width: 100%;
+        position: absolute;
+    }
+
 /*# sourceMappingURL=styles.min.css.map */

@@ -39,7 +39,7 @@
     <meta property="og:description" content="" />
     <meta name="next-head-count" content="30" />
     <!-- FAVICON -->
-    <link rel="shortcut icon" type="image/x-icon" href="/assetss/assets/images/brand/favicon.ico">
+    <link rel="icon" type="image/png" href="/assets/img/favicon.png">
 
     <!-- TITLE -->
     <title>EvokeEdge LLC | Dashboard</title>
