@@ -18,7 +18,7 @@
                         <input type="hidden" name="visa_type" value="canada">
                         <div class="">
                             <div class="form-group">
-                                <label for="exampleInputEmail1" class="form-label">Name application</label>
+                                <label for="exampleInputEmail1" class="form-label">Name of Applicant/Applicant Name</label>
                                 <input type="text" class="form-control" name="name" id="exampleInputEmail1" >
                             </div>
                             <div class="form-group">
