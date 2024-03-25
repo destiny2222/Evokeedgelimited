@@ -17,5 +17,6 @@ class TransactionCharges extends Model
         'flights_charge_amount',
         'bdc_charge',
         'other_service',
+        'deposit_charge',
     ];
 }

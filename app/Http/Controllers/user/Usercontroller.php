@@ -60,7 +60,9 @@ class Usercontroller extends Controller
 
 
     public function addBalance(){
-        return view('users.deposit.add');
+        $chargefee = TransactionCharges::select('deposit_charge')->first();
+        // dd($chargefee->deposit_charge);
+        return view('users.deposit.add', compact('chargefee'));
     }
 
 

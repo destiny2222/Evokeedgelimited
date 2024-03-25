@@ -80,13 +80,33 @@
     <!-- Switcher js -->
     <script src="/assetss/assets/switcher/js/switcher.js"></script>
     @include('partials.message')
-    <script>
+    {{-- <script>
         function getVal() {
-            var amountInput = document.getElementById('amount').value;
-            document.getElementById("input2").value = amountInput;
+            var amountInput = parseFloat(document.getElementById('amount').value);
+            var totalAmount = parseFloat(document.getElementById('fee').value);
+    
+            
+            if (!isNaN(amountInput) && !isNaN(totalAmount)) {
+                document.getElementById("input2").value = (amountInput + totalAmount).toFixed(2);
+            } else {
+                document.getElementById("input2").value = ''; 
+            }
+        }
+    </script> --}}
+    
+    <script>
+        function updateFee() {
+            var amountInput = parseFloat(document.getElementById('amount').value);
+            var feeAmount = parseFloat(document.getElementById('fee').value);
+    
+            // Check if the amount input is a valid number
+            if (!isNaN(amountInput)) {
+                document.getElementById("input2").value = (amountInput + feeAmount).toFixed(2);
+            } else {
+                document.getElementById("input2").value = ''; 
+            }
         }
     </script>
-
     <script>
         var paymentBody = document.querySelector(".pay-tuition");
         var formButton = document.querySelector(".next");

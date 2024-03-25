@@ -16,6 +16,7 @@ class Setting extends Model
         'corporate_service',
         'merchandise_payment',
         'other_service',
-        'maximum_balance_amount_for_unregistered_kyc'
+        'maximum_balance_amount_for_unregistered_kyc',
+        
     ];
 }

@@ -21,6 +21,10 @@ class CreateNewUser implements CreatesNewUsers
      */
     public function create(array $input): User
     {
+        // if ($this->settings->maintenance == 1) {
+        //     return back()->with('alert', 'We are currently under maintenance, please try again later');
+        // }
+
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
             'phone'=>['required', 'string', 'min:10'],

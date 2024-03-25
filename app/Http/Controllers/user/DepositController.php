@@ -5,6 +5,7 @@ namespace App\Http\Controllers\user;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserWallet\UpdateWallet;
 use App\Models\Transaction;
+use App\Models\TransactionCharges;
 use App\Models\UserWallet;
 use App\Notifications\TransactionNotification;
 use KingFlamez\Rave\Facades\Rave as Flutterwave;
@@ -26,11 +27,14 @@ class DepositController extends Controller
         ]);
 
         $reference = Flutterwave::generateReference();
-
+        $chargeFee = TransactionCharges::select('deposit_charge')->first();
+        // Calculate total balance
+        $totalBalance = $request->input('amount') + $chargeFee->deposit_charge;
+        // dd($totalBalance);
         // Enter the details of the payment
         $data = [
             'payment_options' => 'card, bank, ussd,bank transfe',
-            'amount' => $request->input('amount'),
+            'amount' => $totalBalance,
             'email' => $request->input('email'),
             'tx_ref' => $reference,
             'currency' => "NGN",

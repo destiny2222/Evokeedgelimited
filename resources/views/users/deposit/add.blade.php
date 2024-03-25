@@ -39,12 +39,13 @@
                                 <img src="{{ asset('assetss/assets/images/flags-svg/us.svg') }}" alt="" style="width: 0.9375rem; height: 0.9375rem; display: inline-block; margin-right: 0.28rem;">
                                 <span style="font-weight: 500; color: rgb(82, 95, 122);">USD</span>
                             </a>
-                            <input type="number" id="amount" onkeyup="getVal()" name="amount" class="input100 border-start-0 ms-0 form-control" oninput="displayInput()">
+                            <input type="number" id="amount" oninput="updateFee()" name="amount" class="input100 border-start-0 ms-0 form-control" oninput="displayInput()">
                         </div>
                         <div class="sc-jSgvzq sc-Azgjq hsYUSf fDRDgV" >
                             <div class="sc-jSgvzq MaInI list-item " >
                                 <span>Transaction fee</span>
-                                <span>$0.00</span>
+                                <span>${{ number_format($chargefee->deposit_charge, 2) }}</span>
+                                <input hidden type="text" id="fee" value="{{ $chargefee->deposit_charge }}">
                             </div>
                         </div>
                         <div>

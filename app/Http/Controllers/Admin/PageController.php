@@ -267,12 +267,11 @@ class PageController extends Controller
 
 
     public function TransactionchargesStore(ChargesRequest $request){
+        // dd($request->all());
         if(TransactionCharges::count()){
             TransactionCharges::first()->update($request->validated());
         }else{
             TransactionCharges::create($request->validated());
-            // Alert::success('Transaction charges have been created successfully');
-            // return redirect()->route('admin.transaction-charge-page');
         }
         Alert::success('Updated Sucessfully');
         return back();

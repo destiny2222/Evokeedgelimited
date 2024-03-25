@@ -32,6 +32,7 @@ class ChargesRequest extends FormRequest
              'merchant_charge_amount'=>['nullable','string'],
              'bdc_charge'=>['nullable','string'],
              'other_service'=>['nullable','string'],
+             'deposit_charge'=>['nullable','string'],
         ];
     }
 
